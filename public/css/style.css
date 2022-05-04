@@ -1,0 +1,15 @@
+body{
+    background-color: #eceff1;
+}
+
+#formulario-pergunta{
+    margin-top: 5vh;
+}
+
+
+            
+tr {transition:all .25s ease-in-out
+    
+}
+tr:hover{background-color:#004A80;cursor: pointer}
+tr:hover{color:#fff;cursor: pointer}

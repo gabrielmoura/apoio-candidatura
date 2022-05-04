@@ -1,0 +1,43 @@
+<%- include('../../partials/header.ejs') %>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <%- include('../../partials/sidebar.ejs') %>
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+                <!-- Main Content -->
+                <div id="content">
+                    <!-- Topbar -->
+                    <% include('../../partials/topbar.ejs') %>
+
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid">
+
+                            <div class="container">
+                                <hr> 
+                                <div class="card mt-5">
+                                    <div class="card-header">
+                                        <h2>Criação de usuário</h2>
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="/users/create" method="POST">
+                                            <input class="form-control" name="email" type="email" placeholder="email@exemplo.com"><br>
+                                            <input class="form-control" name="password" type="password" placeholder="******"><br>
+                                            <button type="submit" class="btn btn-success btn-block">Criar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                </div>
+
+
+            </div>
+    </div>
+
+    <% include('../../partials/logoutmodal.ejs') %>
+
+        <%- include('../../partials/footer.ejs') %>

@@ -1,0 +1,382 @@
+ <%- include ../../partials/header.ejs %> <!-- header -->
+
+ <script type="text/javascript">
+    $("#Celular").mask("(00) 00000-0000");
+    $("#SegundoTelefone").mask("(00) 00000-0000");
+    $("#dataabertura").mask("00/00/0000");
+    $("#data").mask("00/00/0000");
+
+    
+</script>
+
+<div id="wrapper"> <!-- wrapper -->
+        
+    <%- include ../../partials/sidebar.ejs %> <!-- Sidebar -->
+
+
+    <div id="content-wrapper" class="d-flex flex-column"><!-- Content Wrapper -->
+                
+        <div id="content"> <!-- content -->
+                        <!-- Topbar -->
+            <% include ../../partials/topbar.ejs %>
+                    
+                        <!-- Begin Page Content -->
+            <div class="container-fluid">
+                                                <!-- Content Row -->
+                    <div class="row">
+                        <!-- Earnings (Monthly) Card Example -->
+                                                            
+                         <div class="col-md-12 mb-3">
+                                    <div class="row">
+                                            <div class="col-xl-12 col-md-6 mb-4">
+                                                <div class="card border-left-primary shadow h-100 py-2">
+                                                    <div class="card-body">
+                                                        <div class="row no-gutters align-items-center">
+                                                            <div class="col mr-2">
+                                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><% tramitacao.ID %>TRAMITAÇÃO DO PROCESSO: <%= tramitacao.processo %> </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                <i class="fas fa-archive fa-2x text-gray-300"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                            </div>
+
+                        <div class="col-md-12 mb-3">
+
+                               <div class="card shadow mb-4">
+
+                               
+
+                                
+                                    <!-- inicio formulário  -->
+                                    <div class="card-body" >
+                                        
+                                        <form id="perguntaForm"  class="row g-3 needs-validation" novalidate method="POST" action="/admin/tramitacoes/update" style="display: inline;" onsubmit="confirmarAcao(event, this)">
+                        
+                                                    <div class="form-row">
+                                                        <div class="col-xl-12 col-md-6 mb-4">
+                                                            
+                                                            
+                                                            <div class="row">
+
+                                                            
+
+                                                                <div class="col-md-1 mb-3">
+
+                                                                    <!--  id da resposta -->    
+                                                            <input  type="hidden" class="form-control" name="id" id="id" value="<%= tramitacao.id %>"></input>
+                                                            <input  type="hidden" class="form-control" name="processo" id="processo" value="<%= tramitacao.processo %>"></input>
+
+
+                                                                <small id="passwordHelpBlock" class="form-text text-muted" >Sequencia</small>
+                                                                        <select class="form-control" name="sicopsequencia" id="sicopsequencia"  autofocus>
+                                                                            <option><%= tramitacao.sicopsequencia %></option>
+                                                                            <option value="001">001</option>
+                                                                        <option value="002">002</option>
+                                                                        <option value="003">003</option>
+                                                                        <option value="004">004</option>
+                                                                        <option value="005">005</option>
+                                                                        <option value="006">006</option>
+                                                                        <option value="007">007</option>
+                                                                        <option value="008">008</option>
+                                                                        <option value="009">009</option>
+                                                                        <option value="010">010</option>
+                                                                        <option value="011">011</option>
+                                                                        <option value="012">012</option>
+                                                                        <option value="013">013</option>
+                                                                        <option value="014">014</option>
+                                                                        <option value="015">015</option>
+                                                                        <option value="016">016</option>
+                                                                        <option value="017">017</option>
+                                                                        <option value="018">018</option>
+                                                                        <option value="019">019</option>
+                                                                        <option value="020">020</option>
+                                                                        <option value="021">021</option>
+                                                                        <option value="022">022</option>
+                                                                        <option value="023">023</option>
+                                                                        <option value="024">024</option>
+                                                                        <option value="025">025</option>
+                                                                        <option value="026">026</option>
+                                                                        <option value="027">027</option>
+                                                                        <option value="028">028</option>
+                                                                        <option value="029">029</option>
+                                                                        <option value="030">030</option>
+                                                                        <option value="031">031</option>
+                                                                        <option value="032">032</option>
+                                                                        <option value="033">033</option>
+                                                                        <option value="034">034</option>
+                                                                        <option value="035">035</option>
+                                                                        <option value="036">036</option>
+                                                                        <option value="037">037</option>
+                                                                        <option value="038">038</option>
+                                                                        <option value="039">039</option>
+                                                                        <option value="040">040</option>
+                                                                        <option value="041">041</option>
+                                                                        <option value="042">042</option>
+                                                                        <option value="043">043</option>
+                                                                        <option value="044">044</option>
+                                                                        <option value="045">045</option>
+                                                                        <option value="046">046</option>
+                                                                        <option value="047">047</option>
+                                                                        <option value="048">048</option>
+                                                                        <option value="049">049</option>
+                                                                        <option value="050">050</option>
+                                                                        <option value="051">051</option>
+                                                                        <option value="052">052</option>
+                                                                        <option value="053">053</option>
+                                                                        <option value="054">054</option>
+                                                                        <option value="055">055</option>
+                                                                        <option value="056">056</option>
+                                                                        <option value="057">057</option>
+                                                                        <option value="058">058</option>
+                                                                        <option value="059">059</option>
+                                                                        <option value="060">060</option>
+                                                                        
+
+                                                                        </select>
+                                                                
+                                                                </div>
+
+                                                                        <div class="col-md-4 mb-3">
+
+                                                                            
+
+                                                                        <small id="passwordHelpBlock" class="form-text text-muted" >Selecione uma carga</small>
+                                                                                <select class="form-control" name="carga" id="carga"  autofocus>
+                                                                                    <option><%= tramitacao.carga %></option>
+                                                                                    <option value="CARGA GAE">CARGA GAE</option>
+                                                                                    <option value="CARGA CPP">CARGA CPP</option>
+                                                                                    <option value="CARGA GPL">CARGA GPL</option>
+
+                                                                                    <option value="ENTRADA DOCS">ENTRADA DOCS</option>
+                                                                                    <option value="ENTRADA SICOP">ENTRADA SICOP</option>
+                                                                                    <option value="ENTRADA SICOP PROTOCOLO">ENTRADA SICOP PROTOCOLO</option>
+                                                                                    <option value="ENTRADA SICOP CTRT">ENTRADA SICOP CTRT</option>
+                                                                                    <option value="ENTRADA SICOP DTE">ENTRADA SICOP DTE</option>
+                                                                                    <option value="ENTRADA SICOP CGO">ENTRADA SICOP CGO</option>
+                                                                                    <option value="ENTRADA SICOP CPP">ENTRADA SICOP CPP</option>
+                                                                                    <option value="ENTRADA SICOP C.A/ARQUIVO">ENTRADA SICOP C.A/ARQUIVO</option>
+                                                                                    <option value="ENTRADA SICOP ARQUIVO">ENTRADA SICOP ARQUIVO</option>
+
+                                                                                    <option value="SAIDA SICOP">SAIDA SICOP</option>
+                                                                                    <option value="SAIDA SICOP PROTOCOLO">SAIDA SICOP PROTOCOLO</option>                                                                                                                                                                       
+                                                                                    <option value="SAIDA SICOP CTRT">SAIDA SICOP CTRT</option>
+                                                                                    <option value="SAIDA SICOP DTE">SAIDA SICOP DTE</option>
+                                                                                    <option value="SAIDA SICOP CGO">SAIDA SICOP CGO</option>
+                                                                                    <option value="SAIDA SICOP CPP">SAIDA SICOP CPP</option>
+                                                                                    <option value="SAIDA SICOP C.A/ARQUIVO">SAIDA SICOP C.A/ARQUIVO</option>
+                                                                                    <option value="SAIDA SICOP ARQUIVO">SAIDA SICOP ARQUIVO</option>
+
+                                                                                    <option value="NADA TEMOS A OPOR A À LIBERAÇÃO DA LICENÇA DE OBRAS">NADA TEMOS A OPOR A À LIBERAÇÃO DA LICENÇA DE OBRAS</option>
+
+                                                                                </select>
+                                                                        
+                                                                        </div>
+
+                                                                        <div class="col-md-2 mb-3">
+                                                                            <small id="passwordHelpBlock" class="form-text text-muted">Selecione ctrt</small>
+                                                                            <select class="form-control" name="ctrt" id="ctrt" value="">
+                                                                                <option><%= tramitacao.ctrt %></option>
+                                                                                <option value=""></option>
+                                                                                <option value="1">CTRT 1</option>
+                                                                                <option value="2.1">CTRT 2.1</option>
+                                                                                <option value="2.2/3.1">CTRT 2.2/3.1</option>
+                                                                                <option value="3N2">CTRT 3N2</option>
+                                                                                <option value="4">CTRT 4</option>
+                                                                                <option value="5">CTRT 5</option>
+                                                                                <option value="SOBRESTADO">SOBRESTADO</option>
+                                                                                <option value="PREESTADO">PRÉ-ESTADO</option>
+                                                                            </select>
+                                                                        
+                                                                        </div>
+                                                            
+                                                                        <div class="col-md-2 mb-3">
+                                                                            
+                                                                                <small id="passwordHelpBlock" class="form-text text-muted">Data</small>
+                                                                                <input type="text" class="form-control"  name="data" id="data" value="<%= tramitacao.data %>""></input>
+                                                                        </div>
+                                                                        <div class="col-md-2 mb-3">
+
+                                                                            <small id="passwordHelpBlock" class="form-text text-muted">Técnico</small>
+                                                                            <select class="form-control" name="tecnico" id="tecnico" value="">
+                                                                                <option><%= tramitacao.tecnico %></option>
+                                                                                <option value=""></option>
+                                                                                <option value="ADALBERTO">ADALBERTO</option>
+                                                                                <option value="ADRIANA">ADRIANA</option>
+                                                                                <option value="ANA PAULA">ANA PAULA</option>
+                                                                                <option value="ARNALDO">ARNALDO</option>
+                                                                                <option value="CARLOS HENRIQUE">CARLOS HENRIQUE</option>
+                                                                                <option value="CARLOS LESSA">CARLOS LESSA</option>
+                                                                                <option value="CECIL">CECIL</option>
+                                                                                <option value="CECIL GALVAO">CECIL GALVAO</option>
+                                                                                <option value="CLAUDIO RIOS">CLAUDIO RIOS</option>
+                                                                                <option value="GALVÃO">GALVÃO</option>
+                                                                                <option value="FREDERICO">FREDERICO</option>
+                                                                                <option value="GUTO">GUTO</option>
+                                                                                <option value="ITALO">ITALO</option>
+                                                                                <option value="JUAN">JUAN</option>
+                                                                                <option value="LESSA">LESSA</option>
+                                                                                
+                                                                                <option value="LETICIA">LETICIA</option>
+                                                                                <option value="MODESTO">MODESTO</option>
+                                                                                <option value="RODOLPHO">RODOLPHO</option>
+                                                                                <option value="RUFINO">RUFINO</option>
+                                                                                
+                                                                                <option value="VALMIR">VALMIR</option>
+                                                                                <option value="VERA">VERA</option>
+                                                                                <option value="VIRGINIA">VIRGINIA</option>
+                                                                            </select>
+                                                                        
+
+                                                                            
+                                                                            
+                                                                            
+
+                                                                            
+                                                                        </div>
+                                                                </div>
+
+                                                                <div class="row">
+
+                                                                    <div class="col-md-12 mb-3">
+                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Anotações</small>
+                                                                        <input style="text-transform: uppercase;" class="form-control" name="anotacao" id="anotacao" value="<%= tramitacao.anotacao %>"></input>
+
+                                                                    </div>
+                                                                </div>
+
+                                                            <div class="row">
+
+
+                                                                <div class="col-md-8 mb-3">
+                                                                    
+                                                                    
+                                                                    <small id="passwordHelpBlock" class="form-text text-muted">&nbsp</small>
+                                                                    
+                                                                    <script>
+                                                                        function temcerteza() {
+
+                                                                            var acaoatual = document.getElementById("acao").value 
+                                                                            var dataatual = document.getElementById("data").value 
+                                                                            var cargaatual = document.getElementById("carga").value 
+                                                                            var ctrtatual = document.getElementById("ctrt").value 
+                                                                            var tecnicoatual = document.getElementById("tecnico").value 
+                                                                            var anotacoesatual = document.getElementById("anotacao").value 
+
+                                                                            document.getElementById("temcerteza").innerHTML = `
+                                                                                <div class="alert alert-success" role="alert">
+                                                                                <center><h4 class="alert-heading" style="text-transform:uppercase">${acaoatual} ? <div class="spinner-grow text-success" role="status"></div></h4></center>
+                                                                                <hr>
+                                                                                <p class="mb-0">Carga: ${cargaatual}</p>
+                                                                                <p class="mb-0">Ctrt: ${ctrtatual}</p>
+                                                                                <p class="mb-0">Data: ${dataatual}</p>
+                                                                                <p class="mb-0">Técnico: ${tecnicoatual}</p>
+                                                                                <p class="mb-0">Anotações: ${anotacoesatual}</p>
+                                                                                </div>
+                                                                            ` ;
+                                                                        }
+                                                                        function temcertezasair() {
+                                                                            document.getElementById("temcerteza").innerText = "";
+                                                                        }
+                                                                    </script>
+                                                                    <button type="submit" onmouseover="temcerteza()"  onmouseout="temcertezasair()" class="btn btn-success btn-block">Salvar Edição da Tramitação</button>
+
+
+                                                                    <script>
+            
+                                                                        function confirmarAcao(event, form) {
+                                                                            
+                                                                            
+
+                                                                        event.preventDefault();
+                                                                        
+                                                                        var decision = confirm("Deseja continuar a Edição da Tramitação?");
+                                                                        
+
+                                                                        if (decision) {
+                                                                            form.submit();
+        
+                                                                        }
+                                                                    }
+        
+                                                                    
+                                                                </script>
+
+
+                                                                </div>
+                                                                <div class="col-md-4 mb-3">
+                                                                
+                                                                    <script>
+                                                                        function fun() {
+                                                                            document.getElementById("perguntaForm").reset();
+                                                                        }
+                                                                    </script>
+                                                                <small id="passwordHelpBlock" class="form-text text-muted">&nbsp</small>
+                                                                    <input type="button" value="Limpar" onClick="fun()" class="btn btn-secondary btn-block" />
+
+                                                                </div>
+
+
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12 mb-3">
+
+                                                            <div id="temcerteza"></div>
+
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                        </form>
+
+                                    </div>
+                                    <!-- fim formulário  -->
+
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+                        
+
+        </div><!--- content -->
+
+  <!-- Footer -->
+  <footer>
+    <div class="container my-auto">
+
+
+
+        <div class="copyright text-center my-auto">
+
+            
+            <div class="row">
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-6 col-md-6 mb-4">
+                    <input type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-Light btn-block" />
+                </div>
+                <div class="col-xl-6 col-md-6 mb-4">
+                    <input type="button" value="Avançar" onClick="history.go(+1)" class="btn btn-Light btn-block" />
+                </div>
+
+           
+        </div>
+    </div>
+</footer>
+
+
+
+            </div> <!-- Content Wrapper -->
+     <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+</div> <!-- fim wrapper -->
+
+<% include ../../partials/logoutmodal.ejs %>
+
+<% include ../../partials/footer.ejs %>
+

@@ -1,0 +1,184 @@
+<%- include('../../partials/header.ejs') %>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+                <!-- Main Content -->
+                <div id="content">
+                    <!-- Topbar -->
+                    <%- include('../../partials/topbar.ejs') %>
+                    
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid">
+                                                                     
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                        
+                                <div class="row">
+                        
+                                    <div class="col-xl-4 col-md-6 mb-4">
+                                        <h6 class="m-0 font-weight-bold text-primary" style="float: left">Pesquisar Processos</h6>
+                                    </div>
+                                    <!-- Earnings (Monthly) Card Example -->
+                                    <div class="col-xl-2 col-md-6 mb-4">
+                                        <form class="form-inline" method="POST" action="/admin/processos/search">
+                        
+                                            <label for="inputPassword2" class="sr-only">texto da pesquisa</label>
+                                            <input type="text" class="form-control" id="searchprocesso" name="searchprocesso"
+                                                placeholder="Pesquisar" title="Pesquisar." autofocus>
+                                    </div>
+                        
+                                    <div class="col-xl-2 col-md-6 mb-4">
+                                        <select class="form-control" name="searchpor" id="searchpor">
+                                            <option value="processo">por Processo</option>
+                                            <option value="requerente">por Requerente</option>
+                                            <option value="atividade">por Atividade</option>
+                                            <option value="logradouro">por Logradouro</option>
+                                            <option value="bairro">por Bairro</option>
+                                            <option value="card">por CardFile</option>
+                                            <option value="situacao">por Situação do Processo</option>
+                                            <option value="ano">por Ano do Processo</option>
+                                            <option value="complemento">por Complemento</option>
+
+                                        </select>
+                                    </div>
+                        
+                                    <div class="col-xl-2 col-md-6 mb-4">
+                                        <button type="submit" class="btn btn-primary btn-block">Pesquisar Processo</button>
+                                        </form>
+                        
+                                    </div>
+                                    <div class="col-xl-2 col-md-6 mb-4">
+                        
+                                        <input type="submit" value="Cadastrar Novo Processo" onclick="window.location='/admin/processos/new'"
+                                            class="btn btn-success btn-block" />
+                        
+                                    </div>
+                                </div>
+                        
+                            </div>
+
+
+
+                            <div class="card-body">
+                        
+                            <div class="table-responsive">
+                                <table class="table table-sm" id="dataTable" width="100%" cellspacing="0">
+                                    
+                                    <thead>
+                                        <tr>
+                                            <th><small></small></th>
+                                            
+                                            <th><small>Processos</small></th>
+                                            
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% processos.forEach(processo => { %>        
+                                        <tr>  
+
+                                                
+                                            <% var coramarelo = 'background-color:#77DD77;cursor: pointer;text-decoration:none; color:currentColor; textcolor:currentColor;' %>
+                                            <% var cornormal = '' %>
+                                            <% var cordefundo = processo.situacao === "Em Andamento" ? cornormal : coramarelo    %>
+                                                
+                                            <td style=<%= cordefundo %>><small><% processo.id %></small></td>
+                                            
+                                            <td>
+                                                <a style="text-decoration:none; color:currentColor;" title="Registrar Tramitações" href="/admin/tramitacoes/<%= processo.processo %>"><small><%= processo.processo %></small></a> 
+                                                <a style="text-decoration:none; color:currentColor;" title="Registrar Tramitações" href="/admin/tramitacoes/<%= processo.processo %>">
+                                                    <small><%= processo.requerente %></small>
+                                                    <small> | <%= processo.logradouro %>, <%= processo.numero %> - <%= processo.bairro %></small>
+                                            </a>
+                                            <a style="text-decoration:none; color:currentColor;" title="Registrar Tramitações" href="/admin/tramitacoes/<%= processo.processo %>"><small><%= processo.atividade %></small></a>
+                                            <a style="text-decoration:none; color:currentColor;" title="Registrar Tramitações" href="/admin/tramitacoes/<%= processo.processo %>"><small style=<%= cordefundo %>><%= processo.situacao %> (<%= processo.datasituacao %>)</small></a>
+                                            <div class="btn-group" role="group" style="float: right">
+                                                
+                                                <a href="/admin/processos/edit/<%= processo.id %>"><button type="button" class="btn btn-light"  title="Editar Processo"><i class="fas fa-edit"></i></button></a>
+                                            
+                                                <a href="/admin/tramitacoes/<%= processo.processo %>"><button class="btn btn-light" title="Registrar Tramitações" btn-block><i class="fas fa-book"></i></button></a>
+                                            
+                                                <form method="POST" action="/admin/processo/delete" onsubmit="confirmarDelecao(event, this)">
+                                                    <input type="hidden" name="id" value="<%= processo.id %>">
+                                                    <input type="hidden" name="status" value="0">
+                                                    <button class="btn btn-light" title="Excluir Processo" title="Excluir Processo" btn-block><i class="fas fa-trash"></i></button>
+                                                    <script>
+                                                        function confirmarDelecao(event, form) {
+                                                            event.preventDefault();
+                                                            var decision = confirm("Você quer deletar este Processo?");
+                                                            if (decision) {
+                                                                form.submit();
+                                                            }
+                                                        }
+                                                    </script>
+                                                </form>
+                                            </div>    
+                                        </td>
+                                            
+                                            
+                                            
+                                        </tr>
+                                        <% }) %>
+                                    </tbody>
+                                    
+                                </table>
+                                
+
+
+                                
+                            </div>
+                        </div>
+        
+            </div>    
+
+                        </div>
+
+
+                </div>
+  <!-- Footer -->
+  <footer>
+    <div class="container my-auto">
+
+
+
+        <div class="copyright text-center my-auto">
+
+            
+            <div class="row">
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-6 col-md-6 mb-4">
+                    <input type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-Light btn-block" />
+                </div>
+                <div class="col-xl-6 col-md-6 mb-4">
+                    <input type="button" value="Avançar" onClick="history.go(+1)" class="btn btn-Light btn-block" />
+                </div>
+
+           
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+            </div>
+
+
+
+            <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <% include('../../partials/logoutmodal.ejs') %>
+
+        <%- include('../../partials/footer.ejs') %>
+
+            <script>
+                function confirmarDelecao(event, form) {
+                    event.preventDefault();
+                    var decision = confirm("Você quer deletar este Processo?");
+                    if (decision) {
+                        form.submit();
+                    }
+                }
+            </script>

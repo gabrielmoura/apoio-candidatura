@@ -1,0 +1,51 @@
+<%- include ../../partials/header.ejs %>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <%- include ../../partials/sidebar.ejs %>
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+                <!-- Main Content -->
+                <div id="content">
+                    <!-- Topbar -->
+                    <% include ../../partials/topbar.ejs %>
+
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid">
+
+                            <div class="container">
+                               
+                                <h2>Usuários</h2>
+                                <a class="btn btn-success" href="/admin/users/create">Criar novo usuário</a>
+                                <hr>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% users.forEach(user => { %>
+                                            <tr>
+                                                <td><%= user.id %></td>
+                                                <td><%= user.email %></td>
+                                            </tr>
+                                        <% }) %>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                </div>
+
+
+            </div>
+    </div>
+
+    <% include ../../partials/logoutmodal.ejs %>
+
+        <% include ../../partials/footer.ejs %>

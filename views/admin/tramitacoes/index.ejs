@@ -1,0 +1,350 @@
+<%- include('../../partials/header.ejs') %>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+                <!-- Main Content -->
+                <div id="content">
+                    <!-- Topbar -->
+                    
+                    
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid">
+
+
+                            <!-- Local para Centralizar o conteúdo 
+                            <div class="container">
+                            -->
+            
+            
+                            <div class="row">
+
+                                <!-- Earnings (Monthly) Card Example -->
+                                <div class="col-xl-12 col-md-6 mb">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                        
+                                                    </div>
+                                                    <div class="h6 mb-0 font-weight-bold text-gray-800"><%= pergunta.ID %> <%= pergunta.requerente %> PROCESSO: <%= pergunta.processo %> | ATC: <%= pergunta.atc %> | Vagas: <%= pergunta.vagas %></div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><small><%= pergunta.logradouro %>, <%= pergunta.numero %> - <%= pergunta.bairro %> | Atividade: <%= pergunta.atividade %></small></div>
+                                                    
+                                                    
+                                                                                                                        </div>
+
+                                                                                                                        <div class="col-auto">
+                                                                                                                            <small><textarea type="text" class="p-3 mb-2 bg-light text-dark form-control" name="cardfile" id="cardfile" value="<%= pergunta.cardfile %>" rows="3" cols="53" readonly><%= pergunta.cardfile %></textarea></small>
+                                                                                                                        </div>
+                                                <div class="col-auto">
+                                                    <a href="/admin/processos/edit/<%= pergunta.id %>"><i class="fas fa-edit fa-2x text-gray-300" title="Editar Processo"></i></a>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                            </div>
+
+                       
+
+
+                                <!-- Content Row -->
+                                <div class="row">
+                                    <!-- Earnings (Monthly) Card Example -->
+                                    
+                                    <div class="col-md-12 mb-3">
+            
+            
+                                            <% var totTramitacoes = 0 %>
+                                                
+                                                <% respostas.forEach(resposta=> {%>
+                                                    <% if (resposta.status === 1){%>
+            
+                                                <%  totTramitacoes = totTramitacoes + 1  %>
+                                                        
+                                                <% }}) %>
+            
+
+                                                <% var totTramitacoessicop = 0 %>
+                                                
+                                                <% respostas.forEach(resposta=> {%>
+                                                    <% if (resposta.status  === 3){%>
+                                                        
+            
+                                                <%  totTramitacoessicop = totTramitacoessicop + 1  %>
+                                                        
+                                                <% }}) %>
+                                            
+
+                                    </div>
+                                
+                                    <div class="col-md-5 mb-3">
+            
+                                          <div class="card shadow mb-4">
+                                            <div class="card-header py-3">
+
+                                                
+                                <div class="row">
+                        
+                                    <div class="col-xl-8 col-md-6 mb-4">
+                                        <h6 class="m-0 font-weight-bold text-primary" style="float: left">Tramitações do Cardfile:&nbsp<%= totTramitacoes %></h6>
+                                    </div>
+                                    <!-- Earnings (Monthly) Card Example -->
+                                    
+                                    <div class="col-xl-4 col-md-6 mb-4">
+                        
+                                        <input type="submit" value="CADASTRAR TRAMITAÇÃO" onclick="window.location='/admin/tramitacoes/new/<%= pergunta.id %>'"
+                                            class="btn btn-success btn-block" style="float: right" />
+                        
+                                    </div>
+
+                                    
+                                </div>
+                                                
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+            
+                                                    <table class="table table-sm" id="dataTable" width="100%" cellspacing="0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th><small>Id</small></th>
+                                                                <th><small>Seq</small></th>
+                                                                <th><small>Tramitação</small></th>
+                                                                
+                                                                
+                                                            </tr>
+                                                        </thead>
+                                                        
+                                                        <tbody>
+                                                            <% respostas.forEach(resposta=> {%>
+                                                                <% if (resposta.status === 1){%>
+
+                                                            <tr>
+                                                                <td><small><% resposta.id %></small></td>
+                                                                <td><small><%= resposta.sicopsequencia %></small></td>
+
+
+                                                                <td><small><%= resposta.data %>: <%= resposta.carga %> <%= resposta.ctrt %> - <%= resposta.tecnico %></small><small style="text-transform: lowercase;"><%= resposta.anotacao %></small>
+
+                                                                    
+                                                                    <div class="btn-group" role="group" style="float: right">
+                                                                
+                                                                    <a href="/admin/tramitacao/edit/<%= resposta.id %>"><button type="button" class="btn btn-light"  title="Editar Tramitação"><i class="fas fa-edit"></i></button></a>
+                                                                        
+                                                                    
+                                                                    
+                                                                        <form method="POST" action="/admin/tramitacao/delete" onsubmit="confirmarDelecao(event, this)">
+                                                                            <input type="hidden" name="id" value="<%= resposta.id %>">
+                                                                            <input type="hidden" name="processo" value="<%= resposta.processo %>">
+                                                                            
+                                                                            <button class="btn btn-light" title="Excluir Tramitação" btn-block><i class="fas fa-trash"></i></button>
+                                                                        </form>
+                                                                        <script>
+                                                                            function confirmarDelecao(event, form) {
+                                                                                event.preventDefault();
+                                                                                var decision = confirm("Você quer deletar esta Tramitação?");
+                                                                                if (decision) {
+                                                                                    form.submit();
+                                                                                }
+                                                                            }
+                                                                        </script>
+                                                                    
+
+                                                                </div>
+                                                                </td>
+                                                                    
+            
+                                                                    
+                                                            </tr>
+                                                            <% }}) %>
+                                                        </tbody>
+                                                        
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script>
+                    
+                                            var rIndex,
+                                                table = document.getElementById("dataTable");
+                                            
+                                            // check the empty input
+                                            function checkEmptyInput()
+                                            {
+                                                var isEmpty = false,
+                                                    fname = document.getElementById("fname").value,
+                                                    lname = document.getElementById("lname").value,
+                                                    age = document.getElementById("age").value;
+                                            
+                                                if(fname === ""){
+                                                    alert("First Name Connot Be Empty");
+                                                    isEmpty = true;
+                                                }
+                                                else if(lname === ""){
+                                                    alert("Last Name Connot Be Empty");
+                                                    isEmpty = true;
+                                                }
+                                                else if(age === ""){
+                                                    alert("Age Connot Be Empty");
+                                                    isEmpty = true;
+                                                }
+                                                return isEmpty;
+                                            }
+                                            
+                                            // add Row
+                                            function addHtmldataTableRow()
+                                            {
+                                                // get the dataTable by id
+                                                // create a new row and cells
+                                                // get value from input text
+                                                // set the values into row cell's
+                                                if(!checkEmptyInput()){
+                                                var newRow = dataTable.insertRow(dataTable.length),
+                                                    cell1 = newRow.insertCell(0),
+                                                    cell2 = newRow.insertCell(1),
+                                                    cell3 = newRow.insertCell(2),
+                                                    cell4 = newRow.insertCell(3),
+                                                    id = document.getElementById("id").value,
+                                                    data = document.getElementById("data").value,
+                                                    carga = document.getElementById("carga").value;
+                                                    tecnico = document.getElementById("tecnico").value;
+                                            
+                                                    
+                                                    
+                                            
+                                                cell1.innerHTML = id;
+                                                cell2.innerHTML = data;
+                                                cell3.innerHTML = carga;
+                                                cell4.innerHTML = tecnico;
+                                                // call the function to set the event to the new row
+                                                selectedRowToInput();
+                                            }
+                                            }
+                                            
+                                            // display selected row data into input text
+                                            function selectedRowToInput()
+                                            {
+                                                for(var i = 1; i < dataTable.rows.length; i++)
+                                                {
+                                                    dataTable.rows[i].onclick = function()
+                                                    {
+                                                      // get the seected row index
+                                                      rIndex = this.rowIndex;
+                                                      document.getElementById("id").value = this.cells[0].innerHTML;
+                                                      document.getElementById("data").value = this.cells[1].innerHTML;
+                                                      document.getElementById("carga").value = this.cells[2].innerHTML;
+                                                      document.getElementById("tecnico").value = this.cells[3].innerHTML;
+                                                      document.getElementById("ctrt").value = this.cells[4].innerHTML;
+                                                      document.getElementById("anotacao").value = this.cells[5].innerHTML;
+                                                      document.getElementById("acao").value = "alterar";
+                                                    };
+                                                }
+                                            }
+                                            selectedRowToInput();
+            
+            
+                                            
+            
+                                            function editHtmlTbleSelectedRow()
+                                            {
+                                                var fname = document.getElementById("fname").value,
+                                                    lname = document.getElementById("lname").value,
+                                                    age = document.getElementById("age").value;
+                                               if(!checkEmptyInput()){
+                                                dataTable.rows[rIndex].cells[0].innerHTML = fname;
+                                                dataTable.rows[rIndex].cells[1].innerHTML = lname;
+                                                dataTable.rows[rIndex].cells[2].innerHTML = age;
+                                              }
+                                            }
+                                            
+                                            </script>
+                                </div>    
+
+                                <div class="col-md-7 mb-3">
+            
+                                    <div class="card shadow mb-4">
+                                      <div class="card-header py-3">
+                                          <h6 class="m-0 font-weight-bold text-primary" style="float: left">TRAMITAÇÕES DO SICOP</h6><h6  class="m-0 font-weight-bold text-primary" style="float: right">Tramitações:&nbsp<%= totTramitacoessicop %></h6>
+                                      </div>
+                                      <div class="card-body">
+                                          <div class="table-responsive">
+      
+                                              <table class="table table-sm" id="dataTablesicop" width="100%" cellspacing="0">
+                                                  <thead>
+                                                      <tr>
+                                                          <th><small>Sequência</small></th>
+                                                          <th><small>Data Despacho</small></th>
+                                                          <th><small>Data Recebimento</small></th>
+                                                          <th><small>Data Saída</small></th>
+                                                          <th><small>Despacho</small></th>
+                                                          <th><small>Descr Org Orgiem</small></th>
+                                                          <th><small>Descr Org Destino</small></th>
+                                                          
+                                                          
+                                                      </tr>
+                                                  </thead>
+                                                  
+                                                  <tbody>
+                                                      <% respostas.forEach(resposta=> {%>
+                                                        <% if (resposta.status  === 3){%>
+                                                            
+                                                      <tr>
+                                                          <td><small><% resposta.id %><%= resposta.sicopsequencia %></small></td>
+                                                          <td><small><%= resposta.sicopdatadespacho %></small></td>
+                                                          <td><small><%= resposta.sicopdatarecebimento %></small></td>
+                                                          <td><small><%= resposta.sicopdatasaida %></small></td>
+                                                          <td><small><%= resposta.sicopdescrdespacho %></small></td>
+                                                          <td><small><%= resposta.sicopdescrorgorgiem %></small></td>
+                                                          <td><small><%= resposta.sicopdescrorgdestino %></small></td>
+                                                          
+                                                      </tr>
+                                                      <% }}) %>
+                                                  </tbody>
+                                                  
+                                              </table>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  
+                          </div>    
+                        </div>
+  <!-- Footer -->
+  <footer>
+    <div class="container my-auto">
+
+
+
+        <div class="copyright text-center my-auto">
+
+            
+            <div class="row">
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-6 col-md-6 mb-4">
+                    <input type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-Light btn-block" />
+                </div>
+                <div class="col-xl-6 col-md-6 mb-4">
+                    <input type="button" value="Avançar" onClick="history.go(+1)" class="btn btn-Light btn-block" />
+                </div>
+
+           
+        </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+                </div>
+            </div>
+
+            <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <%- include('../../partials/logoutmodal.ejs') %>
+
+        <%- include('../../partials/footer.ejs') %>
+

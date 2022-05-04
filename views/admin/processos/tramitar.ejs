@@ -1,0 +1,269 @@
+<%- include ../../partials/header.ejs %>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <%- include ../../partials/sidebar.ejs %>
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+                <!-- Main Content -->
+                <div id="content">
+                    <!-- Topbar -->
+                    <% include ../../partials/topbar.ejs %>
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid">
+
+                                                                    <!-- Content Row -->
+                                                                    <div class="row">
+                                                                        <!-- Earnings (Monthly) Card Example -->
+                                                                        <div class="col-xl-9 col-md-6 mb-4">
+                            
+                                                                            <div class="card shadow mb-4">
+                                                                                <div class="card-header py-3">
+                                                                                    <h6 class="m-0 font-weight-bold text-primary" style="float: left">Atualizar Processo</h6>
+                                                                                    
+                                                                                </div>
+                                                                                <div class="card-body">
+                                                                                    
+                                                                                    <form method="POST" action="/admin/processos/update">
+                                                                                     
+                                                                                        
+                                                                                       <div class="form-row">
+                                                            
+                                                                                            <div class="col-xl-2 col-md-6 mb-4">
+                                                                                                <input type="hidden" name="id" value="<%= processo.id %>">
+                                                                                                <input type="hidden" name="status" value="1">
+
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted">Número do Processo</small>
+                                                                                                <input type="number" class="form-control" name="processo" value="<%= processo.processo %>"  autofocus></input>
+                                                                                            </div>
+                            
+                                                                                            <div class="col-xl-2 col-md-6 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted">Data Abertura</small>
+                                                                                                <input type="date" class="form-control" name="dataabertura" value="<%= processo.dataabertura %>"></input>
+                                                                                            </div>
+                            
+                                                                                            <div class="col-xl-2 col-md-6 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted">Atividade</small>
+                                                                                                <select class="form-control" name="atividade">
+                                                                                                    <option><%= processo.atividade %></option>
+                                                                                                    <option value=""></option>
+                                                                                                    <option value="DROGARIA E PERFUMARIA">DROGARIA E PERFUMARIA</option>
+                                                                                                    <option value="SUPERMERCADO">SUPERMERCADO</option>
+                                                                                                    <option value="HOSPITAL">HOSPITAL</option>
+                                                                                                    <option value="ESCOLA DE FUTEBOL">ESCOLA DE FUTEBOL</option>
+                                                                                                    <option value="OUTROS">OUTROS</option>
+                                                                                                </select>
+                                                                                                
+                                                                                            </div>
+                            
+                                                                                            <div class="col-xl-1 col-md-6 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted">ATC M²</small>
+                                                                                                <input type="text" class="form-control" name="atc" value="<%= processo.atc %>"></input>
+                                                                                            </div>
+                            
+                                                                                            <div class="col-xl-2 col-md-6 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted">Código Padrão do CUB</small>
+                                                                                                <select class="form-control" name="codigocub">
+                                                                                                    <option value="<%= processo.codigocub %>">R-8 Padrão Residencial Normal</option>
+                                                                                                    <option value="R-8">R-8 Padrão Residencial Normal</option>
+
+                                                                                                </select>
+                                                                                            </div>
+                            
+                                                                                            <div class="col-xl-3 col-md-6 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted">Assunto</small>
+                                                                                                <input class="form-control" name="assunto" value="<%= processo.assunto %>"></input>
+                                                                                            </div>
+                            
+                                                                                            
+                                                                                        </div>
+                            
+                                                                                            <div class="form-row">
+                            
+                            
+                                                                                                <div class="col-xl-2 col-md-6 mb-4">
+                                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Logradouro</small>
+                                                                                                    <input id="logradouro" class="form-control" name="logradouro" value="<%= processo.logradouro %>"></input>
+                                                                                                </div>
+                            
+                                                                                                <div class="col-xl-1 col-md-6 mb-4">
+                                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Número</small>
+                                                                                                    <input id="numero" type="number" class="form-control" name="numero" value="<%= processo.numero %>"></input>
+                                                                                                </div>
+                            
+                                                                                                <div class="col-xl-2 col-md-6 mb-4">
+                                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Complemento</small>
+                                                                                                    <input id="complemento" class="form-control" name="complemento" value="<%= processo.complemento %>"></input>
+                                                                                                </div>
+                            
+                                                                                                
+                                                                                                <div class="col-xl-2 col-md-6 mb-4">
+                                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Bairro</small>
+                                                                                                    <input id="bairro" class="form-control" name="bairro" value="<%= processo.bairro %>"></input>
+                                                                                                </div>
+                            
+                                                                                                <div class="col-xl-2 col-md-6 mb-4">
+                                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Cidade</small>
+                                                                                                    <input id="cidade" class="form-control" name="cidade" value="<%= processo.cidade %>"></input>
+                                                                                                </div>
+                            
+                                                                                                <div class="col-xl-1 col-md-6 mb-4">
+                                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Cep</small>
+                                                                                                    <input type="text" maxlength="9" class="form-control" name="cep" value="<%= processo.cep %>"></input>
+                                                                                                </div>
+                            
+                                                                                                <div class="col-xl-1 col-md-6 mb-4">
+                                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Latitude</small>
+                                                                                                    <input class="form-control" name="latitude" value="<%= processo.latitude %>"></input>
+                                                                                                </div>
+                            
+                                                                                                <div class="col-xl-1 col-md-6 mb-4">
+                                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Longitude</small>
+                                                                                                    <input class="form-control" name="longitude" value="<%= processo.longitude %>"></input>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                                
+                                                                                            <div class="form-row">
+                            
+                                                                                                    <div class="col-xl-2 col-md-6 mb-4">
+                                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Data Despacho</small>
+                                                                                                        <input type="date" class="form-control" name="data" value="<%= processo.data %>"></input>
+                                                                                                    </div>
+                                                                        
+                            
+                                                                        
+                                                                                                    <div class="col-xl-6 col-md-6 mb-4">
+                                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Informação Complementar</small>
+                                                                                                        <input class="form-control" name="informacaocomplementar" value="<%= processo.informacaocomplementar %>"></input>
+                                                                                                    </div>
+                                                                        
+                                                                                                    <div class="col-xl-4 col-md-6 mb-4">
+                                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Despacho</small>
+                                                                                                        <input class="form-control" name="despacho" value="<%= processo.despacho %>"></input>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                    <div class="form-row">
+                                                                                                    <div class="col-xl-6 col-md-6 mb-4">
+                                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Requerente</small>
+                                                                                                        <input class="form-control" name="requerente" value="<%= processo.requerente %>"></input>
+                                                                                                    </div>
+                            
+                                                                                                    <div class="col-xl-6 col-md-6 mb-4">
+                                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Contato Requerente</small>
+                                                                                                        <input class="form-control" name="contatorequerente" value="<%= processo.contatorequerente %>"></input>
+                                                                                                    </div>
+                                                                        
+                                                                                                    <div class="col-xl-12 col-md-6 mb-4">
+                                                                                
+                                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">-</small>
+
+
+                                                                                                        
+                                                                                                        <button type="submit" class="btn btn-success btn-block" >Atualizar</button>
+
+                                                                                                        
+                                                                                                    </div>
+                                                                                            
+                                                                        
+                                                                                        </div>
+                            
+
+                                                                                        <input type="hidden" name="Platitude" value="<%= processo.latitude %>">
+                                                                                        <input type="hidden" name="Plongitude" value="<%= processo.longitude %>">
+                                                                                        <input type="hidden" name="Pendereco" value="<%= processo.logradouro %>, <%= processo.numero %>, <%= processo.Bairro %> - <%= processo.cidade %>">
+                                                                                        <script type="text/javascript">
+                                                                                               
+                                                                                            
+                                                                                        </script>
+                            
+                            
+                                                                                    </form>
+                                                                                    
+                                                                                </div>
+                            
+                                                                                
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-xl-3 col-md-6 mb-4">
+                            
+                                                                                                      <div class="card shadow mb-4">
+                                                                                <div class="card-header py-3">
+                                                                                    <h6 class="m-0 font-weight-bold text-primary" style="float: left">Localização</h6>
+                                                                                </div>
+                                                                            <div>
+                                                                                <div id="map"></div>
+                                                                            </div>
+                                                                            </div>
+                                                                        </div>
+                            
+                                                                    </div>
+                </div>
+            </div>
+            <div id="content" style="display: none;">
+                <%- processo.body %>
+            </div>
+
+            <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+
+
+ <script type="text/javascript">
+
+var Platitude = document.querySelector("[name='Platitude']").value;
+var Plongitude = document.querySelector("[name='Plongitude']").value;
+var Pendereco = document.querySelector("[name='Pendereco']").value;
+
+console.log(Platitude);
+console.log(Plongitude);
+console.log(Pendereco);
+
+        const map = L.map('map').setView([Platitude,Plongitude], 15);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
+    L.marker([Platitude,Plongitude]).addTo(map)
+    .bindPopup(Pendereco)
+    .openPopup();
+    
+    
+    
+    // se estÃ¡ clicado
+    let isFetching = false
+    
+    
+    
+    map.on("click", async e => {
+    
+    // para evitar muitos cliques
+    if(isFetching) return
+    
+    isFetching = true
+    
+    const {lat, lng} = e.latlng
+    
+    const link = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&addressdetails=1&format=jsonv2&`
+    
+    const data = await fetch(link)
+    .then(response => response.json())
+    .catch(error => false)
+    console.log(data)
+    
+    document.querySelector("[name='logradouro']").value = `${data.address.road}`;
+    document.querySelector("[name='numero']").value = `${data.address.house_number}`;
+    document.querySelector("[name='bairro']").value = `${data.address.suburb}`;
+    document.querySelector("[name='cidade']").value = `${ data.address.city===undefined ? data.address.municipality : data.address.city }`;
+    document.querySelector("[name='cep']").value = `${data.address.postcode}`;
+    document.querySelector("[name='latitude']").value = `${data.lat}`;
+    document.querySelector("[name='longitude']").value = `${data.lon}`;
+    
+    setTimeout(() => isFetching = false, 1500)
+    })
+    </script>
+
+
+    <% include ../../partials/logoutmodal.ejs %>
+
+        <% include ../../partials/footer.ejs %>

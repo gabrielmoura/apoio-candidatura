@@ -1,0 +1,647 @@
+<%- include('../../partials/header.ejs') %>
+
+<%- include('../../partials/cep.ejs') %>
+
+<script type="text/javascript">
+    $("#Celular").mask("(00) 00000-0000");
+    $("#SegundoTelefone").mask("(00) 00000-0000");
+    $("#dataabertura").mask("00/00/0000");
+    $("#datasituacao").mask("00/00/0000");
+
+    
+</script>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+                <!-- Main Content -->
+                <div id="content">
+                    <!-- Topbar -->
+                    <%- include('../../partials/topbar.ejs') %>
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid">
+
+                                                                    
+                            <form method="POST" action="/admin/processos/update">
+                                                                    <input  type="hidden" class="form-control"  name="id" id="id" value="<%= processo.id %>"></input>
+                                                                    <input type="hidden" type="number" class="form-control" name="numprocesso" id="numprocesso"value="<%= processo.processo %>"></input>
+
+                                                            <!-- Dados do SICOP -->
+                                                            <div class="row">
+                                                                <!-- Earnings (Monthly) Card Example -->
+                                                                <div class="col-xl-12 col-md-6 mb-2">
+
+
+
+                                                                    <div class="card shadow mb">
+                                                                        
+                                                                        <div  class="card-body">
+
+                                                                            <div class="form-row">
+                                                                        
+                                                                                <div class="col-xl-2 col-md-6 mb-4">
+                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Número do Processo</small>
+                                                                                    <input type="text" class="p-3 mb-2 bg-secondary text-white form-control form-control-sm" name="processo" value="<%= processo.processo %>" readonly></input>
+                                                                                </div>
+
+                                                                                <div class="col-xl-2 col-md-6 mb-4">
+                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Requerente</small>
+                                                                                    <input style="text-transform: uppercase;" type="text" class="p-3 mb-2 bg-secondary text-white form-control form-control-sm" name="requerente" value="<%= processo.requerente %>" autofocus></input>
+
+                                                                                </div>
+
+                                                                                <div class="col-xl-1 col-md-6 mb-4">
+                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Data Abertura</small>
+                                                                                    <input type="text" class="p-3 mb-2 bg-secondary text-white form-control form-control-sm" name="dataabertura" id="dataabertura" value="<%= processo.dataabertura %>" ></input>
+                                                                                    
+                                                                                </div>
+                                                                                
+                                                                                <div class="col-xl-2 col-md-6 mb-4">
+                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Assunto</small>
+                                                                                    <input style="text-transform: uppercase;" class="p-3 mb-2 bg-secondary text-white form-control form-control-sm" name="assunto" value="<%= processo.assunto %>" ></input>
+                                                                                </div>
+
+                                                                           
+                                                                                <div class="col-xl-1 col-md-6 mb-4">
+                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Cep</small>
+                                                                                    
+                                                                                    <input id="sicopcep" type="text" maxlength="9" class="p-3 mb-2 bg-secondary text-white form-control form-control-sm" name="sicopcep" value="<%= processo.sicopcep %>"  readonly></input>
+                                                                                </div>
+                                                                                
+
+                                                                                <div class="col-xl-1 col-md-6 mb-4">
+                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Logradouro</small>
+                                                                                    <input style="text-transform: uppercase;" id="sicoplogradouro" class="p-3 mb-2 bg-secondary text-white form-control form-control-sm" name="sicoplogradouro" value="<%= processo.sicoplogradouro %>" readonly></input>
+                                                                                </div>
+
+                                                                                <div class="col-xl-1 col-md-6 mb-4">
+                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Número</small>
+                                                                                    
+                                                                                    <input id="sicopnumerologr" type="number" class="p-3 mb-2 bg-secondary text-white form-control form-control-sm" name="sicopnumerologr" value="<%= processo.sicopnumerologr %>"  readonly></input>
+                                                                                </div>
+
+                                                                                
+                                                                                <div class="col-xl-1 col-md-6 mb-4">
+                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Complemento</small>
+                                                                                    <input style="text-transform: uppercase;" id="sicopcomplemento" class="p-3 mb-2 bg-secondary text-white form-control form-control-sm" name="sicopcomplemento" value="<%= processo.sicopcomplemento %>"  readonly></input>
+                                                                                </div>
+
+                                                                                
+                                                                                <div class="col-xl-1 col-md-6 mb-4">
+                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Bairro</small>
+                                                                                    <input style="text-transform: uppercase;" id="sicopbairro" class="p-3 mb-2 bg-secondary text-white form-control form-control-sm" name="sicopbairro" value="<%= processo.sicopbairro %>"  readonly ></input>
+                                                                                </div>
+
+                                                                    
+                                                                                
+                                                                            </div>
+
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                                        <!-- Content Row -->
+                                                                    <div class="row">
+                                                                        <!-- Earnings (Monthly) Card Example -->
+                                                                        <div class="col-xl-9 col-md-6 mb-4">
+                            
+                                                                            <div class="card shadow mb-4">
+                                                       
+                                                                                <div class="card-body">
+                                                                                    
+                                                                                    
+                                                                                     
+                                                                                        
+                                                                                        <div class="form-row">
+
+
+                                    
+                                                                                                
+                                                                                                <div class="col-xl-6 col-md-6 mb-4">
+                                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Atividade</small>
+                                                                                                    <select class="form-control form-control-sm" name="atividade">
+                                                                                                        <option value="<%= processo.atividade %>"><%= processo.atividade %></option>
+                                                                                                        <option value=""></option>
+
+                                                                                                        
+
+                                                                                                        <option value="APOIO MARITIMO E NAVEGAÇÃO">APOIO MARITIMO E NAVEGAÇÃO</option>
+                                                                                                        
+
+                                                                                                        
+                                                                                                        <option value="AGENCIA BANCARIA">AGENCIA BANCARIA</option>
+                                                                                                        <option value="AGRUPAMENTO RESIDENCIAL MULTIFAMILIAR">AGRUPAMENTO RESIDENCIAL MULTIFAMILIAR</option>
+                                                                                                        <option value="ALOCAÇÃO DE VAGAS">ALOCAÇÃO DE VAGAS</option>
+                                                                                                        <option value="ARMAZÉM DE PRODUTOS NÃO INFLAMAVEIS">ARMAZÉM DE PRODUTOS NÃO INFLAMAVEIS</option>
+                                                                                                        <option value="ARMAZENAGEM DE ALIMENTOS">ARMAZENAGEM DE ALIMENTOS</option>
+                                                                                                        <option value="ARMAZENAGEM TIPO IV(MATERIAL DE CONSTRUÇÃO)">ARMAZENAGEM TIPO IV(MATERIAL DE CONSTRUÇÃO)</option>
+                                                                                                        <option value="ARMAZENAMENTO DE CHAPAS DE GRANITOS">ARMAZENAMENTO DE CHAPAS DE GRANITOS</option>
+                                                                                                        <option value="CAMÉRCIO VAREJISTA E ATACADISTA E MERCADORIAS EM GERAL">CAMÉRCIO VAREJISTA E ATACADISTA E MERCADORIAS EM GERAL</option>
+                                                                                                        <option value="CAPOTARIA">CAPOTARIA</option>
+                                                                                                        <option value="CENTRO MEDICO">CENTRO MEDICO</option>
+                                                                                                        <option value="CENTRO DE TREINAMENTO ESPORTIVO">CENTRO DE TREINAMENTO ESPORTIVO</option>
+                                                                                                        <option value="CLINICA E ASSISTENCIA MÉDICA COM E SEM INTERNAÇÃO">CLINICA E ASSISTENCIA MÉDICA COM E SEM INTERNAÇÃO</option>
+                                                                                                        <option value="CLÍNICA MÉDICA">CLÍNICA MÉDICA</option>
+                                                                                                        <option value="CLÍNICA MÉDICA S/ INTERNAÇÃO">CLÍNICA MÉDICA S/ INTERNAÇÃO</option>
+                                                                                                        <option value="CLÍNICA OFTALMOLÓGICA">CLÍNICA OFTALMOLÓGICA</option>
+                                                                                                        <option value="CLUBE DE TÊNIS">CLUBE DE TÊNIS</option>
+                                                                                                        <option value="COMERCIAL">COMERCIAL</option>
+                                                                                                        <option value="COMÉRCIO ATACATISTA DE CERVEJA, CHOPP E REFRIGERANTE">COMÉRCIO ATACATISTA DE CERVEJA, CHOPP E REFRIGERANTE</option>
+                                                                                                        <option value="COMERCIAL (SEDE ADMINISTRATIVA)">COMERCIAL (SEDE ADMINISTRATIVA)</option>
+                                                                                                        <option value="COMERCIAL E RESIDENCIAL MULTIFAMILIAR">COMERCIAL E RESIDENCIAL MULTIFAMILIAR</option>
+                                                                                                        <option value="COMÉRCIO DE COMBUSTÍVEIS">COMÉRCIO DE COMBUSTÍVEIS</option>
+                                                                                                        <option value="COMERCIO VAREJISTA">COMERCIO VAREJISTA</option>
+                                                                                                        <option value="COMÉRCIO VAREJISTA">COMÉRCIO VAREJISTA</option>
+                                                                                                        <option value="COMÉRCIO VAREJISTA DE ANIMAIS VIVOS">COMÉRCIO VAREJISTA DE ANIMAIS VIVOS</option>
+                                                                                                        <option value="COMERCIO VAREJISTA DE ARTIGOS ESPORTIVOS">COMERCIO VAREJISTA DE ARTIGOS ESPORTIVOS</option>
+                                                                                                        <option value="COMÉRCIO VAREJISTA DE HORTIFRUTIGRANJEIROS">COMÉRCIO VAREJISTA DE HORTIFRUTIGRANJEIROS</option>
+                                                                                                        <option value="CONCESSIONÁRIA DE VEÍCULOS E OFICINA MECÂNICA">CONCESSIONÁRIA DE VEÍCULOS E OFICINA MECÂNICA</option>
+                                                                                                        <option value="Concessionária de Veículos e Oficina Mecânica.">Concessionária de Veículos e Oficina Mecânica.</option>
+                                                                                                        <option value="COND RESIDENCILA MULTIFAMILIAR (CASA VERDE E AMARELA)">COND RESIDENCILA MULTIFAMILIAR (CASA VERDE E AMARELA)</option>
+                                                                                                        <option value="COND. RESIDENCIAL MULTIFAMILIAR(CASA VERDE E AMARELA)">COND. RESIDENCIAL MULTIFAMILIAR(CASA VERDE E AMARELA)</option>
+                                                                                                        <option value="CONDOMÍNIO RESIDENCIAL MULTIFAMILIAR">CONDOMÍNIO RESIDENCIAL MULTIFAMILIAR</option>
+                                                                                                        <option value="CONDOMÍNIO RESIDENCIAL MULTIFAMILIAR (MCMV)">CONDOMÍNIO RESIDENCIAL MULTIFAMILIAR (MCMV)</option>
+                                                                                                        <option value="CONST. DE EDIFICAÇ~ÇAO DE USO EXCLUSIVO PARA SEDE DE EMPRESA.">CONST. DE EDIFICAÇ~ÇAO DE USO EXCLUSIVO PARA SEDE DE EMPRESA.</option>
+                                                                                                        <option value="CRECHE E PRÉ ESCOLA">CRECHE E PRÉ ESCOLA</option>
+                                                                                                        <option value="DISTRIBUIDORA DE MATERIAL DE CONSTRUÇÃO">DISTRIBUIDORA DE MATERIAL DE CONSTRUÇÃO</option>
+                                                                                                        <option value="DROGARIA">DROGARIA</option>
+                                                                                                        <option value="DROGARIA E PERFUMARIA">DROGARIA E PERFUMARIA</option>
+                                                                                                        <option value="EDIFICIO GARAGEM">EDIFICIO GARAGEM</option>
+                                                                                                        <option value="EDIFICAÇÃO BIFAMILIAR">EDIFICAÇÃO BIFAMILIAR</option>
+                                                                                                        <option value="EDIFICAÇÃO COMERCIAL">EDIFICAÇÃO COMERCIAL</option>
+                                                                                                        <option value="EDIFICAÇÃO MISTA">EDIFICAÇÃO MISTA</option>
+                                                                                                        <option value="EDIFICAÇÃO RESIDENCIAL">EDIFICAÇÃO RESIDENCIAL</option>
+                                                                                                        <option value="EDIFICAÇÃO RESIDENCIAL MULTI">EDIFICAÇÃO RESIDENCIAL MULTI</option>
+                                                                                                        <option value="EDIFICACAO RESIDENCIAL MULTIFAMILIAR">EDIFICACAO RESIDENCIAL MULTIFAMILIAR</option>
+                                                                                                        <option value="EDIFICAÇÃO RESIDENCIAL MULTIFAMILIAR">EDIFICAÇÃO RESIDENCIAL MULTIFAMILIAR</option>
+                                                                                                        <option value="EDIFICIO RESIDENCIAL MULTIFAMILIAR">EDIFICIO RESIDENCIAL MULTIFAMILIAR</option>
+                                                                                                        <option value="EDUCACIONAL">EDUCACIONAL</option>
+                                                                                                        <option value="EMPREEND. RESIDENCIAL MULTIFAMILIAR">EMPREEND. RESIDENCIAL MULTIFAMILIAR</option>
+                                                                                                        <option value="EMPREENDIMENTO MISTO">EMPREENDIMENTO MISTO</option>
+                                                                                                        <option value="EMPREENDIMENTO MULTIFAMILIAR PCVA">EMPREENDIMENTO MULTIFAMILIAR PCVA</option>
+                                                                                                        <option value="EMPREENDIMENTO RESIDENCIAL MULTIFAMILIAR">EMPREENDIMENTO RESIDENCIAL MULTIFAMILIAR</option>
+                                                                                                        <option value="ENSINO">ENSINO</option>
+                                                                                                        <option value="ENSINO FUNDAMENTAL E MEDIO">ENSINO FUNDAMENTAL E MEDIO</option>
+                                                                                                        <option value="ENSINO INFANTIL">ENSINO INFANTIL</option>
+                                                                                                        <option value="ENSINO NAO SERIADO">ENSINO NAO SERIADO</option>
+                                                                                                        <option value="ENSINO NÃO SERIADO">ENSINO NÃO SERIADO</option>
+                                                                                                        <option value="ENSINO NÃO SERIADO MEDITAÇÃO">ENSINO NÃO SERIADO MEDITAÇÃO</option>
+                                                                                                        <option value="ENSINO SUPERIOR">ENSINO SUPERIOR</option>
+                                                                                                        <option value="ESCLA">ESCLA</option>
+                                                                                                        <option value="ESCOLA">ESCOLA</option>
+                                                                                                        <option value="ESTÚDIO CINEMATOGRÁFICO">ESTÚDIO CINEMATOGRÁFICO</option>
+
+                                                                                                        
+                                                                                                        <option value="ESCOLA DE ENSINO FUNDAMENTAL">ESCOLA DE ENSINO FUNDAMENTAL</option>
+                                                                                                        <option value="ESCOLA DE ENSINO SERIADO">ESCOLA DE ENSINO SERIADO</option>
+                                                                                                        <option value="ESCOLA DE FUTEBOL">ESCOLA DE FUTEBOL</option>
+                                                                                                        <option value="ESCOLA DE TÊNIS">ESCOLA DE TÊNIS</option>
+                                                                                                        <option value="ESCOLA/CRECHE/INSTITUTO SOCIAL">ESCOLA/CRECHE/INSTITUTO SOCIAL</option>
+                                                                                                        <option value="ESCOLAR">ESCOLAR</option>
+                                                                                                        <option value="ESOLINHA DE FUTEBOL">ESOLINHA DE FUTEBOL</option>
+                                                                                                        <option value="ESPORTIVA, LANCHONETE">ESPORTIVA, LANCHONETE</option>
+                                                                                                        <option value="ESTUDIO CINEMATOGRAFICO">ESTUDIO CINEMATOGRAFICO</option>
+                                                                                                        <option value="FÁBRICA DE PÃES">FÁBRICA DE PÃES</option>
+                                                                                                        <option value="FÁBRICA DE MÓVEL">FÁBRICA DE MÓVEL</option>
+                                                                                                        <option value="FABRICAÇÃO DE COMÉRCIO DE TORTAS, DOCES E SALGADOS">FABRICAÇÃO DE COMÉRCIO DE TORTAS, DOCES E SALGADOS</option>
+                                                                                                        <option value="FABRICAÇÃO E COMÉRCIO DE MASSAS">FABRICAÇÃO E COMÉRCIO DE MASSAS</option>
+                                                                                                        <option value="FARMACIA">FARMACIA</option>
+                                                                                                        <option value="FARMÁCIA, PERFUMARIA E DROGARIA">FARMÁCIA, PERFUMARIA E DROGARIA</option>
+                                                                                                        <option value="FABRICAÇÃO DE PRODUTOS QUÍMICOS">FABRICAÇÃO DE PRODUTOS QUÍMICOS</option>
+                                                                                                        <option value="GALPAO DE ARMAZENAGEM">GALPAO DE ARMAZENAGEM</option>
+                                                                                                        <option value="GALPAO DESOCUPADO. SEM DEF. DE ATV">GALPAO DESOCUPADO. SEM DEF. DE ATV</option>
+                                                                                                        <option value="GALPÃO/DEPOSITO">GALPÃO/DEPOSITO</option>
+                                                                                                        <option value="GALPÕES, EDIFICAÇÕES DE APOIO ADMINISTRATIVO">GALPÕES, EDIFICAÇÕES DE APOIO ADMINISTRATIVO</option>
+                                                                                                        
+                                                                                                        
+                                                                                                        <option value="GRÊMIO RECREATIVO,ESPORTIVO E SOCIAL">GRÊMIO RECREATIVO,ESPORTIVO E SOCIAL</option>
+                                                                                                        
+                                                                                                        
+                                                                                                        <option value="GRUP. RES.MULTIFAMILIAR">GRUP. RES.MULTIFAMILIAR</option>
+                                                                                                        <option value="GRUPAMENTO DE EDIFICAÇÃO COMERCIAL">GRUPAMENTO DE EDIFICAÇÃO COMERCIAL</option>
+                                                                                                        <option value="GRUPAMENTO MULTIFAMILIAR">GRUPAMENTO MULTIFAMILIAR</option>
+                                                                                                        <option value="GRUPAMENTO RES. FAMILIAR">GRUPAMENTO RES. FAMILIAR</option>
+                                                                                                        <option value="GRUPAMENTO RES. MULTIFAMILIAR">GRUPAMENTO RES. MULTIFAMILIAR</option>
+                                                                                                        <option value="GRUPAMENTO RESIDENCIAL">GRUPAMENTO RESIDENCIAL</option>
+                                                                                                        <option value="GRUPAMENTO RESIDENCIAL MULTIFAMILIAR">GRUPAMENTO RESIDENCIAL MULTIFAMILIAR</option>
+                                                                                                        <option value="GRUPAMENTO RESIDENCIAL FAMILIAR">GRUPAMENTO RESIDENCIAL FAMILIAR</option>
+                                                                                                        <option value="HOSPITALAR">HOSPITALAR</option>
+                                                                                                        <option value="HOTEL">HOTEL</option>
+                                                                                                        <option value="INDÚSTRIA DE ALIMENTOS">INDÚSTRIA DE ALIMENTOS</option>
+                                                                                                        <option value="INSTALAÇÃO, MANUTENÇÃO E REPARAÇÃO DE ELEVADORES">INSTALAÇÃO, MANUTENÇÃO E REPARAÇÃO DE ELEVADORES</option>
+                                                                                                        <option value="JURISDICIONAL (STM)">JURISDICIONAL (STM)</option>
+                                                                                                        <option value="LABORATORIO DE ANALISES">LABORATORIO DE ANALISES</option>
+                                                                                                        <option value="LANCHONETE E RESTAURANTE">LANCHONETE E RESTAURANTE</option>
+                                                                                                        <option value="LOJA">LOJA</option>
+                                                                                                        <option value="LOJA COMERCIAL">LOJA COMERCIAL</option>
+                                                                                                        <option value="LOJA DE COMERCIO VAREJISTA">LOJA DE COMERCIO VAREJISTA</option>
+                                                                                                        <option value="LOJA DE DESCARTÁVEIS">LOJA DE DESCARTÁVEIS</option>
+                                                                                                        <option value="NADA CONSTA">NADA CONSTA</option>
+                                                                                                        <option value="NAI">NAI</option>
+                                                                                                        <option value="POSTO DE ABASTECIMENTO">POSTO DE ABASTECIMENTO</option>
+                                                                                                        <option value="POSTO DE ABASTECIMENTO GNV">POSTO DE ABASTECIMENTO GNV</option>
+                                                                                                        <option value="POSTO DE COMBUSTIVEIS E SERVIÇOS">POSTO DE COMBUSTIVEIS E SERVIÇOS</option>
+                                                                                                        <option value="PRÉDIO COMERCIAL">PRÉDIO COMERCIAL</option>
+                                                                                                    <option value="PRÉDIO COMERCIAL DE USO EXCLUSIVO">PRÉDIO COMERCIAL DE USO EXCLUSIVO</option>
+                                                                                                        <option value="PRÉDIO COMERCIALDE USO EXCLUSIVO">PRÉDIO COMERCIALDE USO EXCLUSIVO</option>
+                                                                                                        <option value="PRÉDIO MISTO">PRÉDIO MISTO</option>
+                                                                                                        <option value="PREDIO MULTIFAMILIAR">PREDIO MULTIFAMILIAR</option>
+                                                                                                        <option value="PRÉDIO MULTIFAMILIAR">PRÉDIO MULTIFAMILIAR</option>
+                                                                                                        <option value="PREDIO MULTIFAMILIAR COM 6 PAV.">PREDIO MULTIFAMILIAR COM 6 PAV.</option>
+                                                                                                        <option value="PRÉDIO RESIDENCIAL">PRÉDIO RESIDENCIAL</option>
+                                                                                                        <option value="PREDIO RESIDENCIAL MULTIFAMILIAR">PREDIO RESIDENCIAL MULTIFAMILIAR</option>
+                                                                                                        <option value="PROJETOS SOCIAIS E CULTURAIS">PROJETOS SOCIAIS E CULTURAIS</option>
+                                                                                                        <option value="PRONTO SOCORRO E UNIDADES HOSPITALARES">PRONTO SOCORRO E UNIDADES HOSPITALARES</option>
+                                                                                                        <option value="PRONTO SOCORRO SEM INTERNAÇÃO">PRONTO SOCORRO SEM INTERNAÇÃO</option>
+                                                                                                        <option value="REDE DE ENSINO">REDE DE ENSINO</option>
+                                                                                                        <option value="RESIDENCIA MULTIFAMILIAR">RESIDENCIA MULTIFAMILIAR</option>
+                                                                                                        <option value="RESIDENCIAL">RESIDENCIAL</option>
+                                                                                                        <option value="RESIDENCIAL FAMILIAR">RESIDENCIAL FAMILIAR</option>
+                                                                                                        <option value="RESIDENCIAL MULTIFAMILIAR">RESIDENCIAL MULTIFAMILIAR</option>
+                                                                                                        <option value="RESIDENCIAL MULTIFAMILIAR MCMV">RESIDENCIAL MULTIFAMILIAR MCMV</option>
+                                                                                                        <option value="RESTAURANTE">RESTAURANTE</option>
+                                                                                                        <option value="RESTAURANTES/LANCHONETES E DROGARIA">RESTAURANTES/LANCHONETES E DROGARIA</option>
+                                                                                                        <option value="SANATÓRIO/ASILO">SANATÓRIO/ASILO</option>
+                                                                                                        <option value="SEDE ADMINISTRATIVA">SEDE ADMINISTRATIVA</option>
+                                                                                                        <option value="SEDE DE EMPRESA">SEDE DE EMPRESA</option>
+                                                                                                        <option value="SEM DESCRICAO">SEM DESCRICAO</option>
+                                                                                                        <option value="SERVIÇOS TURISTICOS">SERVIÇOS TURISTICOS</option>
+                                                                                                        <option value="SUPERMERCADO">SUPERMERCADO</option>
+                                                                                                        <option value="TEMPLO PARA CULTO RELIGIOSO">TEMPLO PARA CULTO RELIGIOSO</option>
+                                                                                                        <option value="TEMPLO RELIGIOSO">TEMPLO RELIGIOSO</option>
+                                                                                                        <option value="USO COMERCIAL">USO COMERCIAL</option>
+                                                                                                        <option value="USO DE ENSINO FUNDAMENTAL">USO DE ENSINO FUNDAMENTAL</option>
+                                                                                                        <option value="USO EXCLUSIVO DESTINADO A ENSINO">USO EXCLUSIVO DESTINADO A ENSINO</option>
+                                                                                                        <option value="USO MISTO">USO MISTO</option>
+                                                                                                        <option value="USO RESIDENCIAL MULTIFAMILIAR">USO RESIDENCIAL MULTIFAMILIAR</option>
+                                                                                                        <option value="VEICULOS AUTOMOTORES OFICINA MECANICA">VEICULOS AUTOMOTORES OFICINA MECANICA</option>
+                                                                                                        <option value="VENDA DE VEICULOS AUTOMOTIVOS">VENDA DE VEICULOS AUTOMOTIVOS</option>
+                                                                                                        <option value="OUTROS">OUTROS</option>
+                                                                                                    </select>
+                                                                                                    
+                                                                                                </div>
+                                                                                                <div class="col-xl-1 col-md-6 mb-4">
+                                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">ATC M²</small>
+                                                                                                    <input type="text" class="form-control form-control-sm" name="atc" value="<%= processo.atc %>" ></input>
+                                                                                                </div>
+                                
+                                                                                                <div class="col-xl-1 col-md-6 mb-4">
+                                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Vagas</small>
+                                                                                                    <input type="text" class="form-control form-control-sm" name="vagas" value="<%= processo.vagas %>"></input>
+                                                                                                </div>
+
+                                                                                            
+                                                                                                <div class="col-xl-4 col-md-6 mb-4">
+                                                                                                    <small id="passwordHelpBlock" class="form-text text-muted">Código Padrão do CUB</small>
+                                                                                                    <select class="form-control form-control-sm" name="codigocub">
+
+                                                                                                        
+                                                                                                        <option value="<%= processo.codigocub %>"><%= processo.codigocub %></option>
+                                                                                                        <option value="R-8">R-8 Padrão Residencial Normal</option>
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                        </div>
+                            
+                            
+                                                                                        <div class="form-row">
+                                                                                            
+                                                                                            <div class="col-xl-1 col-md-6 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted">Cep</small>
+                                                                                                <input type="text" maxlength="9" class="form-control form-control-sm" name="cep"  id="cep" value="<%= processo.cep %>" size="10" onblur="pesquisacep(this.value);"></input>
+                                                                                            </div>
+                            
+                                                                                            <div class="col-xl-3 col-md-6 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted">Logradouro</small>
+                                                                                                <input style="text-transform: uppercase;" id="logradouro" class="form-control form-control-sm" name="logradouro" value="<%= processo.logradouro %>"></input>
+                                                                                            </div>
+                            
+                                                                                            <div class="col-xl-1 col-md-6 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted"><input type="button"  value="copiar"  class="btn btn-white"  title="Copiar Enderecço do Requerente" onclick="mesmoendereco(event, this)"/></small>
+                                                                                                    
+                                                                                                
+                                                                                                <script>
+                                                                                                    function mesmoendereco(event, form) {     
+                                                                                                        event.preventDefault();    
+                                                                                                        
+                                                                                                        var decision = confirm("Copiar o Endereço acima?");
+                                                                                                        if (decision) {
+                                                                                                            document.querySelector("[name='logradouro']").value = document.querySelector("[name='sicoplogradouro']").value;
+                                                                                                    document.querySelector("[name='numero']").value = document.querySelector("[name='sicopnumerologr']").value;
+                                                                                                    document.querySelector("[name='complemento']").value = document.querySelector("[name='sicopcomplemento']").value;
+                                                                                                    document.querySelector("[name='bairro']").value = document.querySelector("[name='sicopbairro']").value;
+                                                                                                    document.querySelector("[name='cep']").value = document.querySelector("[name='sicopcep']").value;
+                                                                                                        }
+                                                                                                    
+                                                                                                                                                                                }
+                                    
+                                                                                                    </script>
+                                                                                            </div>
+
+                                                                                            <div class="col-xl-1 col-md-6 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted">Número</small>
+                                                                                                <input id="numero" type="number" class="form-control form-control-sm" name="numero" value="<%= processo.numero %>"></input>
+                                                                                            </div>
+                            
+                                                                                            <div class="col-xl-2 col-md-6 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted">Complemento</small>
+                                                                                                <input style="text-transform: uppercase;" id="complemento" class="form-control form-control-sm" name="complemento" value="<%= processo.complemento %>"></input>
+                                                                                            </div>
+                            
+                                                                                            
+                                                                                            <div class="col-xl-2 col-md-6 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted">Bairro</small>
+                                                                                                <input style="text-transform: uppercase;" id="bairro" class="form-control form-control-sm" name="bairro" value="<%= processo.bairro %>"></input>
+                                                                                            </div>
+                            
+                                                                       
+                            
+                                                                                          
+                            
+                                                                                            <div class="col-xl-1 col-md-6 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted">Latitude</small>
+                                                                                                <input class="form-control form-control-sm" name="latitude" value="<%= processo.latitude %>"></input>
+                                                                                            </div>
+                            
+                                                                                            <div class="col-xl-1 col-md-6 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted">Longitude</small>
+                                                                                                <input class="form-control form-control-sm" name="longitude" value="<%= processo.longitude %>"></input>
+                                                                                            </div>
+                                                                                        </div>
+                            
+                                                       
+                                                                                        <div class="form-row">
+                                                                                            <div class="col-xl-3 col-md-6 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted">E-mail</small>
+                                                                                                <input style="text-transform: lowercase;" type="text" class="form-control form-control-sm" name="email" value="<%= processo.email %>" ></input>
+                                                                                            </div>
+                            
+                                                                                            <div class="col-xl-3 col-md-6 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted">Contato Requerente</small>
+                                                                                                <input class="form-control form-control-sm" name="contatorequerente" value="<%= processo.contatorequerente %>" ></input>
+                                                                                            </div>
+
+                                                                                            <% var coramarelo = 'background-color:#FFFF00;cursor: pointer;text-decoration:none; color:currentColor; textcolor:currentColor;' %>
+                                                                                            <% var cornormal = '' %>
+                                                                                            <% var cordefundo = processo.situacao === "Em Andamento" ? cornormal : coramarelo    %>
+                                                                                            <div style=<%= cordefundo %> class="col-xl-4 col-md-2 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-primary">Situação do Processo</small>
+                                                                                                <select class="form-control bg-primary text-white form-control-sm" name="situacao">
+                                                                                                    <option value="<%= processo.situacao %>"><%= processo.situacao %></option>
+                                                                                                    <option value="Em Andamento">Em Andamento</option>
+                                                                                                    <option value="Nada Opor">Nada Opor</option>
+                                                                                                    <option value="DECLARAÇÃO HABITE-SE">DECLARAÇÃO HABITE-SE</option>
+                                                                                                    <option value="DECLARAÇÃO HABITE-SE COM TERMO DE COMPROMISSO">DECLARAÇÃO HABITE-SE COM TERMO DE COMPROMISSO</option>
+                                                                                                    <option value="Verificar">Verificar</option>
+
+
+                                                                                                    
+                                                                                                </select>
+                                                                                                
+                                                                                             
+                                                                                                    
+                                                                                                
+                                                                                            </div>
+
+                                                                                            <div style=<%= cordefundo %> class="col-xl-2 col-md-2 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-primary">Data da Situação</small>
+                                                                                                <input type="text" class="p-3 mb-2 bg-primary text-white form-control form-control-sm" name="datasituacao" id="datasituacao" value="<%= processo.datasituacao %>" ></input>
+                                                                                                
+                                                                                            </div>
+                            
+                                                                                        
+                                                                                                       
+                                                                                        </div>
+
+                                                                                        <div class="form-row">
+                                                                                            <div class="col-xl-6 col-md-6 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted">Informações do CardFile Antigo</small>
+                                                                                               <textarea type="text" class="p-3 mb-2 bg-light text-dark font-italic form-control form-control-sm" name="cardfile" id="cardfile" value="<%= processo.cardfile %>" rows="7" cols="66"><%= processo.cardfile %></textarea>
+                                                                                            </div>
+
+                                                                                            <div class="col-xl-6 col-md-6 mb-4">
+                                                                                                <small id="passwordHelpBlock" class="form-text text-muted">Informação Complementar</small>
+                                                                                                <textarea class="p-3 mb-2 bg-secondary text-white form-control form-control-sm" name="informacaocomplementar" id="informacaocomplementar" value="<%= processo.informacaocomplementar %>" rows="7" cols="66"><%= processo.informacaocomplementar %></textarea>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="form-row">
+                                                                                                        <div class="col-xl-6 col-md-6 mb-4">
+                                                                                                            
+                                                                                                            <button type="submit" class="btn btn-success btn-block" >Atualizar</button>
+                                                                                                        </div>
+
+                                                                                                        <div class="col-xl-2 col-md-6 mb-4">
+                                                                                                            
+                                                                                                            <a href="https://computei.com.br/certidao/<%= processo.processo %>.doc" target="_parent" class="btn btn-light btn-block"><i class="far fa-file-word"></i> Baixar Declaração</a>
+                                                                                                            
+
+                                                                                                        </div>
+
+                                                                                                        <div class="col-xl-4 col-md-6 mb-4">
+                                                                                                            
+                                                                                                            <a href="/admin/tramitacoes/<%= processo.processo %>"><button class="btn btn-light btn-block" title="Registrar Tramitações" btn-block><i class="fas fa-book"></i> Tramitações</button></a>
+                                                                                                        </div>
+                                                                                                        
+                                                                                                        
+                                                                                        </div>
+
+                                                                                    
+                                                                                </div>
+                            
+                                                                                
+                                                                            </div>
+                            
+                                                                        
+                                                                    </div>
+                                </form>
+                            
+                            
+                                                                        <div class="col-xl-3 col-md-6 mb-4">
+                            
+                                                                            <div class="card shadow mb-4">
+                                                                        
+                                                                                <div class="card-body">
+                                                                                
+                                                                            <div>
+                                                                                <div id="map"></div>
+                                                                                <small><input  type="hidden"  name="Pendereco" value="<%= processo.logradouro %>, <%= processo.numero %>, <%= processo.Bairro %> - <%= processo.cidade %>"></input></small>
+                                                                                <small><input   type="hidden" name="Platitude" value=<%= processo.latitude %>></small>
+                                                                                <small> <input  type="hidden"  name="Plongitude" value=<%= processo.longitude %>></small>
+                                                                            </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
+                            
+                                                        </div>
+
+                                                                    <div class="row">
+
+
+                                                                        <div class="col-xl-6 col-md-6 mb-4">
+                                                                                    
+                                                                            <!-- <button type="hidden" type="button" onclick="Evento()">Evento</button> -->
+
+                                                                                        <script>
+                                                                                            
+                                                                                            // se estÃ¡ clicado
+                                                                                            let isFetching = false
+                                                                                            function Evento() {
+                                                                                                alert('evento funcionando');         
+                                                                                                
+                                                                                        if(isFetching) return
+                                                                                        
+                                                                                        isFetching = true
+                                                                                        
+                                                                                        const {lat, lng} = e.latlng
+                                                                                        
+                                                                                        const link = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&addressdetails=1&format=jsonv2&`
+                                                                                        
+                                                                                        const data = await fetch(link)
+                                                                                        .then(response => response.json())
+                                                                                        .catch(error => false)
+                                                                                        console.log(data)
+                                                                                        
+                                                                                        document.querySelector("[name='logradouro']").value = `${data.address.road}`;
+                                                                                        document.querySelector("[name='numero']").value = `${data.address.house_number}`;
+                                                                                        document.querySelector("[name='bairro']").value = `${data.address.suburb}`;
+                                                                                        document.querySelector("[name='cidade']").value = `${ data.address.city===undefined ? data.address.municipality : data.address.city }`;
+                                                                                        document.querySelector("[name='cep']").value = `${data.address.postcode}`;
+                                                                                        document.querySelector("[name='latitude']").value = `${data.lat}`;
+                                                                                        document.querySelector("[name='longitude']").value = `${data.lon}`;
+                                                                                        
+                                                                                        setTimeout(() => isFetching = false, 1500)
+
+                                                                                                const link = "https://nominatim.openstreetmap.org/search.php?q=rua+barao+de+lucena%2C+140%2C+botafogo&format=jsonv2"
+                                                                                                document.querySelector("[name='logradouro']").value = `${link}`;
+                                                                                                }
+                                                                                        </script>
+                            
+                                                                        </div>
+
+                                                                    </div>
+                </div>
+
+<!-- Footer -->
+<footer>
+    <div class="container my-auto">
+
+
+
+        <div class="copyright text-center my-auto">
+
+
+            <div class="row">
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-6 col-md-6 mb-4">
+                    <input type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-Light btn-block" />
+                </div>
+                <div class="col-xl-6 col-md-6 mb-4">
+                    <input type="button" value="Avançar" onClick="history.go(+1)" class="btn btn-Light btn-block" />
+                </div>
+
+
+            </div>
+        </div>
+</footer>
+
+
+
+</div>
+
+
+<a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+</div>
+
+
+ <script type="text/javascript">
+
+var Platitude = document.querySelector("[name='Platitude']").value;
+var Plongitude = document.querySelector("[name='Plongitude']").value;
+var Pendereco = document.querySelector("[name='Pendereco']").value;
+
+console.log(Platitude);
+console.log(Plongitude);
+console.log(Pendereco);
+
+    const map = L.map('map').setView([Platitude,Plongitude], 15);
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
+ 
+
+
+
+   if (document.querySelector("[name='situacao']").value === "Em Andamento") {
+    var icone = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});      
+   }else{
+    var icone = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+   }
+
+   
+
+
+    L.marker([Platitude,Plongitude], {icon: icone}).addTo(map)
+    .bindPopup(Pendereco)
+    .openPopup();
+    
+    
+    
+    // se estÃ¡ clicado
+    let isFetching = false
+    
+    
+    
+    map.on("click", async e => {
+    
+    // para evitar muitos cliques
+    if(isFetching) return
+    
+    isFetching = true
+    
+    const {lat, lng} = e.latlng
+    
+    const link = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&addressdetails=1&format=jsonv2&`
+    
+    const data = await fetch(link)
+    .then(response => response.json())
+    .catch(error => false)
+    console.log(data)
+    
+    document.querySelector("[name='logradouro']").value = `${data.address.road}`;
+    document.querySelector("[name='numero']").value = `${data.address.house_number}`;
+    document.querySelector("[name='bairro']").value = `${data.address.suburb}`;
+    document.querySelector("[name='cidade']").value = `${ data.address.city===undefined ? data.address.municipality : data.address.city }`;
+    document.querySelector("[name='cep']").value = `${data.address.postcode}`;
+    document.querySelector("[name='latitude']").value = `${data.lat}`;
+    document.querySelector("[name='longitude']").value = `${data.lon}`;
+    
+    setTimeout(() => isFetching = false, 1500)
+    })
+    </script>
+
+
+
+    <%- include('../../partials/logoutmodal.ejs') %>
+    <%- include('../../partials/footer.ejs') %>
