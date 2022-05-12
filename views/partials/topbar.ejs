@@ -1,68 +1,93 @@
 
-            <!-- Topbar -->
-            
-            <nav style="background-color: #4262BE" class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-primary topbar mb-4 static-top shadow">
 
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/processos">
-        <div class="sidebar-brand-icon">
-            <!-- <img src="/img/logo-cet-pq.png" style="height:40px;"> -->
-            
-        </div>
-        
-    </a>
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none bg-white rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
 
-  
-                <!-- Topbar Navbar -->
-                <ul class="navbar-nav ml-auto">
+           
 
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
 
+                     
 
-
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/admin/dashboard/" title="Dashboard Administrativo">
-                            <!-- <h5> <i class="fas fa-fw fa-tachometer-alt"></i></h5> -->
-                           
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter">1+</span>
                             </a>
-                    </li>
-                    
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Central de Alertas
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">02/02/2022</div>
+                                        <span class="font-weight-bold">Notificação!</span>
+                                    </div>
+                                </a>
+                         
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todos os alertas</a>
+                            </div>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/processos" role="button"
-                        aria-haspopup="true" aria-expanded="false" title="Localizar Processos">
-                        <h4><i class="fas fa-search fa-fw"></i></h4>
-                    </a>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/processos/new" role="button"
-                        aria-haspopup="true" aria-expanded="false" title="Cadastrar Novo Processo">
-                        <i class="fas fa-plus fa-fw"></i>
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-envelope fa-fw"></i>
+                                <!-- Counter - Messages -->
+                                <span class="badge badge-danger badge-counter">1</span>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="messagesDropdown">
+                                <h6 class="dropdown-header">
+                                    Central de mensagens
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="dropdown-list-image mr-3">
+                                        <img class="rounded-circle" src="/img/undraw_profile_1.svg"
+                                            alt="...">
+                                        <div class="status-indicator bg-success"></div>
+                                    </div>
+                                    <div class="font-weight-bold">
+                                        <div class="text-truncate">Notificações.</div>
+                                        <div class="small text-gray-500">Nome</div>
+                                    </div>
+                                </a>
+                                
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Leia mais mensagens</a>
+                            </div>
+
+
+                            
+                        </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">
+                                    <i class="fas fa-sign-out-alt"></i>
+                            </li>
+
                         
-                    </a>
-                    
 
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://wa.me/5521997811982" role="button"
-                        aria-haspopup="true" aria-expanded="false" title="Fale Conosco">
-                        <i class="fas fa-send fa-fw"></i>
                         
-                    </a>
-                    
 
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout" role="button"
-                        aria-haspopup="true" aria-expanded="false" title="Sair do Sistema">
-                        <i class="fas fa-sign-out-alt"></i>
-                        
-                    </a>
-                    
+                    </ul>
 
-                    </li>
-
-                </ul>
-
-            </nav>
-            <!-- End of Topbar -->
+                </nav>
+                <!-- End of Topbar -->
