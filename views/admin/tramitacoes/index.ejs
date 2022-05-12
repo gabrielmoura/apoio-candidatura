@@ -9,6 +9,7 @@
                 <!-- Main Content -->
                 <div id="content">
                     <!-- Topbar -->
+                    <%- include('../../partials/topbar.ejs') %>
                     
                     
                         <!-- Begin Page Content -->
@@ -84,7 +85,7 @@
 
                                     </div>
                                 
-                                    <div class="col-md-5 mb-3">
+                                    <div class="col-xl-12 col-md-6 mb-4">
             
                                           <div class="card shadow mb-4">
                                             <div class="card-header py-3">
@@ -92,12 +93,12 @@
                                                 
                                 <div class="row">
                         
-                                    <div class="col-xl-8 col-md-6 mb-4">
+                                    <div class="col-xl-6 col-md-6 mb-4">
                                         <h6 class="m-0 font-weight-bold text-primary" style="float: left">Tramitações do Cardfile:&nbsp<%= totTramitacoes %></h6>
                                     </div>
                                     <!-- Earnings (Monthly) Card Example -->
                                     
-                                    <div class="col-xl-4 col-md-6 mb-4">
+                                    <div class="col-xl-6 col-md-6 mb-4">
                         
                                         <input type="submit" value="CADASTRAR TRAMITAÇÃO" onclick="window.location='/admin/tramitacoes/new/<%= pergunta.id %>'"
                                             class="btn btn-success btn-block" style="float: right" />
@@ -144,7 +145,7 @@
                                                                             <input type="hidden" name="id" value="<%= resposta.id %>">
                                                                             <input type="hidden" name="processo" value="<%= resposta.processo %>">
                                                                             
-                                                                            <button class="btn btn-light" title="Excluir Tramitação" btn-block><i class="fas fa-trash"></i></button>
+                                                                            <!-- <button class="btn btn-light" title="Excluir Tramitação" btn-block><i class="fas fa-trash"></i></button> -->
                                                                         </form>
                                                                         <script>
                                                                             function confirmarDelecao(event, form) {
@@ -266,54 +267,7 @@
                                             
                                             </script>
                                 </div>    
-
-                                <div class="col-md-7 mb-3">
-            
-                                    <div class="card shadow mb-4">
-                                      <div class="card-header py-3">
-                                          <h6 class="m-0 font-weight-bold text-primary" style="float: left">TRAMITAÇÕES DO SICOP</h6><h6  class="m-0 font-weight-bold text-primary" style="float: right">Tramitações:&nbsp<%= totTramitacoessicop %></h6>
-                                      </div>
-                                      <div class="card-body">
-                                          <div class="table-responsive">
-      
-                                              <table class="table table-sm" id="dataTablesicop" width="100%" cellspacing="0">
-                                                  <thead>
-                                                      <tr>
-                                                          <th><small>Sequência</small></th>
-                                                          <th><small>Data Despacho</small></th>
-                                                          <th><small>Data Recebimento</small></th>
-                                                          <th><small>Data Saída</small></th>
-                                                          <th><small>Despacho</small></th>
-                                                          <th><small>Descr Org Orgiem</small></th>
-                                                          <th><small>Descr Org Destino</small></th>
-                                                          
-                                                          
-                                                      </tr>
-                                                  </thead>
-                                                  
-                                                  <tbody>
-                                                      <% respostas.forEach(resposta=> {%>
-                                                        <% if (resposta.status  === 3){%>
-                                                            
-                                                      <tr>
-                                                          <td><small><% resposta.id %><%= resposta.sicopsequencia %></small></td>
-                                                          <td><small><%= resposta.sicopdatadespacho %></small></td>
-                                                          <td><small><%= resposta.sicopdatarecebimento %></small></td>
-                                                          <td><small><%= resposta.sicopdatasaida %></small></td>
-                                                          <td><small><%= resposta.sicopdescrdespacho %></small></td>
-                                                          <td><small><%= resposta.sicopdescrorgorgiem %></small></td>
-                                                          <td><small><%= resposta.sicopdescrorgdestino %></small></td>
-                                                          
-                                                      </tr>
-                                                      <% }}) %>
-                                                  </tbody>
-                                                  
-                                              </table>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  
-                          </div>    
+ 
                         </div>
   <!-- Footer -->
   <footer>

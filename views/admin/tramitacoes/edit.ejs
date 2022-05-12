@@ -1,4 +1,4 @@
- <%- include ../../partials/header.ejs %> <!-- header -->
+<%- include('../../partials/header.ejs') %>
 
  <script type="text/javascript">
     $("#Celular").mask("(00) 00000-0000");
@@ -11,14 +11,14 @@
 
 <div id="wrapper"> <!-- wrapper -->
         
-    <%- include ../../partials/sidebar.ejs %> <!-- Sidebar -->
+    
 
 
     <div id="content-wrapper" class="d-flex flex-column"><!-- Content Wrapper -->
                 
         <div id="content"> <!-- content -->
                         <!-- Topbar -->
-            <% include ../../partials/topbar.ejs %>
+                        <%- include('../../partials/topbar.ejs') %>
                     
                         <!-- Begin Page Content -->
             <div class="container-fluid">
@@ -151,29 +151,7 @@
                                                                                 <select class="form-control" name="carga" id="carga"  autofocus>
                                                                                     <option><%= tramitacao.carga %></option>
                                                                                     <option value="CARGA GAE">CARGA GAE</option>
-                                                                                    <option value="CARGA CPP">CARGA CPP</option>
-                                                                                    <option value="CARGA GPL">CARGA GPL</option>
-
-                                                                                    <option value="ENTRADA DOCS">ENTRADA DOCS</option>
-                                                                                    <option value="ENTRADA SICOP">ENTRADA SICOP</option>
-                                                                                    <option value="ENTRADA SICOP PROTOCOLO">ENTRADA SICOP PROTOCOLO</option>
-                                                                                    <option value="ENTRADA SICOP CTRT">ENTRADA SICOP CTRT</option>
-                                                                                    <option value="ENTRADA SICOP DTE">ENTRADA SICOP DTE</option>
-                                                                                    <option value="ENTRADA SICOP CGO">ENTRADA SICOP CGO</option>
-                                                                                    <option value="ENTRADA SICOP CPP">ENTRADA SICOP CPP</option>
-                                                                                    <option value="ENTRADA SICOP C.A/ARQUIVO">ENTRADA SICOP C.A/ARQUIVO</option>
-                                                                                    <option value="ENTRADA SICOP ARQUIVO">ENTRADA SICOP ARQUIVO</option>
-
-                                                                                    <option value="SAIDA SICOP">SAIDA SICOP</option>
-                                                                                    <option value="SAIDA SICOP PROTOCOLO">SAIDA SICOP PROTOCOLO</option>                                                                                                                                                                       
-                                                                                    <option value="SAIDA SICOP CTRT">SAIDA SICOP CTRT</option>
-                                                                                    <option value="SAIDA SICOP DTE">SAIDA SICOP DTE</option>
-                                                                                    <option value="SAIDA SICOP CGO">SAIDA SICOP CGO</option>
-                                                                                    <option value="SAIDA SICOP CPP">SAIDA SICOP CPP</option>
-                                                                                    <option value="SAIDA SICOP C.A/ARQUIVO">SAIDA SICOP C.A/ARQUIVO</option>
-                                                                                    <option value="SAIDA SICOP ARQUIVO">SAIDA SICOP ARQUIVO</option>
-
-                                                                                    <option value="NADA TEMOS A OPOR A À LIBERAÇÃO DA LICENÇA DE OBRAS">NADA TEMOS A OPOR A À LIBERAÇÃO DA LICENÇA DE OBRAS</option>
+                                                                                    
 
                                                                                 </select>
                                                                         
@@ -186,12 +164,6 @@
                                                                                 <option value=""></option>
                                                                                 <option value="1">CTRT 1</option>
                                                                                 <option value="2.1">CTRT 2.1</option>
-                                                                                <option value="2.2/3.1">CTRT 2.2/3.1</option>
-                                                                                <option value="3N2">CTRT 3N2</option>
-                                                                                <option value="4">CTRT 4</option>
-                                                                                <option value="5">CTRT 5</option>
-                                                                                <option value="SOBRESTADO">SOBRESTADO</option>
-                                                                                <option value="PREESTADO">PRÉ-ESTADO</option>
                                                                             </select>
                                                                         
                                                                         </div>
@@ -209,28 +181,7 @@
                                                                                 <option value=""></option>
                                                                                 <option value="ADALBERTO">ADALBERTO</option>
                                                                                 <option value="ADRIANA">ADRIANA</option>
-                                                                                <option value="ANA PAULA">ANA PAULA</option>
-                                                                                <option value="ARNALDO">ARNALDO</option>
-                                                                                <option value="CARLOS HENRIQUE">CARLOS HENRIQUE</option>
-                                                                                <option value="CARLOS LESSA">CARLOS LESSA</option>
-                                                                                <option value="CECIL">CECIL</option>
-                                                                                <option value="CECIL GALVAO">CECIL GALVAO</option>
-                                                                                <option value="CLAUDIO RIOS">CLAUDIO RIOS</option>
-                                                                                <option value="GALVÃO">GALVÃO</option>
-                                                                                <option value="FREDERICO">FREDERICO</option>
-                                                                                <option value="GUTO">GUTO</option>
-                                                                                <option value="ITALO">ITALO</option>
-                                                                                <option value="JUAN">JUAN</option>
-                                                                                <option value="LESSA">LESSA</option>
-                                                                                
-                                                                                <option value="LETICIA">LETICIA</option>
-                                                                                <option value="MODESTO">MODESTO</option>
-                                                                                <option value="RODOLPHO">RODOLPHO</option>
-                                                                                <option value="RUFINO">RUFINO</option>
-                                                                                
-                                                                                <option value="VALMIR">VALMIR</option>
-                                                                                <option value="VERA">VERA</option>
-                                                                                <option value="VIRGINIA">VIRGINIA</option>
+                                                                               
                                                                             </select>
                                                                         
 
@@ -376,7 +327,9 @@
      <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
 </div> <!-- fim wrapper -->
 
-<% include ../../partials/logoutmodal.ejs %>
 
-<% include ../../partials/footer.ejs %>
+<%- include('../../partials/logoutmodal.ejs') %>
+
+<%- include('../../partials/footer.ejs') %>
+
 

@@ -129,7 +129,7 @@ router.post("/admin/processos/search", adminAuth, (req, res) => {
                 raw: true,
                 order:[['id','ASC']],
                 where: {
-                    Logradouro: {
+                    logradouro: {
                         [Op.substring]: searchprocesso
                     }, 
                     status: 1
