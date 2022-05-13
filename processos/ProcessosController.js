@@ -248,72 +248,36 @@ router.get("/admin/processo/:id", adminAuth, (req ,res) => {
 
 
 router.post("/admin/processos/salvarpergunta", adminAuth ,(req, res) => {
-    
-        var requerente = req.body.requerente;
-        var logradouro = req.body.logradouro;
-        var numero = req.body.numero;
-        var complemento = req.body.complemento;
-        var bairro = req.body.bairro;
-        var cidade = req.body.cidade; 
-        var cep = req.body.cep;
-        var email = req.body.email;
-        var atividade = req.body.atividade;
-        var atc = req.body.atc;
-        var vagas = req.body.vagas;
-        var dataabertura = req.body.dataabertura; 
-        var contatorequerente = req.body.contatorequerente;
-        var assunto = req.body.assunto;
-        var informacaocomplementar = req.body.informacaocomplementar;
-        var datadespacho = req.body.datadespacho;
-        var despacho = req.body.despacho;
-        var codigocub = req.body.codigocub;
-        var latitude = req.body.latitude;
-        var longitude = req.body.longitude;
-        var cardfile = req.body.cardfile;
-        
-        var sicoplogradouro = req.body.sicoplogradouro;
-        var sicopnumerologr = req.body.sicopnumerologr;
-        var sicopcomplemento = req.body.sicopcomplemento;
-        var sicopbairro = req.body.sicopbairro;
-        var sicopcidade = req.body.sicopcidade;
-        var sicopcep = req.body.sicopcep;
-        var situacao = req.body.situacao;
-        var datasituacao = req.body.datasituacao;
-        
-        
 
-        const novoprocesso = Processo.create({
-        requerente: requerente,
-        logradouro: logradouro,
-        numero: numero,
-        complemento: complemento,
-        bairro: bairro,
-        cidade: cidade, 
-        cep: cep,
-        email: email,
-        atividade: atividade,
-        atc: atc,
-        vagas: vagas,
-        dataabertura: dataabertura, 
-        contatorequerente: contatorequerente,
-        assunto: assunto,
-        informacaocomplementar: informacaocomplementar,
-        datadespacho: datadespacho,
-        despacho: despacho,
-        codigocub: codigocub,
-        latitude: latitude,
-        longitude: longitude,
-        situacao: situacao,
-        datasituacao: datasituacao,
-
-        sicoplogradouro: sicoplogradouro,
-        sicopnumerologr: sicopnumerologr,
-        sicopcomplemento: sicopcomplemento,
-        sicopbairro: sicopbairro,
-        sicopcidade: sicopcidade,
-        sicopcep: sicopcep,
-        cardfile: cardfile,
-        status: 1
+ Processo.create({
+        
+    datacomparecimento: req.body.datacomparecimento,
+    nomebeneficiario: req.body.nomebeneficiario,
+    telefone: req.body.telefone,
+    celular: req.body.celular,
+    telefone2: req.body.telefone2,
+    logradouro: req.body.logradouro,
+    numero: req.body.numero,
+    complemento: req.body.complemento,
+    bairro: req.body.bairro,
+    cidade: req.body.cidade,
+    cep: req.body.cep,
+    beneficiorequerido: req.body.beneficiorequerido,
+    indicacao: req.body.indicacao,
+    pendenciadedocumentos: req.body.pendenciadedocumentos,
+    informacaocomplementar: req.body.informacaocomplementar,
+    enviados: req.body.enviados,
+    entrada: req.body.entrada,
+    cpf: req.body.cpf,
+    senhadocliente: req.body.senhadocliente,
+    situacao: req.body.situacao,
+    novaentrada: req.body.novaentrada,
+    datapesquisa: req.body.datapesquisa,
+    advogadoqueassinou: req.body.advogadoqueassinou,
+    pagamento: req.body.pagamento,
+    email: req.body.email,
+    avaliacaopericia: req.body.avaliacaopericia,
+    status: 1
 
     }).then(() => {
         console.log("criou e tentou redirecionar");
@@ -324,94 +288,46 @@ router.post("/admin/processos/salvarpergunta", adminAuth ,(req, res) => {
 
 router.post("/admin/processos/update", adminAuth, (req, res) => {
 
-    var id = req.body.id;
-    var processo = req.body.processo;
-    var requerente = req.body.requerente;
-    var logradouro = req.body.logradouro;
-    var numero = req.body.numero;
-    var complemento = req.body.complemento;
-    var bairro = req.body.bairro;
-    var cidade = req.body.cidade; 
-    var cep = req.body.cep;
-    var email = req.body.email;
-    var atividade = req.body.atividade;
-    var atc = req.body.atc;
-    var vagas = req.body.vagas;
-    var dataabertura = req.body.dataabertura; 
-    var contatorequerente = req.body.contatorequerente;
-    var assunto = req.body.assunto;
-    var informacaocomplementar = req.body.informacaocomplementar;
-    var datadespacho = req.body.datadespacho;
-    var despacho = req.body.despacho;
-    var codigocub = req.body.codigocub;
-    var latitude = req.body.latitude;
-    var longitude = req.body.longitude;
-    var cardfile = req.body.cardfile;
-    var situacao = req.body.situacao;
-    var datasituacao = req.body.datasituacao;
-
-    
-
-    var sicoplogradouro = req.body.sicoplogradouro;
-    var sicopnumerologr = req.body.sicopnumerologr;
-    var sicopcomplemento = req.body.sicopcomplemento;
-    var sicopbairro = req.body.sicopbairro;
-    var sicopcidade = req.body.sicopcidade;
-    var sicopcep = req.body.sicopcep;
-
-    // Está aqui pois não foi possível receber o processo desable
-    var numprocesso = req.body.numprocesso
-
-
-  
-
     Processo.update({
-        processo: processo,
-        requerente: requerente,
-        logradouro: logradouro,
-        numero: numero,
-        complemento: complemento,
-        bairro: bairro,
-        cidade: cidade, 
-        cep: cep,
-        email: email,
-        atividade: atividade,
-        atc: atc,
-        vagas: vagas,
-        dataabertura: dataabertura, 
-        contatorequerente: contatorequerente,
-        assunto: assunto,
-        informacaocomplementar: informacaocomplementar,
-        datadespacho: datadespacho,
-        despacho: despacho,
-        codigocub: codigocub,
-        latitude: latitude,
-        longitude: longitude,
-        cardfile: cardfile,
 
-        situacao: situacao,
-        datasituacao: datasituacao,
-        
-
-
-        sicoplogradouro: sicoplogradouro,
-        sicopnumerologr: sicopnumerologr,
-        sicopcomplemento: sicopcomplemento,
-        sicopbairro: sicopbairro,
-        sicopcidade: sicopcidade,
-        sicopcep: sicopcep,
-
-        status: 1
+    id: req.body.id,
+    datacomparecimento: req.body.datacomparecimento,
+    nomebeneficiario: req.body.nomebeneficiario,
+    telefone: req.body.telefone,
+    celular: req.body.celular,
+    telefone2: req.body.telefone2,
+    logradouro: req.body.logradouro,
+    numero: req.body.numero,
+    complemento: req.body.complemento,
+    bairro: req.body.bairro,
+    cidade: req.body.cidade,
+    cep: req.body.cep,
+    beneficiorequerido: req.body.beneficiorequerido,
+    indicacao: req.body.indicacao,
+    pendenciadedocumentos: req.body.pendenciadedocumentos,
+    informacaocomplementar: req.body.informacaocomplementar,
+    enviados: req.body.enviados,
+    entrada: req.body.entrada,
+    cpf: req.body.cpf,
+    senhadocliente: req.body.senhadocliente,
+    situacao: req.body.situacao,
+    novaentrada: req.body.novaentrada,
+    datapesquisa: req.body.datapesquisa,
+    advogadoqueassinou: req.body.advogadoqueassinou,
+    pagamento: req.body.pagamento,
+    email: req.body.email,
+    avaliacaopericia: req.body.avaliacaopericia,
+    status: 1
     
         },{
         where: {
-            id: id
+            id: req.body.id
         }
     }).then(() => {
         console.log("atualizou e tentou redirecionar");
            
         //res.redirect("/admin/processos");
-        res.redirect("/admin/tramitacoes/"+id); 
+        res.redirect("/admin/tramitacoes/"+req.body.id); 
     });
 
 });
