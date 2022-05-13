@@ -1,7 +1,14 @@
 const Sequelize = require("sequelize");
 const connection = require("../database/database");
+const Processo = require("../processos/Processo");
 
 const Tramitacao = connection.define("respostas", {
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
     carga: {type: Sequelize.STRING, allowNull: true},
     
     sicopsequencia: {type: Sequelize.STRING, allowNull: true},
@@ -23,12 +30,12 @@ const Tramitacao = connection.define("respostas", {
     tecnico: { type: Sequelize.TEXT, allowNull: true},
     anotacao: {type: Sequelize.TEXT,allowNull: true},
     processo: {type: Sequelize.STRING, allowNull: true},
-    status:{ type: Sequelize.INTEGER, allowNull: false}    
-}, {
-    timestamps: false,
-    createdAt: false,
-    updatedAt: false,
+    status:{ type: Sequelize.INTEGER, allowNull: false}
+    
 });
+
+Tramitacao.belongsTo(Processo);
+Processo.hasMany(Tramitacao);
 
 Tramitacao.sync();
 

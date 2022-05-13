@@ -17,8 +17,8 @@ router.get("/admin/tramitacoes/new/:id",(req ,res) => {
 
             Tramitacao.findAll({
 
-                // where: {perguntaId: pergunta.id},
-                where: {processo: pergunta.processo},
+                where: {perguntaId: pergunta.id},
+                //where: {processo: pergunta.processo},
                 order:[ 
                     ['sicopsequencia','DESC'] 
                 ]
@@ -35,17 +35,17 @@ router.get("/admin/tramitacoes/new/:id",(req ,res) => {
     });
 })
 
-router.get("/admin/tramitacoes/:processo",(req ,res) => {
-    var processo = req.params.processo;
+router.get("/admin/tramitacoes/:id",(req ,res) => {
+    var processo = req.params.id;
     Processo.findOne({
-        where: {processo: processo}
+        where: {id: processo}
     }).then(pergunta => {
         if(pergunta != undefined){ // Pergunta encontrada
 
             Tramitacao.findAll({
                 where: {
                     [Op.and]: [
-                        { processo: pergunta.processo }
+                        { perguntaId: pergunta.id }
                         
                       ]
                 },
@@ -72,6 +72,7 @@ router.get("/admin/tramitacoes/new", adminAuth ,(req ,res) => {  res.render("adm
 router.post("/admin/tramitacoes/new", adminAuth, (req, res) => {
     
 
+    var perguntaId = req.body.id;
     var data = req.body.data;
     var carga = req.body.carga;
     var ctrt = req.body.ctrt;
@@ -87,12 +88,12 @@ router.post("/admin/tramitacoes/new", adminAuth, (req, res) => {
             ctrt: ctrt,
             tecnico: tecnico,
             anotacao: anotacao,        
-            perguntaId: 0,
+            perguntaId: perguntaId,
             processo: processo,
             sicopsequencia: sicopsequencia,
             status: 1
         }).then(() => {
-            res.redirect("/admin/tramitacoes/"+processo);
+            res.redirect("/admin/tramitacoes/"+perguntaId);
         }); 
 })
 

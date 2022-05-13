@@ -11,6 +11,7 @@
 
 <div id="wrapper"> <!-- wrapper -->
         
+    <%- include ('../../partials/sidebar.ejs') %>
     
 
 
@@ -71,7 +72,7 @@
 
                                                                     <!--  id da resposta -->    
                                                             <input  type="hidden" class="form-control" name="id" id="id" value="<%= tramitacao.id %>"></input>
-                                                            <input  type="hidden" class="form-control" name="processo" id="processo" value="<%= tramitacao.processo %>"></input>
+                                                            <input  type="hidden" class="form-control" name="processo" id="processo" value="<%= tramitacao.perguntaId %>"></input>
 
 
                                                                 <small id="passwordHelpBlock" class="form-text text-muted" >Sequencia</small>
@@ -328,8 +329,8 @@
 </div> <!-- fim wrapper -->
 
 
-<%- include('../../partials/logoutmodal.ejs') %>
+<% include('../../partials/logoutmodal.ejs') %>
 
-<%- include('../../partials/footer.ejs') %>
+        <%- include('../../partials/footer.ejs') %>
 
 

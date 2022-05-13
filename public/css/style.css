@@ -12,4 +12,4 @@ tr {transition:all .25s ease-in-out
     
 }
 tr:hover{background-color:#4e73df;cursor: pointer}
-tr:hover{color:#fff;cursor: pointer}
+td:hover{color:black;cursor: pointer}

@@ -101,7 +101,7 @@
                                                 
                                                 <a href="/admin/processos/edit/<%= processo.id %>"><button type="button" class="btn btn-light"  title="Editar Processo"><i class="fas fa-edit"></i></button></a>
                                             
-                                                <a href="/admin/tramitacoes/<%= processo.processo %>"><button class="btn btn-light" title="Registrar Tramitações" btn-block><i class="fas fa-book"></i></button></a>
+                                                <a href="/admin/tramitacoes/<%= processo.id %>"><button class="btn btn-light" title="Registrar Tramitações" btn-block><i class="fas fa-book"></i></button></a>
                                             
                                                 <form method="POST" action="/admin/processo/delete" onsubmit="confirmarDelecao(event, this)">
                                                     <input type="hidden" name="id" value="<%= processo.id %>">

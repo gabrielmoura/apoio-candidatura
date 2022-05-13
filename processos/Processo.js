@@ -2,6 +2,12 @@ const Sequelize = require("sequelize");
 const connection = require("../database/database");
 
 const Processo = connection.define('perguntas',{
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
     processo:{ type: Sequelize.STRING, allowNull: true},
     sicoplogradouro:{ type: Sequelize.STRING, allowNull: true},
     sicopnumerologr:{ type: Sequelize.STRING, allowNull: true},
@@ -28,11 +34,11 @@ const Processo = connection.define('perguntas',{
     situacao:{ type: Sequelize.STRING, allowNull: true},
     datasituacao:{ type: Sequelize.STRING, allowNull: true},    
     cardfile:{ type: Sequelize.TEXT, allowNull: true}
-}, {
-    timestamps: false,
-    createdAt: false,
-    updatedAt: false,
 });
+
+
+
+
 
 Processo.sync();
 

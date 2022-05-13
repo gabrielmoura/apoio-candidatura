@@ -101,27 +101,7 @@
                                                                               
                                                                         </div>
 
-                                                                        <div class="col-xl-1 col-md-6 mb-4">
-                                                                            <small id="passwordHelpBlock" class="form-text text-muted"><input type="button"  value="copiar"  class="btn btn-white"  title="Copiar Enderecço do Requerente" onclick="mesmoendereco(event, this)"/></small>
-                                                                                
-                                                                            
-                                                                            <script>
-                                                                                function mesmoendereco(event, form) {     
-                                                                                    event.preventDefault();    
-                                                                                    
-                                                                                    var decision = confirm("Copiar o Endereço acima?");
-                                                                                    if (decision) {
-                                                                                        document.querySelector("[name='logradouro']").value = document.querySelector("[name='sicoplogradouro']").value;
-                                                                                document.querySelector("[name='numero']").value = document.querySelector("[name='sicopnumerologr']").value;
-                                                                                document.querySelector("[name='complemento']").value = document.querySelector("[name='sicopcomplemento']").value;
-                                                                                document.querySelector("[name='bairro']").value = document.querySelector("[name='sicopbairro']").value;
-                                                                                document.querySelector("[name='cep']").value = document.querySelector("[name='sicopcep']").value;
-                                                                                    }
-                                                                                
-                                                                                                                                                            }
-                
-                                                                                </script>
-                                                                        </div>
+
                                                                         <div class="col-xl-1 col-md-6 mb-4">
                                                                             <small id="passwordHelpBlock" class="form-text text-muted">Número</small>
                                                                             <input id="numero" type="number" class="form-control form-control-sm" name="numero" value=""></input>

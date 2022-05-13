@@ -230,7 +230,7 @@ router.get("/admin/processo/:id", adminAuth, (req ,res) => {
         if(pergunta != undefined){ // Pergunta encontrada
 
             Tramitacao.findAll({
-                where: {processo: pergunta.processo},
+                where: {perguntaId: pergunta.id},
                 order:[['data','DESC']],
                 
             }).then(respostas => {
@@ -249,7 +249,6 @@ router.get("/admin/processo/:id", adminAuth, (req ,res) => {
 
 router.post("/admin/processos/salvarpergunta", adminAuth ,(req, res) => {
     
-        var processo = req.body.processo;
         var requerente = req.body.requerente;
         var logradouro = req.body.logradouro;
         var numero = req.body.numero;
@@ -283,10 +282,7 @@ router.post("/admin/processos/salvarpergunta", adminAuth ,(req, res) => {
         
         
 
-        
-
-        Processo.create({
-        processo: processo,
+        const novoprocesso = Processo.create({
         requerente: requerente,
         logradouro: logradouro,
         numero: numero,
@@ -317,13 +313,12 @@ router.post("/admin/processos/salvarpergunta", adminAuth ,(req, res) => {
         sicopcidade: sicopcidade,
         sicopcep: sicopcep,
         cardfile: cardfile,
-        
-
         status: 1
 
     }).then(() => {
         console.log("criou e tentou redirecionar");
-        res.redirect("/admin/tramitacoes/"+processo);   
+        //console.log(Processo.getId())
+        res.redirect("/admin/processos");   
     });
 });
 
@@ -416,7 +411,7 @@ router.post("/admin/processos/update", adminAuth, (req, res) => {
         console.log("atualizou e tentou redirecionar");
            
         //res.redirect("/admin/processos");
-        res.redirect("/admin/tramitacoes/"+numprocesso); 
+        res.redirect("/admin/tramitacoes/"+id); 
     });
 
 });
