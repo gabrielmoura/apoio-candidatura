@@ -25,6 +25,10 @@ const Processo = connection.define('perguntas',{
     email:{ type: Sequelize.STRING, allowNull: true},
     avaliacaopericia:{ type: Sequelize.STRING, allowNull: true},
     status:{ type: Sequelize.INTEGER, allowNull: false},
+}, {
+    timestamps: false,
+    createdAt: false,
+    updatedAt: false,
 });
 
 Processo.sync();
