@@ -34,15 +34,10 @@
                         
                                     <div class="col-xl-2 col-md-6 mb-4">
                                         <select class="form-control" name="searchpor" id="searchpor">
-                                            <option value="processo">por Processo</option>
-                                            <option value="requerente">por Requerente</option>
-                                            <option value="atividade">por Atividade</option>
+                                            <option value="nomebeneficiario">por Nome do Beneficiário</option>
+                                            <option value="telefone">por Telefone</option>
                                             <option value="logradouro">por Logradouro</option>
                                             <option value="bairro">por Bairro</option>
-                                            <option value="card">por CardFile</option>
-                                            <option value="situacao">por Situação do Processo</option>
-                                            <option value="ano">por Ano do Processo</option>
-                                            <option value="complemento">por Complemento</option>
 
                                         </select>
                                     </div>
@@ -101,7 +96,7 @@
                                                 
                                                 <a href="/admin/processos/edit/<%= processo.id %>"><button type="button" class="btn btn-light"  title="Editar Processo"><i class="fas fa-edit"></i></button></a>
                                             
-                                                <a href="/admin/tramitacoes/<%= processo.id %>"><button class="btn btn-light" title="Registrar Tramitações" btn-block><i class="fas fa-book"></i></button></a>
+                                                <!-- <a href="/admin/tramitacoes/<%= processo.id %>"><button class="btn btn-light" title="Registrar Tramitações" btn-block><i class="fas fa-book"></i></button></a> -->
                                             
                                                 <form method="POST" action="/admin/processo/delete" onsubmit="confirmarDelecao(event, this)">
                                                     <input type="hidden" name="id" value="<%= processo.id %>">

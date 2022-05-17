@@ -39,7 +39,7 @@ router.post("/admin/processos/search", adminAuth, (req, res) => {
         if (searchprocesso === ""){
 
             Processo.findAll({ 
-                include: [{ model: Tramitacao}],
+                
                 limit: 0 ,
                 raw: true,
                 order:[['id','DESC']],
@@ -52,14 +52,14 @@ router.post("/admin/processos/search", adminAuth, (req, res) => {
      }
 
         
-        if (searchpor === "processo"){
+        if (searchpor === "nomebeneficiario"){
 
                 Processo.findAll({ 
-                    include: [{ model: Tramitacao}],
+                    
                     raw: true,
                     order:[['id','ASC']],
                     where: {
-                        processo: {
+                        nomebeneficiario: {
                             [Op.substring]: searchprocesso
                         }, 
                         status: 1
@@ -71,68 +71,31 @@ router.post("/admin/processos/search", adminAuth, (req, res) => {
                 });
          }
 
-         if (searchpor === "requerente"){
+         if (searchpor === "telefone"){
 
             Processo.findAll({ 
-                include: [{ model: Tramitacao}],
-                raw: true,
-                order:[['id','ASC']],
-                where: {
-                    requerente: {
-                        [Op.substring]: searchprocesso
-                    }, 
-                    status: 1
-                    
-            
-                }})
-                .then(processos => {
-                res.render("admin/processos/index",{processos: processos})
-            });
-     }
-
-     if (searchpor === "complemento"){
-
-            Processo.findAll({ 
-                include: [{ model: Tramitacao}],
-                raw: true,
-                order:[['id','ASC']],
-                where: {
-                    complemento: {
-                        [Op.substring]: searchprocesso
-                    }, 
-                    status: 1
-                    
-            
-                }})
-                .then(processos => {
-                res.render("admin/processos/index",{processos: processos})
-            });
-     }
-
-     
-     if (searchpor === "atividade"){
-
-        Processo.findAll({ 
-            include: [{ model: Tramitacao}],
-            raw: true,
-            order:[['id','ASC']],
-            where: {
-                atividade: {
-                    [Op.substring]: searchprocesso
-                }, 
-                status: 1
                 
-        
-            }})
-            .then(processos => {
-            res.render("admin/processos/index",{processos: processos})
-        });
-        }
+                raw: true,
+                order:[['id','ASC']],
+                where: {
+                    telefone: {
+                        [Op.substring]: searchprocesso
+                    }, 
+                    status: 1
+                    
+            
+                }})
+                .then(processos => {
+                res.render("admin/processos/index",{processos: processos})
+            });
+     }
+
+
 
         if (searchpor === "logradouro"){
 
             Processo.findAll({ 
-                include: [{ model: Tramitacao}],
+                
                 raw: true,
                 order:[['id','ASC']],
                 where: {
@@ -151,11 +114,11 @@ router.post("/admin/processos/search", adminAuth, (req, res) => {
             if (searchpor === "bairro"){
 
                 Processo.findAll({ 
-                    include: [{ model: Tramitacao}],
+                    
                     raw: true,
                     order:[['id','ASC']],
                     where: {
-                        Bairro: {
+                        bairro: {
                             [Op.substring]: searchprocesso
                         }, 
                         status: 1
@@ -167,62 +130,8 @@ router.post("/admin/processos/search", adminAuth, (req, res) => {
                 });
                 }
 
-                if (searchpor === "card"){
 
-                    Processo.findAll({ 
-                        include: [{ model: Tramitacao}],
-                        raw: true,
-                        order:[['id','ASC']],
-                        where: {
-                            cardfile: {
-                                [Op.substring]: searchprocesso
-                            }, 
-                            status: 1
-                            
-                    
-                        }})
-                        .then(processos => {
-                        res.render("admin/processos/index",{processos: processos})
-                    });
-                    }
 
-                    if (searchpor === "situacao"){
-
-                        Processo.findAll({ 
-                            include: [{ model: Tramitacao}],
-                            raw: true,
-                            order:[['id','ASC']],
-                            where: {
-                                situacao: {
-                                    [Op.substring]: searchprocesso
-                                }, 
-                                status: 1
-                                
-                        
-                            }})
-                            .then(processos => {
-                            res.render("admin/processos/index",{processos: processos})
-                        });
-                        }
-
-                        if (searchpor === "ano"){
-
-                            Processo.findAll({ 
-                                include: [{ model: Tramitacao}],
-                                raw: true,
-                                order:[['processo','ASC']],
-                                where: {
-                                    processo: {
-                                        [Op.like]: `%${searchprocesso}`
-                                    }, 
-                                    status: 1
-                                    
-                            
-                                }})
-                                .then(processos => {
-                                res.render("admin/processos/index",{processos: processos})
-                            });
-                            }
  
 });
 
