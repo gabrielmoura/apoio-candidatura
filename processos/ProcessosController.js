@@ -11,6 +11,7 @@ const Tramitacao = require("../tramitacoes/Tramitacao");
 // Rotas
 router.get("/admin/processos", adminAuth, (req, res) => {
     Processo.findAll({ 
+        
         limit: 10 ,
         raw: true,
         order:[['id','DESC']],
@@ -38,6 +39,7 @@ router.post("/admin/processos/search", adminAuth, (req, res) => {
         if (searchprocesso === ""){
 
             Processo.findAll({ 
+                include: [{ model: Tramitacao}],
                 limit: 0 ,
                 raw: true,
                 order:[['id','DESC']],
@@ -53,6 +55,7 @@ router.post("/admin/processos/search", adminAuth, (req, res) => {
         if (searchpor === "processo"){
 
                 Processo.findAll({ 
+                    include: [{ model: Tramitacao}],
                     raw: true,
                     order:[['id','ASC']],
                     where: {
@@ -71,6 +74,7 @@ router.post("/admin/processos/search", adminAuth, (req, res) => {
          if (searchpor === "requerente"){
 
             Processo.findAll({ 
+                include: [{ model: Tramitacao}],
                 raw: true,
                 order:[['id','ASC']],
                 where: {
@@ -89,6 +93,7 @@ router.post("/admin/processos/search", adminAuth, (req, res) => {
      if (searchpor === "complemento"){
 
             Processo.findAll({ 
+                include: [{ model: Tramitacao}],
                 raw: true,
                 order:[['id','ASC']],
                 where: {
@@ -108,6 +113,7 @@ router.post("/admin/processos/search", adminAuth, (req, res) => {
      if (searchpor === "atividade"){
 
         Processo.findAll({ 
+            include: [{ model: Tramitacao}],
             raw: true,
             order:[['id','ASC']],
             where: {
@@ -126,6 +132,7 @@ router.post("/admin/processos/search", adminAuth, (req, res) => {
         if (searchpor === "logradouro"){
 
             Processo.findAll({ 
+                include: [{ model: Tramitacao}],
                 raw: true,
                 order:[['id','ASC']],
                 where: {
@@ -144,6 +151,7 @@ router.post("/admin/processos/search", adminAuth, (req, res) => {
             if (searchpor === "bairro"){
 
                 Processo.findAll({ 
+                    include: [{ model: Tramitacao}],
                     raw: true,
                     order:[['id','ASC']],
                     where: {
@@ -162,6 +170,7 @@ router.post("/admin/processos/search", adminAuth, (req, res) => {
                 if (searchpor === "card"){
 
                     Processo.findAll({ 
+                        include: [{ model: Tramitacao}],
                         raw: true,
                         order:[['id','ASC']],
                         where: {
@@ -180,6 +189,7 @@ router.post("/admin/processos/search", adminAuth, (req, res) => {
                     if (searchpor === "situacao"){
 
                         Processo.findAll({ 
+                            include: [{ model: Tramitacao}],
                             raw: true,
                             order:[['id','ASC']],
                             where: {
@@ -198,6 +208,7 @@ router.post("/admin/processos/search", adminAuth, (req, res) => {
                         if (searchpor === "ano"){
 
                             Processo.findAll({ 
+                                include: [{ model: Tramitacao}],
                                 raw: true,
                                 order:[['processo','ASC']],
                                 where: {
@@ -224,23 +235,15 @@ router.get("/admin/processos/new", adminAuth ,(req ,res) => {
 
 router.get("/admin/processo/:id", adminAuth, (req ,res) => {
     var id = req.params.id;
-    Processo.findOne({
-        where: {id: id}
+    Processo.findByPk(id, {include: [{ model: Tramitacao}]
     }).then(pergunta => {
         if(pergunta != undefined){ // Pergunta encontrada
+            
+            res.render("/admin/tramitacoes/index", { pergunta: pergunta});
 
-            Tramitacao.findAll({
-                where: {perguntaId: pergunta.id},
-                order:[['data','DESC']],
-                
-            }).then(respostas => {
-                res.render("/admin/tramitacoes/index",{
-                    pergunta: pergunta,
-                    respostas: respostas
-                });
-            });
+            console.log(pergunta);
 
-        }else{ // Não encontrada
+        } else { // Não encontrada
             res.redirect("/");
         }
     });

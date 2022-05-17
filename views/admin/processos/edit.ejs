@@ -42,27 +42,32 @@
                                         
                                                                         
                                                                         
-                                                                                        <div class="col-xl-12 col-md-6 mb-4">
-                                                                                            <small id="passwordHelpBlock" class="form-text text-muted">Data Comparecimento</small>
+                                                                                        <div class="col-xl-1 col-md-6 mb-4">
+                                                                                            <small id="passwordHelpBlock" class="form-text text-muted">Data</small>
                                                                                             <input type="text" class="form-control form-control-sm" name="datacomparecimento" value="<%= processo.datacomparecimento %>"></input>
                                                                                         </div>
+
+                                                                                        <div class="col-xl-1 col-md-6 mb-4">
+                                                                                            <small id="passwordHelpBlock" class="form-text text-muted">CPF</small>
+                                                                                            <input class="form-control form-control-sm" name="cpf" value="<%= processo.cpf %>"></input>
+                                                                                        </div>
                 
-                                                                                        <div class="col-xl-12 col-md-6 mb-4">
+                                                                                        <div class="col-xl-4 col-md-6 mb-4">
                                                                                             <small id="passwordHelpBlock" class="form-text text-muted">Nome do Beneficiário</small>
                                                                                             <input type="text" class="form-control form-control-sm" name="nomebeneficiario" value="<%= processo.nomebeneficiario %>"></input>
                                                                                         </div>
                 
-                                                                                        <div class="col-xl-12 col-md-6 mb-4">
+                                                                                        <div class="col-xl-2 col-md-6 mb-4">
                                                                                             <small id="passwordHelpBlock" class="form-text text-muted">Telefone Fixo</small>
                                                                                             <input type="text" class="form-control form-control-sm" name="telefone" value="<%= processo.telefone %>"></input>
                                                                                         </div>
                 
-                                                                                        <div class="col-xl-12 col-md-6 mb-4">
+                                                                                        <div class="col-xl-2 col-md-6 mb-4">
                                                                                             <small id="passwordHelpBlock" class="form-text text-muted">Celular</small>
                                                                                             <input type="text" class="form-control form-control-sm" name="celular" value="<%= processo.celular %>"></input>
                                                                                         </div>
                 
-                                                                                        <div class="col-xl-12 col-md-6 mb-4">
+                                                                                        <div class="col-xl-2 col-md-6 mb-4">
                                                                                             <small id="passwordHelpBlock" class="form-text text-muted">Telefone 2</small>
                                                                                             <input type="text" class="form-control form-control-sm" name="telefone2" value="<%= processo.telefone2 %>"></input>
                                                                                         </div>
@@ -114,7 +119,7 @@
                                                                                     </div>
                 
                                                                                     <div class="form-row">
-                                                                                    <div class="col-xl-12 col-md-6 mb-4">
+                                                                                    <div class="col-xl-2 col-md-6 mb-4">
                                                                                         <small id="passwordHelpBlock" class="form-text text-muted">Benefício Requerido</small>
                                                                                         <select class="form-control form-control-sm" name="beneficiorequerido">
                                                                                             <option value="<%= processo.beneficiorequerido %>"></option>
@@ -125,7 +130,7 @@
                                                                                         </select>
                                                                                     </div>
                 
-                                                                                    <div class="col-xl-12 col-md-6 mb-4">
+                                                                                    <div class="col-xl-2 col-md-6 mb-4">
                                                                                         <small id="passwordHelpBlock" class="form-text text-muted">Indicação</small>
                                                                                         <select class="form-control form-control-sm" name="indicacao">
                                                                                             <option value="<%= processo.indicacao %>"></option>
@@ -143,39 +148,36 @@
                                                                                         </select>
                                                                                     </div>
                 
-                                                                                    <div class="col-xl-12 col-md-6 mb-4">
+                                                                                    <div class="col-xl-8 col-md-6 mb-4">
                                                                                         <small id="passwordHelpBlock" class="form-text text-muted">Pendência de Documentos</small>
                                                                                         <input class="form-control form-control-sm" name="pendenciadedocumentos" value="<%= processo.pendenciadedocumentos %>"></input>
                                                                                     </div>
                 
                                                                                     <div class="col-xl-12 col-md-6 mb-4">
                                                                                         <small id="passwordHelpBlock" class="form-text text-muted">Informação Complementar</small>
-                                                                                        <textarea type="text" class="p-3 mb-2 bg-light text-dark form-control form-control-sm" name="informacaocomplementar" id="informacaocomplementar" value="<%= processo.informacaocomplementar %>" rows="7" cols="66"></textarea>
+                                                                                        <textarea type="text" class="p-3 mb-2 bg-light text-dark form-control form-control-sm" name="informacaocomplementar" id="informacaocomplementar" value="<%= processo.informacaocomplementar %>" rows="4" cols="66"></textarea>
                                                                                     </div>
                 
-                                                                                    <div class="col-xl-12 col-md-6 mb-4">
+                                                                                    <div class="col-xl-4 col-md-6 mb-4">
                                                                                         <small id="passwordHelpBlock" class="form-text text-muted">Enviados</small>
                                                                                         <input class="form-control form-control-sm" name="enviados" value="<%= processo.enviados %>"></input>
                                                                                     </div>
                 
-                                                                                    <div class="col-xl-12 col-md-6 mb-4">
+                                                                                    <div class="col-xl-4 col-md-6 mb-4">
                                                                                         <small id="passwordHelpBlock" class="form-text text-muted">Entrada</small>
                                                                                         <input class="form-control form-control-sm" name="entrada" value="<%= processo.entrada %>"></input>
                                                                                     </div>
                 
-                                                                                    <div class="col-xl-12 col-md-6 mb-4">
-                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">CPF</small>
-                                                                                        <input class="form-control form-control-sm" name="cpf" value="<%= processo.cpf %>"></input>
-                                                                                    </div>
+                                                                                    
                 
-                                                                                    <div class="col-xl-12 col-md-6 mb-4">
+                                                                                    <div class="col-xl-4 col-md-6 mb-4">
                                                                                         <small id="passwordHelpBlock" class="form-text text-muted">Senha do Cliente</small>
                                                                                         <input class="form-control form-control-sm" name="senhadocliente" value="<%= processo.senhadocliente %>"></input>
                                                                                     </div>
                 
-                                                                                    <div class="col-xl-12 col-md-6 mb-4">
-                                                                                        <small id="passwordHelpBlock" class="form-text text-primary">Situação</small>
-                                                                                        <select class="form-control bg-primary text-white form-control-sm" name="situacao">
+                                                                                    <div class="col-xl-2 col-md-6 mb-4">
+                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Situação</small>
+                                                                                        <select class="form-control form-control-sm" name="situacao">
                                                                                             <option value="<%= processo.situacao %>"></option>
                                                                                             <option value="ANALISE">ANÁLISE</option>
                                                                                             <option value="ANALISEPENDENCIA">ANÁLISE PENDÊNCIA</option>
@@ -190,20 +192,20 @@
                                                                                         
                                                                                     </div>
                 
-                                                                                    <div class="col-xl-12 col-md-6 mb-4">
+                                                                                    <div class="col-xl-2 col-md-6 mb-4">
                                                                                         <small id="passwordHelpBlock" class="form-text text-muted">Nova Entrada</small>
                                                                                         <input class="form-control form-control-sm" name="novaentrada" value="<%= processo.novaentrada %>"></input>
                                                                                     </div>
                 
-                                                                                    <div class="col-xl-12 col-md-6 mb-4">
+                                                                                    <div class="col-xl-2 col-md-6 mb-4">
                                                                                         <small id="passwordHelpBlock" class="form-text text-muted">Data Pesquisa</small>
                                                                                         <input class="form-control form-control-sm" name="datapesquisa" value="<%= processo.datapesquisa %>"></input>
                                                                                     </div>
                 
                                                                               
-                                                                                    <div class="col-xl-12 col-md-6 mb-4">
-                                                                                        <small id="passwordHelpBlock" class="form-text text-primary">Advogado que Assinou</small>
-                                                                                        <select class="form-control bg-primary text-white form-control-sm" name="advogadoqueassinou">
+                                                                                    <div class="col-xl-2 col-md-6 mb-4">
+                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Advogado que Assinou</small>
+                                                                                        <select class="form-control form-control-sm" name="advogadoqueassinou">
                                                                                             <option value="<%= processo.advogadoqueassinou %>"></option>
                                                                                             <option value="Advogado">Advogado</option>
                                                                                             
@@ -211,17 +213,17 @@
                                                                                         
                                                                                     </div>
                 
-                                                                                    <div class="col-xl-12 col-md-6 mb-4">
+                                                                                    <div class="col-xl-2 col-md-6 mb-4">
                                                                                         <small id="passwordHelpBlock" class="form-text text-muted">Pagamento</small>
                                                                                         <input class="form-control form-control-sm" name="pagamento" value="<%= processo.pagamento %>"></input>
                                                                                     </div>
                 
-                                                                                    <div class="col-xl-12 col-md-6 mb-4">
+                                                                                    <div class="col-xl-4 col-md-6 mb-4">
                                                                                         <small id="passwordHelpBlock" class="form-text text-muted">E-mail</small>
                                                                                         <input style="text-transform: lowercase;" type="text" class="form-control form-control-sm" name="email" value="<%= processo.email %>"></input>
                                                                                     </div>
                 
-                                                                                    <div class="col-xl-12 col-md-6 mb-4">
+                                                                                    <div class="col-xl-8 col-md-6 mb-4">
                                                                                         <small id="passwordHelpBlock" class="form-text text-muted">Avaliação / Perícia</small>
                                                                                         <input class="form-control form-control-sm" name="avaliacaopericia" value="<%= processo.avaliacaopericia %>"></input>
                                                                                     </div>

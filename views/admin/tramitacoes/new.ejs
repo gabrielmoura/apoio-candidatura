@@ -18,7 +18,7 @@
                 <!-- Main Content -->
                 <div id="content">
                     <!-- Topbar -->
-                    <% include ('../../partials/topbar.ejs') %>
+                    <%- include('../../partials/topbar.ejs') %>
                     
                         <!-- Begin Page Content -->
                         <div class="container-fluid">
@@ -41,10 +41,10 @@
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col mr-2">
                                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><%= pergunta.ID %> <%= pergunta.requerente %> </div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><%= pergunta.id %> <%= pergunta.requerente %> </div>
                                                           
                                                         </div>
-                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">PROCESSO: <%= pergunta.processo %>, <%= pergunta.logradouro %>, <%= pergunta.numero %> - <%= pergunta.bairro %> | Atividade: <%= pergunta.atividade %></div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">Nome Beneficiario: <%= pergunta.nomebeneficiario %>, <%= pergunta.logradouro %>, <%= pergunta.numero %> - <%= pergunta.bairro %> | Atividade: <%= pergunta.atividade %></div>
                                                     </div>
                                                     <div class="col-auto">
                                                         <i class="fas fa-archive fa-2x text-gray-300"></i>
@@ -59,7 +59,7 @@
                                <div class="card shadow mb-4">
 
                                 <% var totTramitacoes = 0 %>
-                                <% respostas.forEach(resposta=> {%>
+                                <% pergunta.respostas.forEach(resposta=> {%>
 
                                     <%  totTramitacoes = totTramitacoes + 1  %>
                                             
@@ -80,8 +80,7 @@
 
                                                             <div class="col-md-1 mb-3">
                                                             <!--  id da resposta -->    
-                                                            <input  type="hidden" class="form-control" name="id" id="id" value="<%= pergunta.id %>"></input>
-                                                            <input  type="hidden" class="form-control" name="processo" id="processo" value="<%= pergunta.processo %>"></input>
+                                                            <input  type="hidden" class="form-control" name="perguntaId" id="perguntaId" value="<%= pergunta.id %>"></input>
 
 
 
@@ -91,63 +90,7 @@
                                                                         <option value="001">001</option>
                                                                         <option value="002">002</option>
                                                                         <option value="003">003</option>
-                                                                        <option value="004">004</option>
-                                                                        <option value="005">005</option>
-                                                                        <option value="006">006</option>
-                                                                        <option value="007">007</option>
-                                                                        <option value="008">008</option>
-                                                                        <option value="009">009</option>
-                                                                        <option value="010">010</option>
-                                                                        <option value="011">011</option>
-                                                                        <option value="012">012</option>
-                                                                        <option value="013">013</option>
-                                                                        <option value="014">014</option>
-                                                                        <option value="015">015</option>
-                                                                        <option value="016">016</option>
-                                                                        <option value="017">017</option>
-                                                                        <option value="018">018</option>
-                                                                        <option value="019">019</option>
-                                                                        <option value="020">020</option>
-                                                                        <option value="021">021</option>
-                                                                        <option value="022">022</option>
-                                                                        <option value="023">023</option>
-                                                                        <option value="024">024</option>
-                                                                        <option value="025">025</option>
-                                                                        <option value="026">026</option>
-                                                                        <option value="027">027</option>
-                                                                        <option value="028">028</option>
-                                                                        <option value="029">029</option>
-                                                                        <option value="030">030</option>
-                                                                        <option value="031">031</option>
-                                                                        <option value="032">032</option>
-                                                                        <option value="033">033</option>
-                                                                        <option value="034">034</option>
-                                                                        <option value="035">035</option>
-                                                                        <option value="036">036</option>
-                                                                        <option value="037">037</option>
-                                                                        <option value="038">038</option>
-                                                                        <option value="039">039</option>
-                                                                        <option value="040">040</option>
-                                                                        <option value="041">041</option>
-                                                                        <option value="042">042</option>
-                                                                        <option value="043">043</option>
-                                                                        <option value="044">044</option>
-                                                                        <option value="045">045</option>
-                                                                        <option value="046">046</option>
-                                                                        <option value="047">047</option>
-                                                                        <option value="048">048</option>
-                                                                        <option value="049">049</option>
-                                                                        <option value="050">050</option>
-                                                                        <option value="051">051</option>
-                                                                        <option value="052">052</option>
-                                                                        <option value="053">053</option>
-                                                                        <option value="054">054</option>
-                                                                        <option value="055">055</option>
-                                                                        <option value="056">056</option>
-                                                                        <option value="057">057</option>
-                                                                        <option value="058">058</option>
-                                                                        <option value="059">059</option>
-                                                                        <option value="060">060</option>
+                                                                       
                                                                         
                                                                     </select>
                                                             

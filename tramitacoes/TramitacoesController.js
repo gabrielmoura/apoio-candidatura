@@ -10,24 +10,12 @@ const { and } = require("sequelize");
 
 router.get("/admin/tramitacoes/new/:id",(req ,res) => {
     var id = req.params.id;
-    Processo.findOne({
-        where: {id: id}
+    Processo.findByPk(id, {include: [{ model: Tramitacao}]
     }).then(pergunta => {
         if(pergunta != undefined){ // Pergunta encontrada
 
-            Tramitacao.findAll({
-
-                where: {perguntaId: pergunta.id},
-                //where: {processo: pergunta.processo},
-                order:[ 
-                    ['sicopsequencia','DESC'] 
-                ]
-            }).then(respostas => {
-                res.render("admin/tramitacoes/new",{
-                    pergunta: pergunta,
-                    respostas: respostas
-                });
-            });
+            res.render("admin/tramitacoes/new",{pergunta: pergunta });
+            
 
         }else{ // Não encontrada
             res.redirect("/");
@@ -35,30 +23,14 @@ router.get("/admin/tramitacoes/new/:id",(req ,res) => {
     });
 })
 
-router.get("/admin/tramitacoes/:id",(req ,res) => {
-    var processo = req.params.id;
-    Processo.findOne({
-        where: {id: processo}
+
+router.get("/admin/tramitacoes/:id", (req, res) => {
+    
+    Processo.findByPk(req.params.id, {include: [{ model: Tramitacao}]
     }).then(pergunta => {
         if(pergunta != undefined){ // Pergunta encontrada
 
-            Tramitacao.findAll({
-                where: {
-                    [Op.and]: [
-                        { perguntaId: pergunta.id }
-                        
-                      ]
-                },
-                order:[ 
-                    ['sicopsequencia','DESC'] 
-                ]
-            }).then(respostas => {
-                res.render("admin/tramitacoes/index",{
-                    pergunta: pergunta,
-                    respostas: respostas
-                });
-            });
-
+             res.render("admin/tramitacoes/index",{pergunta: pergunta});
         }else{ // Não encontrada
             res.redirect("/");
         }
@@ -70,36 +42,23 @@ router.get("/admin/tramitacoes/:id",(req ,res) => {
 router.get("/admin/tramitacoes/new", adminAuth ,(req ,res) => {  res.render("admin/tramitacoes/new") });
 
 router.post("/admin/tramitacoes/new", adminAuth, (req, res) => {
-    
 
-    var perguntaId = req.body.id;
-    var data = req.body.data;
-    var carga = req.body.carga;
-    var ctrt = req.body.ctrt;
-    var tecnico = req.body.tecnico;
-    var anotacao = req.body.anotacao;
-    var processo = req.body.processo;
-    var sicopsequencia = req.body.sicopsequencia;
-
-        Tramitacao.create({
-            
-            data: data,
-            carga: carga,
-            ctrt: ctrt,
-            tecnico: tecnico,
-            anotacao: anotacao,        
-            perguntaId: perguntaId,
-            processo: processo,
-            sicopsequencia: sicopsequencia,
+    Tramitacao.create({
+            data: req.body.data,
+            carga: req.body.carga,
+            ctrt: req.body.ctrt,
+            tecnico: req.body.tecnico,
+            anotacao: req.body.anotacao,        
+            perguntaId: req.body.perguntaId,
+            sicopsequencia: req.body.sicopsequencia,
             status: 1
         }).then(() => {
-            res.redirect("/admin/tramitacoes/"+perguntaId);
+            res.redirect("/admin/tramitacoes/"+req.body.perguntaId);
         }); 
 })
 
 router.get("/admin/tramitacao/edit/:id", adminAuth, (req, res) => {
     var id = req.params.id;
-    var processo = req.params.processo;
 
     if(isNaN(id)){
         res.redirect("/admin/tramitacoes/"+id); 
@@ -110,10 +69,10 @@ router.get("/admin/tramitacao/edit/:id", adminAuth, (req, res) => {
         if(tramitacao != undefined){
             res.render("admin/tramitacoes/edit",{tramitacao: tramitacao});
         }else{
-            res.redirect("/admin/tramitacoes/"+processo);
+            res.redirect("/admin/tramitacoes/"+id);
         }
     }).catch(erro => {
-        res.redirect("/admin/tramitacoes/"+processo);        
+        res.redirect("/admin/tramitacoes/"+id);        
     })
 });
 
@@ -126,7 +85,6 @@ router.post("/admin/tramitacoes/update", adminAuth, (req, res) => {
     var ctrt = req.body.ctrt;
     var tecnico = req.body.tecnico;
     var anotacao = req.body.anotacao;
-    var processo = req.body.processo;
     var sicopsequencia = req.body.sicopsequencia;
 
     sicopsequencia
@@ -138,7 +96,6 @@ router.post("/admin/tramitacoes/update", adminAuth, (req, res) => {
             ctrt: ctrt,
             tecnico: tecnico,
             anotacao: anotacao,        
-            processo: processo,
             sicopsequencia: sicopsequencia,
             
             
@@ -147,7 +104,7 @@ router.post("/admin/tramitacoes/update", adminAuth, (req, res) => {
                 id: id
             }
         }).then(() => {
-            res.redirect("/admin/tramitacoes/"+processo);
+            res.redirect("/admin/tramitacoes/"+id);
         }).catch(err => {
             
             res.redirect("/admin/tramitacoes");
@@ -158,7 +115,6 @@ router.post("/admin/tramitacoes/update", adminAuth, (req, res) => {
 // DESABILITAR A TRAMITAÇÃO COM O STATUS 0 OU 1
 router.post("/admin/tramitacao/delete", adminAuth, (req, res) => {
     var id = req.body.id;
-    var processo = req.body.processo;
 
     Tramitacao.update({
         status: 0,
@@ -169,7 +125,7 @@ router.post("/admin/tramitacao/delete", adminAuth, (req, res) => {
         }
     }).then(() => {
         console.log("atualizou e tentou redirecionar");
-        res.redirect("/admin/tramitacoes/"+processo);    
+        res.redirect("/admin/tramitacoes/"+id);    
     });
 
 });

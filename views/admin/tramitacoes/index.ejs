@@ -64,7 +64,8 @@
             
                                             <% var totTramitacoes = 0 %>
                                                 
-                                                <% respostas.forEach(resposta=> {%>
+                                                <% pergunta.respostas.forEach(resposta=> {%>
+                                                    <% console.log(pergunta.respostas)%>
                                                     <% if (resposta.status === 1){%>
             
                                                 <%  totTramitacoes = totTramitacoes + 1  %>
@@ -74,7 +75,7 @@
 
                                                 <% var totTramitacoessicop = 0 %>
                                                 
-                                                <% respostas.forEach(resposta=> {%>
+                                                <% pergunta.respostas.forEach(resposta=> {%>
                                                     <% if (resposta.status  === 3){%>
                                                         
             
@@ -124,7 +125,7 @@
                                                         </thead>
                                                         
                                                         <tbody>
-                                                            <% respostas.forEach(resposta=> {%>
+                                                            <% pergunta.respostas.forEach(resposta=> {%>
                                                                 <% if (resposta.status === 1){%>
 
                                                             <tr>
