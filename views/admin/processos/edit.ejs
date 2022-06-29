@@ -8,385 +8,411 @@
     $("#dataabertura").mask("00/00/0000");
     $("#datasituacao").mask("00/00/0000");
 
-    
+
 </script>
 
-    <div id="wrapper">
-        <!-- Sidebar -->
-        <%- include ('../../partials/sidebar.ejs') %>
+<div id="wrapper">
+    <!-- Sidebar -->
+    <%- include ('../../partials/sidebar.ejs') %>
 
-            <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
-                <!-- Main Content -->
-                <div id="content">
-                    <!-- Topbar -->
-                    <%- include('../../partials/topbar.ejs') %>
-                        <!-- Begin Page Content -->
-                        <div class="container-fluid">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Topbar -->
+            <%- include('../../partials/topbar.ejs') %>
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
 
-                                                                    
-                            <form method="POST" action="/admin/processos/update">
-                                                                    <input  type="hidden" class="form-control"  name="id" id="id" value="<%= processo.id %>"></input>
 
-                                                                        <!-- Content Row -->
-                                                                    <div class="row">
-                                                                        <!-- Earnings (Monthly) Card Example -->
-                                                                        <div class="col-xl-12 col-md-6 mb-4">
-                            
-                                                                            <div class="card shadow mb-4">
-                                                       
-                                                                                <div class="card-body">
-                                                                                    
+                <form method="POST" action="/admin/processos/update">
+                    <input type="hidden" class="form-control" name="id" id="id" value="<%= processo.id %>"></input>
 
-                                                                                    <div class="form-row">
-                                        
-                                                                        
-                                                                        
-                                                                                        <div class="col-xl-1 col-md-6 mb-4">
-                                                                                            <small id="passwordHelpBlock" class="form-text text-muted">Data</small>
-                                                                                            <input type="text" class="form-control form-control-sm" name="datacomparecimento" value="<%= processo.datacomparecimento %>"></input>
-                                                                                        </div>
+                    <!-- Content Row -->
+                    <div class="row">
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-12 col-md-6 mb-4">
 
-                                                                                        <div class="col-xl-1 col-md-6 mb-4">
-                                                                                            <small id="passwordHelpBlock" class="form-text text-muted">CPF</small>
-                                                                                            <input class="form-control form-control-sm" name="cpf" value="<%= processo.cpf %>"></input>
-                                                                                        </div>
-                
-                                                                                        <div class="col-xl-4 col-md-6 mb-4">
-                                                                                            <small id="passwordHelpBlock" class="form-text text-muted">Nome do Beneficiário</small>
-                                                                                            <input type="text" class="form-control form-control-sm" name="nomebeneficiario" value="<%= processo.nomebeneficiario %>"></input>
-                                                                                        </div>
-                
-                                                                                        <div class="col-xl-2 col-md-6 mb-4">
-                                                                                            <small id="passwordHelpBlock" class="form-text text-muted">Telefone Fixo</small>
-                                                                                            <input type="text" class="form-control form-control-sm" name="telefone" value="<%= processo.telefone %>"></input>
-                                                                                        </div>
-                
-                                                                                        <div class="col-xl-2 col-md-6 mb-4">
-                                                                                            <small id="passwordHelpBlock" class="form-text text-muted">Celular</small>
-                                                                                            <input type="text" class="form-control form-control-sm" name="celular" value="<%= processo.celular %>"></input>
-                                                                                        </div>
-                
-                                                                                        <div class="col-xl-2 col-md-6 mb-4">
-                                                                                            <small id="passwordHelpBlock" class="form-text text-muted">Telefone 2</small>
-                                                                                            <input type="text" class="form-control form-control-sm" name="telefone2" value="<%= processo.telefone2 %>"></input>
-                                                                                        </div>
-                
-                                                                                        
-                                                                                    </div>
-                
-                
-                                                                                    <div class="form-row">
-                
-                                                                                        <div class="col-xl-1 col-md-6 mb-4">
-                                                                                            <small id="passwordHelpBlock" class="form-text text-muted">Cep</small>
-                                                                                            <input type="text" maxlength="9" class="form-control form-control-sm" name="cep"  id="cep" value="<%= processo.cep %>" size="10" onblur="pesquisacep(this.value);"></input>
-                                                                                        </div>
-                
-                                                                                        <div class="col-xl-3 col-md-6 mb-4">
-                                                                                            <small id="passwordHelpBlock" class="form-text text-muted">Logradouro</small>
-                                                                                            <input style="text-transform: uppercase;" id="logradouro" class="form-control form-control-sm" name="logradouro" value="<%= processo.logradouro %>"></input>
-                                                                                              
-                                                                                        </div>
-                
-                
-                                                                                        <div class="col-xl-1 col-md-6 mb-4">
-                                                                                            <small id="passwordHelpBlock" class="form-text text-muted">Número</small>
-                                                                                            <input id="numero" type="number" class="form-control form-control-sm" name="numero" value="<%= processo.numero %>"></input>
-                                                                                        </div>
-                
-                                                                                        <div class="col-xl-2 col-md-6 mb-4">
-                                                                                            <small id="passwordHelpBlock" class="form-text text-muted">Complemento</small>
-                                                                                            <input style="text-transform: uppercase;" id="complemento" class="form-control form-control-sm" name="complemento" value="<%= processo.complemento %>"></input>
-                                                                                        </div>
-                
-                                                                                        
-                                                                                        <div class="col-xl-2 col-md-6 mb-4">
-                                                                                            <small id="passwordHelpBlock" class="form-text text-muted">Bairro</small>
-                                                                                            <input style="text-transform: uppercase;" id="bairro" class="form-control form-control-sm" name="bairro" value="<%= processo.bairro %>"></input>
-                                                                                        </div>
-                
-                                                                                        <div class="col-xl-3 col-md-6 mb-4">
-                                                                                            <small id="passwordHelpBlock" class="form-text text-muted">Cidade</small>
-                                                                                            <input style="text-transform: uppercase;" id="cidade" class="form-control form-control-sm" name="cidade" value="<%= processo.cidade %>"></input>
-                                                                                        </div>
-                
-                                                                                        
-                
-                                                                                        
-                
-                                                                                        
-                                                                                    </div>
-                
-                                                                                    <div class="form-row">
-                                                                                    <div class="col-xl-2 col-md-6 mb-4">
-                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Benefício Requerido</small>
-                                                                                        <select class="form-control form-control-sm" name="beneficiorequerido">
-                                                                                            <option value="<%= processo.beneficiorequerido %>"></option>
-                                                                                            <option value="LOAS IDOSO">LOAS IDOSO</option>
-                                                                                            <option value="LOAS DEFICIENTE">LOAS DEFICIENTE</option>
-                                                                                            <option value="LOAS NIVER">LOAS NIVER</option>
-                                                                                            <option value="OUTROS">OUTROS</option>
-                                                                                        </select>
-                                                                                    </div>
-                
-                                                                                    <div class="col-xl-2 col-md-6 mb-4">
-                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Indicação</small>
-                                                                                        <select class="form-control form-control-sm" name="indicacao">
-                                                                                            <option value="<%= processo.indicacao %>"></option>
-                                                                                            <option value="SBTIB">SBT-IB</option>
-                                                                                            <option value="AC">ANTÔNIO CARLOS</option>
-                                                                                            <option value="TUPI">TUPI</option>
-                                                                                            <option value="CIDINHA">CIDINHA</option>
-                                                                                            <option value="PA">PEDRO AUGUSTO</option>
-                                                                                            <option value="CM">CM</option>
-                                                                                            <option value="PANFLETO">PANFLETO</option>
-                                                                                            <option value="AMIGOVIZINHO">AMIGO/VIZINHO</option>
-                                                                                            <option value="HR">HR</option>
-                                                                                            <option value="IBT">IBT</option>
-                                                                                            <option value="GLOBO">GLOBO</option>
-                                                                                        </select>
-                                                                                    </div>
-                
-                                                                                    <div class="col-xl-8 col-md-6 mb-4">
-                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Pendência de Documentos</small>
-                                                                                        <input class="form-control form-control-sm" name="pendenciadedocumentos" value="<%= processo.pendenciadedocumentos %>"></input>
-                                                                                    </div>
-                
-                                                                                    <div class="col-xl-12 col-md-6 mb-4">
-                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Informação Complementar</small>
-                                                                                        <textarea type="text" class="p-3 mb-2 bg-light text-dark form-control form-control-sm" name="informacaocomplementar" id="informacaocomplementar" value="<%= processo.informacaocomplementar %>" rows="4" cols="66"></textarea>
-                                                                                    </div>
-                
-                                                                                    <div class="col-xl-4 col-md-6 mb-4">
-                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Enviados</small>
-                                                                                        <input class="form-control form-control-sm" name="enviados" value="<%= processo.enviados %>"></input>
-                                                                                    </div>
-                
-                                                                                    <div class="col-xl-4 col-md-6 mb-4">
-                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Entrada</small>
-                                                                                        <input class="form-control form-control-sm" name="entrada" value="<%= processo.entrada %>"></input>
-                                                                                    </div>
-                
-                                                                                    
-                
-                                                                                    <div class="col-xl-4 col-md-6 mb-4">
-                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Senha do Cliente</small>
-                                                                                        <input class="form-control form-control-sm" name="senhadocliente" value="<%= processo.senhadocliente %>"></input>
-                                                                                    </div>
-                
-                                                                                    <div class="col-xl-2 col-md-6 mb-4">
-                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Situação</small>
-                                                                                        <select class="form-control form-control-sm" name="situacao">
-                                                                                            <option value="<%= processo.situacao %>"></option>
-                                                                                            <option value="ANALISE">ANÁLISE</option>
-                                                                                            <option value="ANALISEPENDENCIA">ANÁLISE PENDÊNCIA</option>
-                                                                                            <option value="CANCELADO">CANCELADO</option>
-                                                                                            <option value="DEFERIDO">DEFERIDO</option>
-                                                                                            <option value="INDEFERIDO">INDEFERIDO</option>
-                                                                                            <option value="EXIGENCIA">EXIGÊNCIA</option>
-                                                                                            <option value="FALECEU">FALECEU</option>
-                                                                                            <option value="RECURSO">RECURSO</option>
-                                                                                            <option value="OUTROS">OUTROS</option>
-                                                                                        </select>
-                                                                                        
-                                                                                    </div>
-                
-                                                                                    <div class="col-xl-2 col-md-6 mb-4">
-                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Nova Entrada</small>
-                                                                                        <input class="form-control form-control-sm" name="novaentrada" value="<%= processo.novaentrada %>"></input>
-                                                                                    </div>
-                
-                                                                                    <div class="col-xl-2 col-md-6 mb-4">
-                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Data Pesquisa</small>
-                                                                                        <input class="form-control form-control-sm" name="datapesquisa" value="<%= processo.datapesquisa %>"></input>
-                                                                                    </div>
-                
-                                                                              
-                                                                                    <div class="col-xl-2 col-md-6 mb-4">
-                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Advogado que Assinou</small>
-                                                                                        <select class="form-control form-control-sm" name="advogadoqueassinou">
-                                                                                            <option value="<%= processo.advogadoqueassinou %>"></option>
-                                                                                            <option value="Advogado">Advogado</option>
-                                                                                            
-                                                                                        </select>
-                                                                                        
-                                                                                    </div>
-                
-                                                                                    <div class="col-xl-2 col-md-6 mb-4">
-                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Pagamento</small>
-                                                                                        <input class="form-control form-control-sm" name="pagamento" value="<%= processo.pagamento %>"></input>
-                                                                                    </div>
-                
-                                                                                    <div class="col-xl-4 col-md-6 mb-4">
-                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">E-mail</small>
-                                                                                        <input style="text-transform: lowercase;" type="text" class="form-control form-control-sm" name="email" value="<%= processo.email %>"></input>
-                                                                                    </div>
-                
-                                                                                    <div class="col-xl-8 col-md-6 mb-4">
-                                                                                        <small id="passwordHelpBlock" class="form-text text-muted">Avaliação / Perícia</small>
-                                                                                        <input class="form-control form-control-sm" name="avaliacaopericia" value="<%= processo.avaliacaopericia %>"></input>
-                                                                                    </div>
-                
-                                                                                </div>
-                
-                                                                                    
-                                                                                     
-                                                                                       
+                            <div class="card shadow mb-4">
 
-                                                                                    </div>
+                                <div class="card-body">
 
-                                                                                        <div class="form-row">
-                                                                                                        <div class="col-xl-12 col-md-6 mb-4">
-                                                                                                            
-                                                                                                            <button type="submit" class="btn btn-success btn-block" >Atualizar</button>
-                                                                                                        </div>
 
-                                                                                                   
+                                    <div class="form-row">
 
-                                                                                                       <!--  <div class="col-xl-4 col-md-6 mb-4">
+
+                                        <div class="col-xl-1 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Data</small>
+                                            <input type="text" class="form-control form-control-sm"
+                                                   name="datacomparecimento"
+                                                   value="<%= processo.datacomparecimento %>"></input>
+                                        </div>
+
+                                        <div class="col-xl-1 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">CPF</small>
+                                            <input class="form-control form-control-sm" name="cpf"
+                                                   value="<%= processo.cpf %>"></input>
+                                        </div>
+
+                                        <div class="col-xl-4 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Nome do
+                                                Beneficiário</small>
+                                            <input type="text" class="form-control form-control-sm"
+                                                   name="nomebeneficiario"
+                                                   value="<%= processo.nomebeneficiario %>"></input>
+                                        </div>
+
+                                        <div class="col-xl-2 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Telefone
+                                                Fixo</small>
+                                            <input type="text" class="form-control form-control-sm" name="telefone"
+                                                   value="<%= processo.telefone %>"></input>
+                                        </div>
+
+                                        <div class="col-xl-2 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Celular</small>
+                                            <input type="text" class="form-control form-control-sm" name="celular"
+                                                   value="<%= processo.celular %>"></input>
+                                        </div>
+
+                                        <div class="col-xl-2 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Telefone
+                                                2</small>
+                                            <input type="text" class="form-control form-control-sm" name="telefone2"
+                                                   value="<%= processo.telefone2 %>"></input>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="form-row">
+
+                                        <div class="col-xl-1 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Cep</small>
+                                            <input type="text" maxlength="9" class="form-control form-control-sm"
+                                                   name="cep" id="cep" value="<%= processo.cep %>" size="10"
+                                                   onblur="pesquisacep(this.value);"></input>
+                                        </div>
+
+                                        <div class="col-xl-3 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock"
+                                                   class="form-text text-muted">Logradouro</small>
+                                            <input style="text-transform: uppercase;" id="logradouro"
+                                                   class="form-control form-control-sm" name="logradouro"
+                                                   value="<%= processo.logradouro %>"></input>
+
+                                        </div>
+
+
+                                        <div class="col-xl-1 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Número</small>
+                                            <input id="numero" type="number" class="form-control form-control-sm"
+                                                   name="numero" value="<%= processo.numero %>"></input>
+                                        </div>
+
+                                        <div class="col-xl-2 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock"
+                                                   class="form-text text-muted">Complemento</small>
+                                            <input style="text-transform: uppercase;" id="complemento"
+                                                   class="form-control form-control-sm" name="complemento"
+                                                   value="<%= processo.complemento %>"></input>
+                                        </div>
+
+
+                                        <div class="col-xl-2 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Bairro</small>
+                                            <input style="text-transform: uppercase;" id="bairro"
+                                                   class="form-control form-control-sm" name="bairro"
+                                                   value="<%= processo.bairro %>"></input>
+                                        </div>
+
+                                        <div class="col-xl-3 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Cidade</small>
+                                            <input style="text-transform: uppercase;" id="cidade"
+                                                   class="form-control form-control-sm" name="cidade"
+                                                   value="<%= processo.cidade %>"></input>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="col-xl-2 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Benefício
+                                                Requerido</small>
+                                            <select class="form-control form-control-sm" name="beneficiorequerido">
+                                                <option value="<%= processo.beneficiorequerido %>"></option>
+                                                <option value="LOAS IDOSO">LOAS IDOSO</option>
+                                                <option value="LOAS DEFICIENTE">LOAS DEFICIENTE</option>
+                                                <option value="LOAS NIVER">LOAS NIVER</option>
+                                                <option value="OUTROS">OUTROS</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-xl-2 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Indicação</small>
+                                            <select class="form-control form-control-sm" name="indicacao">
+                                                <option value="<%= processo.indicacao %>"></option>
+                                                <option value="SBTIB">SBT-IB</option>
+                                                <option value="AC">ANTÔNIO CARLOS</option>
+                                                <option value="TUPI">TUPI</option>
+                                                <option value="CIDINHA">CIDINHA</option>
+                                                <option value="PA">PEDRO AUGUSTO</option>
+                                                <option value="CM">CM</option>
+                                                <option value="PANFLETO">PANFLETO</option>
+                                                <option value="AMIGOVIZINHO">AMIGO/VIZINHO</option>
+                                                <option value="HR">HR</option>
+                                                <option value="IBT">IBT</option>
+                                                <option value="GLOBO">GLOBO</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-xl-8 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Pendência de
+                                                Documentos</small>
+                                            <input class="form-control form-control-sm" name="pendenciadedocumentos"
+                                                   value="<%= processo.pendenciadedocumentos %>"></input>
+                                        </div>
+
+                                        <div class="col-xl-12 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Informação
+                                                Complementar</small>
+                                            <textarea type="text"
+                                                      class="p-3 mb-2 bg-light text-dark form-control form-control-sm"
+                                                      name="informacaocomplementar" id="informacaocomplementar"
+                                                      value="<%= processo.informacaocomplementar %>" rows="4"
+                                                      cols="66"></textarea>
+                                        </div>
+
+                                        <div class="col-xl-4 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Enviados</small>
+                                            <input class="form-control form-control-sm" name="enviados"
+                                                   value="<%= processo.enviados %>"></input>
+                                        </div>
+
+                                        <div class="col-xl-4 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Entrada</small>
+                                            <input class="form-control form-control-sm" name="entrada"
+                                                   value="<%= processo.entrada %>"></input>
+                                        </div>
+
+                                        <% if(role != 'user'){ %>
+                                            <div class="col-xl-4 col-md-6 mb-4">
+                                                <small id="passwordHelpBlock" class="form-text text-muted">Senha do
+                                                    Cliente</small>
+                                                <input class="form-control form-control-sm" name="senhadocliente"
+                                                       value="<%= processo.senhadocliente %>"></input>
+                                            </div>
+                                        <% } %>
+                                        <div class="col-xl-2 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Situação</small>
+                                            <select class="form-control form-control-sm" name="situacao">
+                                                <option value="<%= processo.situacao %>"></option>
+                                                <option value="ANALISE">ANÁLISE</option>
+                                                <option value="ANALISEPENDENCIA">ANÁLISE PENDÊNCIA</option>
+                                                <option value="CANCELADO">CANCELADO</option>
+                                                <option value="DEFERIDO">DEFERIDO</option>
+                                                <option value="INDEFERIDO">INDEFERIDO</option>
+                                                <option value="EXIGENCIA">EXIGÊNCIA</option>
+                                                <option value="FALECEU">FALECEU</option>
+                                                <option value="RECURSO">RECURSO</option>
+                                                <option value="OUTROS">OUTROS</option>
+                                            </select>
+
+                                        </div>
+
+                                        <div class="col-xl-2 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Nova
+                                                Entrada</small>
+                                            <input class="form-control form-control-sm" name="novaentrada"
+                                                   value="<%= processo.novaentrada %>"></input>
+                                        </div>
+
+                                        <div class="col-xl-2 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Data
+                                                Pesquisa</small>
+                                            <input class="form-control form-control-sm" name="datapesquisa"
+                                                   value="<%= processo.datapesquisa %>"></input>
+                                        </div>
+
+
+                                        <div class="col-xl-2 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Advogado que
+                                                Assinou</small>
+                                            <select class="form-control form-control-sm" name="advogadoqueassinou">
+                                                <option value="<%= processo.advogadoqueassinou %>"></option>
+                                                <option value="Advogado">Advogado</option>
+
+                                            </select>
+
+                                        </div>
+
+                                        <div class="col-xl-2 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Pagamento</small>
+                                            <input class="form-control form-control-sm" name="pagamento"
+                                                   value="<%= processo.pagamento %>"></input>
+                                        </div>
+
+                                        <div class="col-xl-4 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">E-mail</small>
+                                            <input style="text-transform: lowercase;" type="text"
+                                                   class="form-control form-control-sm" name="email"
+                                                   value="<%= processo.email %>"></input>
+                                        </div>
+
+                                        <div class="col-xl-8 col-md-6 mb-4">
+                                            <small id="passwordHelpBlock" class="form-text text-muted">Avaliação /
+                                                Perícia</small>
+                                            <input class="form-control form-control-sm" name="avaliacaopericia"
+                                                   value="<%= processo.avaliacaopericia %>"></input>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-xl-12 col-md-6 mb-4">
+
+                                        <button type="submit" class="btn btn-success btn-block">Atualizar</button>
+                                    </div>
+
+
+                                    <!--  <div class="col-xl-4 col-md-6 mb-4">
                                                                                                             
                                                                                                             <a href="/admin/tramitacoes/<%= processo.id %>"><button class="btn btn-light btn-block" title="Registrar Tramitações" btn-block><i class="fas fa-book"></i> Tramitações</button></a>
                                                                                                         </div> -->
-                                                                                                        
-                                                                                                        
-                                                                                        </div>
-
-                                                                                    
-                                                                                </div>
-                            
-                                                                                
-                                                                            </div>
-                            
-                                                                        
-                                                                    </div>
-                                </form>
-                            
-                            
-                                                                        
-                            
-                                                        </div>
-
-                                                                
-                </div>
-
-<!-- Footer -->
-<footer>
-    <div class="container my-auto">
 
 
+                                </div>
 
-        <div class="copyright text-center my-auto">
+
+                            </div>
 
 
-            <div class="row">
+                        </div>
 
-                <!-- Earnings (Monthly) Card Example -->
-                <div class="col-xl-6 col-md-6 mb-4">
-                    <input type="button" value="Voltar" onClick="history.go(-1)" class="btn btn-Light btn-block" />
-                </div>
-                <div class="col-xl-6 col-md-6 mb-4">
-                    <input type="button" value="Avançar" onClick="history.go(+1)" class="btn btn-Light btn-block" />
-                </div>
+
+                    </div>
+                </form>
 
 
             </div>
+
+
         </div>
-</footer>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container my-auto">
 
 
+                <div class="copyright text-center my-auto">
 
+
+                    <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-6 col-md-6 mb-4">
+                            <input type="button" value="Voltar" onClick="history.go(-1)"
+                                   class="btn btn-Light btn-block"/>
+                        </div>
+                        <div class="col-xl-6 col-md-6 mb-4">
+                            <input type="button" value="Avançar" onClick="history.go(+1)"
+                                   class="btn btn-Light btn-block"/>
+                        </div>
+
+
+                    </div>
+                </div>
+        </footer>
+
+
+    </div>
+
+
+    <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
 </div>
 
 
-<a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
-</div>
+<script type="text/javascript">
 
+    var Platitude = document.querySelector("[name='Platitude']").value;
+    var Plongitude = document.querySelector("[name='Plongitude']").value;
+    var Pendereco = document.querySelector("[name='Pendereco']").value;
 
- <script type="text/javascript">
+    console.log(Platitude);
+    console.log(Plongitude);
+    console.log(Pendereco);
 
-var Platitude = document.querySelector("[name='Platitude']").value;
-var Plongitude = document.querySelector("[name='Plongitude']").value;
-var Pendereco = document.querySelector("[name='Pendereco']").value;
+    const map = L.map('map').setView([Platitude, Plongitude], 15);
 
-console.log(Platitude);
-console.log(Plongitude);
-console.log(Pendereco);
-
-    const map = L.map('map').setView([Platitude,Plongitude], 15);
-    
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-    
- 
 
 
+    if (document.querySelector("[name='situacao']").value === "Em Andamento") {
+        var icone = new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+    } else {
+        var icone = new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
 
-   if (document.querySelector("[name='situacao']").value === "Em Andamento") {
-    var icone = new L.Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41]
-});      
-   }else{
-    var icone = new L.Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41]
-});
-
-   }
-
-   
+    }
 
 
-    L.marker([Platitude,Plongitude], {icon: icone}).addTo(map)
-    .bindPopup(Pendereco)
-    .openPopup();
-    
-    
-    
+    L.marker([Platitude, Plongitude], {icon: icone}).addTo(map)
+        .bindPopup(Pendereco)
+        .openPopup();
+
+
     // se estÃ¡ clicado
     let isFetching = false
-    
-    
-    
+
+
     map.on("click", async e => {
-    
-    // para evitar muitos cliques
-    if(isFetching) return
-    
-    isFetching = true
-    
-    const {lat, lng} = e.latlng
-    
-    const link = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&addressdetails=1&format=jsonv2&`
-    
-    const data = await fetch(link)
-    .then(response => response.json())
-    .catch(error => false)
-    console.log(data)
-    
-    document.querySelector("[name='logradouro']").value = `${data.address.road}`;
-    document.querySelector("[name='numero']").value = `${data.address.house_number}`;
-    document.querySelector("[name='bairro']").value = `${data.address.suburb}`;
-    document.querySelector("[name='cidade']").value = `${ data.address.city===undefined ? data.address.municipality : data.address.city }`;
-    document.querySelector("[name='cep']").value = `${data.address.postcode}`;
-    document.querySelector("[name='latitude']").value = `${data.lat}`;
-    document.querySelector("[name='longitude']").value = `${data.lon}`;
-    
-    setTimeout(() => isFetching = false, 1500)
+
+        // para evitar muitos cliques
+        if (isFetching) return
+
+        isFetching = true
+
+        const {lat, lng} = e.latlng
+
+        const link = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&addressdetails=1&format=jsonv2&`
+
+        const data = await fetch(link)
+            .then(response => response.json())
+            .catch(error => false)
+        console.log(data)
+
+        document.querySelector("[name='logradouro']").value = `${data.address.road}`;
+        document.querySelector("[name='numero']").value = `${data.address.house_number}`;
+        document.querySelector("[name='bairro']").value = `${data.address.suburb}`;
+        document.querySelector("[name='cidade']").value = `${data.address.city === undefined ? data.address.municipality : data.address.city}`;
+        document.querySelector("[name='cep']").value = `${data.address.postcode}`;
+        document.querySelector("[name='latitude']").value = `${data.lat}`;
+        document.querySelector("[name='longitude']").value = `${data.lon}`;
+
+        setTimeout(() => isFetching = false, 1500)
     })
-    </script>
+</script>
 
 
-
-    <%- include('../../partials/logoutmodal.ejs') %>
-    <%- include('../../partials/footer.ejs') %>
+<%- include('../../partials/logoutmodal.ejs') %>
+<%- include('../../partials/footer.ejs') %>

@@ -1,0 +1,38 @@
+/*
+ * Copyright (c) Gabriel Moura 2022.
+ * email: gabriel.blx32@gmail.com
+ */
+var router = require('express').Router();
+
+const ProcessoController = require('../controller/ProcessoController');
+const TramitarController = require('../controller/TramitarController');
+const TramitacoesController = require('../controller/TramitacoesController');
+const DashboardController = require('../controller/DashboardController');
+const adminAuth = require("../middlewares/adminAuth");
+
+/* Rotas Processos */
+router.get("/processos", adminAuth, ProcessoController.index);
+router.get("/processos/new", adminAuth, ProcessoController.create);
+router.get("/processos/search", adminAuth, ProcessoController.search);
+router.post("/processos/store", adminAuth, ProcessoController.store);
+router.post("/processos/update", adminAuth, ProcessoController.update);
+router.post("/processos/delete", adminAuth, ProcessoController.delete);
+router.get("/processos/:id", adminAuth, ProcessoController.show);
+router.get("/processos/edit/:id", adminAuth, ProcessoController.edit);
+router.get('/processos/tramitar/:id', TramitarController.show);
+
+router.post('/tramitar/delete', TramitarController.delete);
+
+/* Rotas Tramitacoes */
+router.get("/tramitacoes/:id", TramitacoesController.show);
+router.get("/tramitacoes/new", adminAuth, TramitacoesController.create);
+router.post("/tramitacoes/new", adminAuth, TramitacoesController.store);
+router.get("/tramitacao/edit/:id", adminAuth, TramitacoesController.edit);
+router.post("/tramitacoes/update", adminAuth, TramitacoesController.update)
+router.post("/tramitacao/delete", adminAuth, TramitacoesController.delete);
+router.get("/tramitacoes/new/:id", TramitacoesController.create2)
+
+router.get("/dashboard", adminAuth, DashboardController.index)
+
+module.exports = router;
+

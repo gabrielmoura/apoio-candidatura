@@ -1,6 +1,11 @@
+/*
+ * Copyright (c) Gabriel Moura 2022.
+ * email: gabriel.blx32@gmail.com
+ */
+
 const Sequelize = require("sequelize");
-const connection = require("../database/database");
-const Processo = require("../processos/Processo");
+const connection = require("./database");
+const Processo = require("./Processo");
 
 const Tramitacao = connection.define("respostas", {
     id: {
@@ -10,7 +15,7 @@ const Tramitacao = connection.define("respostas", {
         primaryKey: true
     },
     carga: {type: Sequelize.STRING, allowNull: true},
-    
+
     sicopsequencia: {type: Sequelize.STRING, allowNull: true},
     sicopdatadespacho: {type: Sequelize.STRING, allowNull: true},
     sicopdatarecebimento: {type: Sequelize.STRING, allowNull: true},
@@ -25,13 +30,13 @@ const Tramitacao = connection.define("respostas", {
     sicopdescrorgdigit: {type: Sequelize.STRING, allowNull: true},
     sicopmatrdigitador: {type: Sequelize.STRING, allowNull: true},
     sicopmatrrecebedor: {type: Sequelize.STRING, allowNull: true},
-    ctrt: { type: Sequelize.STRING, allowNull: true},
-    data: { type: Sequelize.STRING, allowNull: true},
-    tecnico: { type: Sequelize.TEXT, allowNull: true},
-    anotacao: {type: Sequelize.TEXT,allowNull: true},
+    ctrt: {type: Sequelize.STRING, allowNull: true},
+    data: {type: Sequelize.STRING, allowNull: true},
+    tecnico: {type: Sequelize.TEXT, allowNull: true},
+    anotacao: {type: Sequelize.TEXT, allowNull: true},
     processo: {type: Sequelize.STRING, allowNull: true},
-    status:{ type: Sequelize.INTEGER, allowNull: false}
-    
+    status: {type: Sequelize.INTEGER, allowNull: false}
+
 });
 
 Tramitacao.belongsTo(Processo);
