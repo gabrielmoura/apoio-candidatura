@@ -4,9 +4,10 @@
  */
 
 const Sequelize = require("sequelize");
-const connection = require("./database");
+const db = require("./database");
+const Log = require("../lib/logDatabase");
 
-const Processo = connection.define('perguntas', {
+const Processo = db.connection.define(db.env.DB_PREFIX + '_perguntas', {
     id: {type: Sequelize.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true},
     datacomparecimento: {type: Sequelize.STRING, allowNull: true},
     nomebeneficiario: {type: Sequelize.STRING, allowNull: true},
@@ -35,10 +36,26 @@ const Processo = connection.define('perguntas', {
     email: {type: Sequelize.STRING, allowNull: true},
     avaliacaopericia: {type: Sequelize.STRING, allowNull: true},
     status: {type: Sequelize.INTEGER, allowNull: false},
+    user_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+            model: db.env.DB_PREFIX + '_users',
+            key: 'id'
+        }
+    }
 }, {
     timestamps: false,
     createdAt: false,
     updatedAt: false,
+    hooks: {
+        afterCreate(instance, options) {
+            Log.create(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + "_respostas");
+        },
+        afterUpdate(instance, options) {
+            Log.update(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + "_respostas");
+        },
+    }
 });
 
 Processo.sync();

@@ -4,6 +4,7 @@
  */
 const User = require("../model/User");
 const bcrypt = require("bcryptjs");
+const LogAccess = require("../lib/logAccess");
 
 module.exports = {
     login(req, res) {
@@ -24,7 +25,10 @@ module.exports = {
                         id: user.id,
                         email: user.email,
                         role: user.role,
-                    }
+                    };
+
+                    // Define acesso a sessão
+                    LogAccess.access(user.toJSON(), user.id, 'session');
                     res.redirect("/admin/processos");
                 } else {
                     res.redirect("/login");

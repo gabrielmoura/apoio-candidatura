@@ -21,7 +21,7 @@
                             <h2>Criação de usuário</h2>
                         </div>
                         <div class="card-body">
-                            <form action="/users/create" method="POST">
+                            <form action="/admin/users/create" method="POST">
                                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                 <input class="form-control" name="email" type="email"
                                        placeholder="email@exemplo.com"><br>
@@ -30,8 +30,8 @@
                                     <small id="passwordHelpBlock" class="form-text text-muted">Regras de Acesso</small>
                                     <select class="form-control form-control-sm" name="rule">
                                         <option value="admin">Admin</option>
-                                        <option value="gerente">Gerente</option>
-                                        <option value="usuario">Usuário</option>
+                                        <option value="manager">Gerente</option>
+                                        <option value="user">Usuário</option>
                                     </select>
                                 </div>
 

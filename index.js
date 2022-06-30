@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const session = require("express-session");
-const connection = require("./model/database");
+const helmet = require("helmet");
+const db = require("./model/database");
 
 const webRoutes = require("./routes/web");
 const dashRoutes = require("./routes/dash");
@@ -20,7 +21,6 @@ app.use(session({
     saveUninitialized: true
 }))
 
-
 app.use((req, res, next) => { //Cria um middleware onde todas as requests passam por ele
     if ((req.headers["x-forwarded-proto"] || "").endsWith("http")) //Checa se o protocolo informado nos headers é HTTP
         res.redirect(`https://${req.hostname}${req.url}`); //Redireciona pra HTTPS
@@ -35,10 +35,16 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+app.use(helmet({
+    contentSecurityPolicy: false,
+    // crossOriginResourcePolicy: false,
+    crossOriginEmbedderPolicy: false
+}));
+
 /*
  *  Database
  */
-connection
+db.connection
     .authenticate()
     .then(() => {
         console.log("Conexão feita com sucesso!");
@@ -54,7 +60,7 @@ app.use("/", webRoutes);
 app.use("/admin", adminRoutes);
 
 
-var port = process.env.PORT || 3000;
+var port = db.env.PORT || 3030;
 app.listen(port, function () {
     console.log('Cadastro Computei listening on port %s', port);
 });

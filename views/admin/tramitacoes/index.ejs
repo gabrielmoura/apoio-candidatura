@@ -32,12 +32,12 @@
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
 
                                         </div>
-                                        <div class="h6 mb-0 font-weight-bold text-gray-800"><%= pergunta.ID %> <%= pergunta.requerente %>
-                                            CPF: <%= pergunta.cpf %> | ATC: <%= pergunta.atc %> |
-                                            Vagas: <%= pergunta.vagas %></div>
+                                        <div class="h6 mb-0 font-weight-bold text-gray-800"><%= processo.ID %> <%= processo.requerente %>
+                                            CPF: <%= processo.cpf %> | ATC: <%= processo.atc %> |
+                                            Vagas: <%= processo.vagas %></div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            <small><%= pergunta.logradouro %>, <%= pergunta.numero %>
-                                                - <%= pergunta.bairro %> | Atividade: <%= pergunta.atividade %></small>
+                                            <small><%= processo.logradouro %>, <%= processo.numero %>
+                                                - <%= processo.bairro %> | Atividade: <%= processo.atividade %></small>
                                         </div>
 
 
@@ -45,11 +45,11 @@
 
                                     <div class="col-auto">
                                         <small><textarea type="text" class="p-3 mb-2 bg-light text-dark form-control"
-                                                         name="cardfile" id="cardfile" value="<%= pergunta.cardfile %>"
-                                                         rows="3" cols="53" readonly><%= pergunta.cardfile %></textarea></small>
+                                                         name="cardfile" id="cardfile" value="<%= processo.cardfile %>"
+                                                         rows="3" cols="53" readonly><%= processo.cardfile %></textarea></small>
                                     </div>
                                     <div class="col-auto">
-                                        <a href="/admin/processos/edit/<%= pergunta.id %>"><i
+                                        <a href="/admin/processos/edit/<%= processo.id %>"><i
                                                     class="fas fa-edit fa-2x text-gray-300" title="Editar Processo"></i></a>
                                     </div>
 
@@ -69,8 +69,8 @@
 
                         <% var totTramitacoes = 0 %>
 
-                        <% pergunta.respostas.forEach(resposta=> { %>
-                            <% console.log(pergunta.respostas) %>
+                        <% processo.tramitacao.forEach(resposta=> { %>
+                            <% console.log(processo.tramitacao) %>
                             <% if (resposta.status === 1){ %>
 
                                 <% totTramitacoes = totTramitacoes + 1 %>
@@ -79,7 +79,7 @@
 
                         <% var totTramitacoessicop = 0 %>
 
-                        <% pergunta.respostas.forEach(resposta=> { %>
+                        <% processo.tramitacao.forEach(resposta=> { %>
                             <% if (resposta.status === 3){ %>
 
 
@@ -106,7 +106,7 @@
                                     <div class="col-xl-6 col-md-6 mb-4">
 
                                         <input type="submit" value="CADASTRAR TRAMITAÇÃO"
-                                               onclick="window.location='/admin/tramitacoes/new/<%= pergunta.id %>'"
+                                               onclick="window.location='/admin/tramitacoes/new/<%= processo.id %>'"
                                                class="btn btn-success btn-block" style="float: right"/>
 
                                     </div>
@@ -130,7 +130,7 @@
                                         </thead>
 
                                         <tbody>
-                                        <% pergunta.respostas.forEach(resposta=> { %>
+                                        <% processo.tramitacao.forEach(resposta=> { %>
                                             <% if (resposta.status === 1){ %>
 
                                                 <tr>

@@ -4,9 +4,11 @@
  */
 
 const Sequelize = require("sequelize");
-const connection = require("./database");
+const db = require("./database");
+const Log = require("../lib/logDatabase");
 
-const User = connection.define('users', {
+const User = db.connection.define(db.env.DB_PREFIX + '_users', {
+    id: {type: Sequelize.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true},
     email: {
         type: Sequelize.STRING,
         allowNull: false
@@ -20,8 +22,16 @@ const User = connection.define('users', {
     }
 }, {
     timestamps: false,
-    createdAt: false,
+    createdAt: true,
     updatedAt: false,
+    hooks: {
+        afterCreate(instance, options) {
+            Log.create(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + '_users');
+        },
+        afterUpdate(instance, options) {
+            Log.update(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + '_users');
+        },
+    }
 })
 
 

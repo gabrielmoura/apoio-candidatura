@@ -13,7 +13,6 @@ module.exports = {
         var id = req.body.id;
         var status = req.body.status;
 
-
         Processo.update({
             status: status,
 
@@ -47,11 +46,10 @@ module.exports = {
     show(req, res) {
         var id = req.params.id;
         Processo.findByPk(id, {
-            include: [{model: Tramitacao}]
-        }).then(pergunta => {
-            if (pergunta != undefined) { // Pergunta encontrada
-                res.render("/admin/tramitacoes/index", {pergunta: pergunta});
-                console.log(pergunta);
+            include: [{model: Tramitacao,as:'tramitacao'}]
+        }).then((processo) => {
+            if (processo != undefined) { // Pergunta encontrada
+               res.render("admin/tramitacoes/index", {processo: processo});
             } else { // Não encontrada
                 res.redirect("/");
             }
@@ -128,7 +126,8 @@ module.exports = {
             pagamento: req.body.pagamento,
             email: req.body.email,
             avaliacaopericia: req.body.avaliacaopericia,
-            status: 1
+            status: 1,
+            user_id: req.session.user.id,
 
         }).then(() => {
             console.log("criou e tentou redirecionar");

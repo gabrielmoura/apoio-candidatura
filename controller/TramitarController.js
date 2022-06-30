@@ -3,18 +3,19 @@
  * email: gabriel.blx32@gmail.com
  */
 const Processo = require("../model/Processo");
-
+const Log = require('../lib/logDatabase');
 module.exports = {
     delete(req, res) {
         var id = req.body.id;
         var perguntaId = req.body.pergunta;
         if (id != undefined) {
             if (!isNaN(id)) {
-                Resposta.destroy({
+                Processo.destroy({
                     where: {
                         id: id
-                    }
-                }).then(() => {
+                    },
+                }).then((r) => {
+                    Log.delete(r, req.session.user.id, Processo.tableName);
                     res.redirect("/pergunta/" + perguntaId);
                 });
             } else {// NÃO FOR UM NÚMERO

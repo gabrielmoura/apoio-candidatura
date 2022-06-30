@@ -13,11 +13,11 @@ const adminAuth = require("../middlewares/adminAuth");
 /* Rotas Processos */
 router.get("/processos", adminAuth, ProcessoController.index);
 router.get("/processos/new", adminAuth, ProcessoController.create);
-router.get("/processos/search", adminAuth, ProcessoController.search);
+router.post("/processos/search", adminAuth, ProcessoController.search);
 router.post("/processos/store", adminAuth, ProcessoController.store);
 router.post("/processos/update", adminAuth, ProcessoController.update);
 router.post("/processos/delete", adminAuth, ProcessoController.delete);
-router.get("/processos/:id", adminAuth, ProcessoController.show);
+// router.get("/processos/:id", adminAuth, ProcessoController.show); FORA DE USO
 router.get("/processos/edit/:id", adminAuth, ProcessoController.edit);
 router.get('/processos/tramitar/:id', TramitarController.show);
 
