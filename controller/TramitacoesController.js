@@ -40,6 +40,7 @@ module.exports = {
             tecnico: tecnico,
             anotacao: anotacao,
             sicopsequencia: sicopsequencia,
+            user_id: req.session.user.id,
         }, {
             where: {
                 id: id

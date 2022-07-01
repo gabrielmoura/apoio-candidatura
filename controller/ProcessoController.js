@@ -85,7 +85,8 @@ module.exports = {
             pagamento: req.body.pagamento,
             email: req.body.email,
             avaliacaopericia: req.body.avaliacaopericia,
-            status: 1
+            status: 1,
+            user_id: req.session.user.id,
 
         }, {
             where: {
