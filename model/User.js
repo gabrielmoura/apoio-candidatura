@@ -25,12 +25,12 @@ const User = db.connection.define(db.env.DB_PREFIX + '_users', {
     createdAt: true,
     updatedAt: false,
     hooks: {
-        afterCreate(instance, options) {
-            Log.create(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + '_users');
-        },
-        afterUpdate(instance, options) {
-            Log.update(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + '_users');
-        },
+        // afterCreate(instance, options) {
+        //     Log.create(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + '_users');
+        // },
+        // afterUpdate(instance, options) {
+        //     Log.update(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + '_users');
+        // },
     }
 })
 

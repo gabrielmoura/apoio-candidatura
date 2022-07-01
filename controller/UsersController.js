@@ -5,6 +5,7 @@
 const User = require("../model/User");
 const bcrypt = require('bcryptjs');
 const nP = require("../lib/normalizeParse");
+const LogAccess = require("../lib/logAccess");
 
 function redirectIfNotAdmin(req, res) {
     if (req.session.user.role != "admin") {
@@ -21,13 +22,14 @@ module.exports = {
     },
     create(req, res) {
         redirectIfNotAdmin(req, res);
-        res.render("admin/users/create",nP.parse({}, req));
+        res.render("admin/users/create", nP.parse({csrfToken: req.csrfToken()}, req));
         // res.render("admin/users/create");
     },
     store(req, res) {
         redirectIfNotAdmin(req, res);
         var email = req.body.email;
         var password = req.body.password;
+        var role = req.body.role;
 
         User.findOne({where: {email: email}}).then(user => {
             if (user == undefined) {
@@ -38,8 +40,9 @@ module.exports = {
                 User.create({
                     email: email,
                     password: hash,
-                    user_id: req.session.user.id,
+                    role: role
                 }).then(() => {
+                    LogAccess.access({email}, req.session.user.id, process.env.DB_PREFIX + '_users');
                     res.redirect("/");
                 }).catch((err) => {
                     res.redirect("/");

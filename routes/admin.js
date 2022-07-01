@@ -7,12 +7,13 @@ var router = require('express').Router();
 const csrf = require("csurf");
 const csrfProtection = csrf();
 const UsersController = require('../controller/UsersController');
+const adminAuth = require("../middlewares/adminAuth");
 
 
 // Rotas de Usuários
-router.get('/users', csrfProtection, UsersController.index);
-router.get('/users/create', csrfProtection, UsersController.create);
-router.post('/users/create', csrfProtection, UsersController.store);
+router.get('/users', adminAuth, csrfProtection, UsersController.index);
+router.get('/users/create', adminAuth, csrfProtection, UsersController.create);
+router.post('/users/create', adminAuth, csrfProtection, UsersController.store);
 
 
 module.exports = router;
