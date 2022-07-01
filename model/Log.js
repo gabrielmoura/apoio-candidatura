@@ -13,11 +13,13 @@ const Log = db.connection.define(db.env.DB_PREFIX + '_logs', {
     },
     user_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
             model: db.env.DB_PREFIX + '_users',
             key: 'id'
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
     },
     subject: {
         type: Sequelize.STRING,

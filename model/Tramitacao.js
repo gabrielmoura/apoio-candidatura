@@ -39,11 +39,13 @@ const Tramitacao = db.connection.define(db.env.DB_PREFIX + "_tramitacoes", {
     status: {type: Sequelize.INTEGER, allowNull: false},
     user_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
             model: db.env.DB_PREFIX + '_users',
             key: 'id'
-        }
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
     }
 
 }, {
