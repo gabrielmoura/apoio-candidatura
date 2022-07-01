@@ -8,7 +8,7 @@ const Processo = require("./Processo");
 const db = require("./database");
 const Log = require("../lib/logDatabase");
 
-const Tramitacao = db.connection.define(db.env.DB_PREFIX + "_respostas", {
+const Tramitacao = db.connection.define(db.env.DB_PREFIX + "_tramitacoes", {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -49,10 +49,10 @@ const Tramitacao = db.connection.define(db.env.DB_PREFIX + "_respostas", {
 }, {
     hooks: {
         afterCreate(instance, options) {
-            Log.create(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + "_respostas");
+            Log.create(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + "_tramitacoes");
         },
         afterUpdate(instance, options) {
-            Log.update(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + "_respostas");
+            Log.update(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + "_tramitacoes");
         },
     }
 });

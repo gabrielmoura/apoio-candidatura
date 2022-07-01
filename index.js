@@ -9,41 +9,45 @@ const webRoutes = require("./routes/web");
 const dashRoutes = require("./routes/dash");
 const adminRoutes = require("./routes/admin");
 
-// View engine
+/*      View Engine        */
 app.set('view engine', 'ejs');
-/*
- *  Sessão
- */
+
+/*      UserAgent        */
+var useragent = require('express-useragent');
+app.use(useragent.express());
+
+/*      Sessão        */
 app.use(session({
-    secret: "KkVl3SE8tIhHnCca8_FTA",
+    secret: process.env.SECRET_KEY,
     cookie: {maxAge: 30000000},
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    name: "GeriADV",
 }))
 
-app.use((req, res, next) => { //Cria um middleware onde todas as requests passam por ele
+app.use((req, res, next) => {
+    //Cria um middleware onde todas as requests passam por ele
     if ((req.headers["x-forwarded-proto"] || "").endsWith("http")) //Checa se o protocolo informado nos headers é HTTP
         res.redirect(`https://${req.hostname}${req.url}`); //Redireciona pra HTTPS
     else //Se a requisição já é HTTPS
         next(); //Não precisa redirecionar, passa para os próximos middlewares que servirão com o conteúdo desejado
 });
 
-// Static
+/*      Arquivos Estáticos      */
 app.use(express.static('public'));
 
-//Body parser
+/*      Body Parser      */
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+/*      Controle Header e Cross      */
 app.use(helmet({
     contentSecurityPolicy: false,
     // crossOriginResourcePolicy: false,
     crossOriginEmbedderPolicy: false
 }));
 
-/*
- *  Database
- */
+/*      Database        */
 db.connection
     .authenticate()
     .then(() => {
@@ -52,15 +56,13 @@ db.connection
     console.log(error);
 })
 
-/*
- *  Definição de Rotas
- */
+/*      Definição de Rotas        */
 app.use("/admin", dashRoutes); //Rotas Dash
 app.use("/", webRoutes);
 app.use("/admin", adminRoutes);
 
 
-var port = db.env.PORT || 3030;
+var port = db.env.PORT || 3000;
 app.listen(port, function () {
     console.log('Cadastro Computei listening on port %s', port);
 });

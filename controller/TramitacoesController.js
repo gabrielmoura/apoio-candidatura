@@ -4,6 +4,7 @@
  */
 const Tramitacao = require("../model/Tramitacao");
 const Processo = require("../model/Processo");
+const nP = require("../lib/normalizeParse");
 
 module.exports = {
     create(req, res) {
@@ -12,10 +13,10 @@ module.exports = {
     create2(req, res) {
         var id = req.params.id;
         Processo.findByPk(id, {
-            include: [{model: Tramitacao,as:'tramitacao'}]
+            include: [{model: Tramitacao, as: 'tramitacao'}]
         }).then(processo => {
-            if (processo != undefined) { // Pergunta encontrada
-                res.render("admin/tramitacoes/new", {processo: processo});
+            if (processo != undefined) {
+                res.render("admin/tramitacoes/new", nP.parse({processo}, req));
             } else { // Não encontrada
                 res.redirect("/");
             }
@@ -75,7 +76,7 @@ module.exports = {
         Tramitacao.findByPk(id).then(tramitacao => {
 
             if (tramitacao != undefined) {
-                res.render("admin/tramitacoes/edit", {tramitacao: tramitacao});
+                res.render("admin/tramitacoes/edit", nP.parse({tramitacao: tramitacao}, req));
             } else {
                 res.redirect("/admin/tramitacoes/" + id);
             }
@@ -100,10 +101,10 @@ module.exports = {
     },
     show(req, res) {
         Processo.findByPk(req.params.id, {
-            include: [{model: Tramitacao,as:'tramitacao'}]
+            include: [{model: Tramitacao, as: 'tramitacao'}]
         }).then(processo => {
             if (processo != undefined) { // Pergunta encontrada
-                res.render("admin/tramitacoes/index", {processo: processo});
+                res.render("admin/tramitacoes/index", nP.parse({processo: processo}, req));
             } else { // Não encontrada
                 res.redirect("/");
             }

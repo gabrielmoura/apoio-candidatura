@@ -4,6 +4,7 @@
  */
 const User = require("../model/User");
 const bcrypt = require('bcryptjs');
+const nP = require("../lib/normalizeParse");
 
 function redirectIfNotAdmin(req, res) {
     if (req.session.user.role != "admin") {
@@ -15,12 +16,12 @@ module.exports = {
     index(req, res) {
         redirectIfNotAdmin(req, res);
         User.findAll().then(users => {
-            res.render("admin/users/index", {users: users});
+            res.render("admin/users/index", nP.parse({users}, req));
         });
     },
     create(req, res) {
         redirectIfNotAdmin(req, res);
-        res.render("admin/users/create");
+        res.render("admin/users/create",nP.parse({}, req));
         // res.render("admin/users/create");
     },
     store(req, res) {

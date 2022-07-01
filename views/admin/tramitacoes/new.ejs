@@ -11,7 +11,7 @@
 
 <div id="wrapper">
     <!-- Sidebar -->
-    <%- include ('../../partials/sidebar.ejs') %>
+    <%- include('../../partials/sidebar.ejs') %>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -61,7 +61,7 @@
                         <div class="card shadow mb-4">
 
                             <% var totTramitacoes = 0 %>
-                            <% processo.tramitacao.forEach(resposta=> { %>
+                            <% processo.tramitacao.forEach(tramitacao=> { %>
 
                                 <% totTramitacoes = totTramitacoes + 1 %>
 
@@ -228,7 +228,6 @@
 
                                                     <script>
                                                         function temcerteza() {
-
                                                             var acaoatual = document.getElementById("acao").value
                                                             var dataatual = document.getElementById("data").value
                                                             var cargaatual = document.getElementById("carga").value
@@ -260,25 +259,14 @@
 
 
                                                     <script>
-
                                                         function confirmarAcao(event, form) {
-
-
                                                             event.preventDefault();
-
                                                             var decision = confirm("Deseja continuar o Cadastro da Tramitação?");
-
-
                                                             if (decision) {
                                                                 form.submit();
-
                                                             }
                                                         }
-
-
                                                     </script>
-
-
                                                 </div>
                                                 <div class="col-md-4 mb-3">
 

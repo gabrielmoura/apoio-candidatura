@@ -7,6 +7,7 @@ const Op = Sequelize.Op;
 
 const Processo = require("../model/Processo");
 const Tramitacao = require("../model/Tramitacao");
+const nP = require("../lib/normalizeParse");
 
 module.exports = {
     delete(req, res) {
@@ -35,21 +36,21 @@ module.exports = {
         Processo.findByPk(id).then(processo => {
 
             if (processo != undefined) {
-                res.render("admin/processos/edit", {processo: processo, role: req.session.role});
+                res.render("admin/processos/edit", nP.parse({processo}, req));
             } else {
                 res.redirect("/admin/processos");
             }
-        }).catch(erro => {
+        }).catch(() => {
             res.redirect("/admin/processos");
         })
     },
     show(req, res) {
         var id = req.params.id;
         Processo.findByPk(id, {
-            include: [{model: Tramitacao,as:'tramitacao'}]
+            include: [{model: Tramitacao, as: 'tramitacao'}]
         }).then((processo) => {
             if (processo != undefined) { // Pergunta encontrada
-               res.render("admin/tramitacoes/index", {processo: processo});
+                res.render("admin/tramitacoes/index", nP.parse({processos: processos}, req));
             } else { // Não encontrada
                 res.redirect("/");
             }
@@ -147,7 +148,7 @@ module.exports = {
                     status: 1
                 }
             }).then(processos => {
-                res.render("admin/processos/index", {processos: processos});
+                res.render("admin/processos/index", nP.parse({processos: processos}, req));
             });
         }
 
@@ -164,7 +165,7 @@ module.exports = {
                     status: 1
                 }
             }).then(processos => {
-                res.render("admin/processos/index", {processos: processos})
+                res.render("admin/processos/index", nP.parse({processos: processos}, req))
             });
         }
         if (searchpor === "telefone") {
@@ -178,7 +179,7 @@ module.exports = {
                     status: 1
                 }
             }).then(processos => {
-                res.render("admin/processos/index", {processos: processos})
+                res.render("admin/processos/index", nP.parse({processos: processos}, req))
             });
         }
         if (searchpor === "logradouro") {
@@ -192,7 +193,7 @@ module.exports = {
                     status: 1
                 }
             }).then(processos => {
-                res.render("admin/processos/index", {processos: processos})
+                res.render("admin/processos/index", nP.parse({processos: processos}, req))
             });
         }
         if (searchpor === "bairro") {
@@ -206,12 +207,12 @@ module.exports = {
                     status: 1
                 }
             }).then(processos => {
-                res.render("admin/processos/index", {processos: processos})
+                res.render("admin/processos/index", nP.parse({processos: processos}, req))
             });
         }
     },
     create(req, res) {
-        res.render("admin/processos/new");
+        res.render("admin/processos/new", nP.parse({}, req));
     },
     index(req, res) {
         Processo.findAll({
@@ -222,7 +223,7 @@ module.exports = {
                 status: 1
             }
         }).then(processos => {
-            res.render("admin/processos/index", {processos: processos})
+            res.render("admin/processos/index", nP.parse({processos: processos}, req))
         });
     }
 

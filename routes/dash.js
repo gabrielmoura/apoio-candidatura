@@ -8,6 +8,7 @@ const ProcessoController = require('../controller/ProcessoController');
 const TramitarController = require('../controller/TramitarController');
 const TramitacoesController = require('../controller/TramitacoesController');
 const DashboardController = require('../controller/DashboardController');
+const LogController = require("../controller/LogController");
 const adminAuth = require("../middlewares/adminAuth");
 
 /* Rotas Processos */
@@ -25,14 +26,17 @@ router.post('/tramitar/delete', TramitarController.delete);
 
 /* Rotas Tramitacoes */
 router.get("/tramitacoes/:id", TramitacoesController.show);
-router.get("/tramitacoes/new", adminAuth, TramitacoesController.create);
+// router.get("/tramitacoes/new", adminAuth, TramitacoesController.create); FORA DE USO
 router.post("/tramitacoes/new", adminAuth, TramitacoesController.store);
 router.get("/tramitacao/edit/:id", adminAuth, TramitacoesController.edit);
 router.post("/tramitacoes/update", adminAuth, TramitacoesController.update)
 router.post("/tramitacao/delete", adminAuth, TramitacoesController.delete);
-router.get("/tramitacoes/new/:id", TramitacoesController.create2)
+router.get("/tramitacoes/new/:id", TramitacoesController.create2);
 
-router.get("/dashboard", adminAuth, DashboardController.index)
+router.get("/dashboard", adminAuth, DashboardController.index);
+
+/*      Rota Log     */
+router.get("/log",adminAuth, LogController.index);
 
 module.exports = router;
 

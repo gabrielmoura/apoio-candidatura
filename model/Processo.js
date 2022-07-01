@@ -7,7 +7,7 @@ const Sequelize = require("sequelize");
 const db = require("./database");
 const Log = require("../lib/logDatabase");
 
-const Processo = db.connection.define(db.env.DB_PREFIX + '_perguntas', {
+const Processo = db.connection.define(db.env.DB_PREFIX + '_processos', {
     id: {type: Sequelize.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true},
     datacomparecimento: {type: Sequelize.STRING, allowNull: true},
     nomebeneficiario: {type: Sequelize.STRING, allowNull: true},
@@ -50,10 +50,10 @@ const Processo = db.connection.define(db.env.DB_PREFIX + '_perguntas', {
     updatedAt: false,
     hooks: {
         afterCreate(instance, options) {
-            Log.create(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + "_respostas");
+            Log.create(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + "_processos");
         },
         afterUpdate(instance, options) {
-            Log.update(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + "_respostas");
+            Log.update(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + "_processos");
         },
     }
 });

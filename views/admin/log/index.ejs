@@ -1,0 +1,96 @@
+<%- include('../../partials/header.ejs') %>
+
+<div id="wrapper">
+    <!-- Sidebar -->
+    <%- include('../../partials/sidebar.ejs') %>
+
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Topbar -->
+            <%- include('../../partials/topbar.ejs') %>
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+
+                        <div class="row"></div>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+                            <table class="table table-sm" id="dataTable" >
+                                <thead>
+                                <tr>
+                                    <th><small>Ação</small></th>
+                                    <th><small>Sujeito</small></th>
+                                    <th><small>Data Alterado</small></th>
+                                    <th><small>Dado Alterado</small></th>
+                                    <th><small>Usuário</small></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <% log.forEach(logs => { %>
+                                    <tr>
+                                        <td><%= logs.action %></td>
+                                        <td><%= logs.subject %></td>
+                                        <td><%= logs.createdAt %></td>
+                                        <td><%= JSON.stringify(logs.payload) %></td>
+                                        <td><%= logs.user_id %></td>
+                                    </tr>
+                                <% }) %>
+                                </tbody>
+
+                            </table>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <!-- Footer -->
+        <footer>
+            <div class="container my-auto">
+
+
+                <div class="copyright text-center my-auto">
+
+
+                    <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-6 col-md-6 mb-4">
+                            <input type="button" value="Voltar" onClick="history.go(-1)"
+                                   class="btn btn-Light btn-block"/>
+                        </div>
+                        <div class="col-xl-6 col-md-6 mb-4">
+                            <input type="button" value="Avançar" onClick="history.go(+1)"
+                                   class="btn btn-Light btn-block"/>
+                        </div>
+
+
+                    </div>
+                </div>
+        </footer>
+        <!-- End of Footer -->
+    </div>
+
+
+    <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+</div>
+<% include('../../partials/logoutmodal.ejs') %>
+
+<%- include('../../partials/footer.ejs') %>
+

@@ -21,14 +21,14 @@ module.exports = {
                 var correct = bcrypt.compareSync(password, user.password);
 
                 if (correct) {
-                    req.session.user = {
+                    payload = {
                         id: user.id,
                         email: user.email,
                         role: user.role,
                     };
-
-                    // Define acesso a sessão
-                    LogAccess.access(user.toJSON(), user.id, 'session');
+                    req.session.user = payload;
+                    var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+                    LogAccess.access(Object.assign(payload, {ip}, {agent: req.useragent}), user.id, 'session');
                     res.redirect("/admin/processos");
                 } else {
                     res.redirect("/login");

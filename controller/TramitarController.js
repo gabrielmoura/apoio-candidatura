@@ -4,6 +4,8 @@
  */
 const Processo = require("../model/Processo");
 const Log = require('../lib/logDatabase');
+const nP = require("../lib/normalizeParse");
+
 module.exports = {
     delete(req, res) {
         var id = req.body.id;
@@ -35,7 +37,7 @@ module.exports = {
         Processo.findByPk(id).then(processo => {
 
             if (processo != undefined) {
-                res.render("admin/processos/edit", {processo: processo});
+                res.render("admin/processos/edit", nP.parse({processo: processo}, req));
             } else {
                 res.redirect("/admin/processos");
             }
