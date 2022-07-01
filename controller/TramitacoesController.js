@@ -5,6 +5,7 @@
 const Tramitacao = require("../model/Tramitacao");
 const Processo = require("../model/Processo");
 const nP = require("../lib/normalizeParse");
+const Log = require("../lib/logDatabase");
 
 module.exports = {
     create(req, res) {
@@ -45,7 +46,8 @@ module.exports = {
             where: {
                 id: id
             }
-        }).then(() => {
+        }).then(rr => {
+            Log.update(rr, req.session.user.id, process.env.DB_PREFIX + "_tramitacoes");
             res.redirect("/admin/tramitacoes/" + id);
         }).catch(err => {
             res.redirect("/admin/tramitacoes");

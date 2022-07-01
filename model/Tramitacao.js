@@ -53,9 +53,9 @@ const Tramitacao = db.connection.define(db.env.DB_PREFIX + "_tramitacoes", {
         afterCreate(instance, options) {
             Log.create(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + "_tramitacoes");
         },
-        afterUpdate(instance, options) {
-            Log.update(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + "_tramitacoes");
-        },
+        // afterUpdate(instance, options) {
+        //     Log.update(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + "_tramitacoes");
+        // },
     }
 });
 

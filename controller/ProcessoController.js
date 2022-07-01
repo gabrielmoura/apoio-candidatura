@@ -8,6 +8,7 @@ const Op = Sequelize.Op;
 const Processo = require("../model/Processo");
 const Tramitacao = require("../model/Tramitacao");
 const nP = require("../lib/normalizeParse");
+const Log = require("../lib/logDatabase");
 
 module.exports = {
     delete(req, res) {
@@ -92,7 +93,8 @@ module.exports = {
             where: {
                 id: req.body.id
             }
-        }).then(() => {
+        }).then(rr => {
+            Log.update(rr, req.session.user.id, process.env.DB_PREFIX + "_processos");
             console.log("atualizou e tentou redirecionar");
 
             //res.redirect("/admin/processos");

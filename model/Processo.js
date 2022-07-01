@@ -54,9 +54,9 @@ const Processo = db.connection.define(db.env.DB_PREFIX + '_processos', {
         afterCreate(instance, options) {
             Log.create(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + "_processos");
         },
-        afterUpdate(instance, options) {
-            Log.update(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + "_processos");
-        },
+        // afterUpdate(instance, options) {
+        //     Log.update(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + "_processos");
+        // },
     }
 });
 
