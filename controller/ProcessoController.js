@@ -17,7 +17,6 @@ module.exports = {
 
         Processo.update({
             status: status,
-
         }, {
             where: {
                 id: id
@@ -58,7 +57,7 @@ module.exports = {
         });
     },
     update(req, res) {
-        Processo.update({
+        let payload = {
             id: req.body.id,
             datacomparecimento: req.body.datacomparecimento,
             nomebeneficiario: req.body.nomebeneficiario,
@@ -89,12 +88,13 @@ module.exports = {
             status: 1,
             user_id: req.session.user.id,
 
-        }, {
+        };
+        Processo.update(payload, {
             where: {
                 id: req.body.id
             }
         }).then(rr => {
-            Log.update(rr, req.session.user.id, process.env.DB_PREFIX + "_processos");
+            Log.update(payload, req.session.user.id, process.env.DB_PREFIX + "_processos");
             console.log("atualizou e tentou redirecionar");
 
             //res.redirect("/admin/processos");

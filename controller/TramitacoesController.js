@@ -32,9 +32,7 @@ module.exports = {
         var anotacao = req.body.anotacao;
         var sicopsequencia = req.body.sicopsequencia;
 
-        sicopsequencia
-
-        Tramitacao.update({
+        let dado = {
             data: data,
             carga: carga,
             ctrt: ctrt,
@@ -42,12 +40,14 @@ module.exports = {
             anotacao: anotacao,
             sicopsequencia: sicopsequencia,
             user_id: req.session.user.id,
-        }, {
+        };
+
+        Tramitacao.update(dado, {
             where: {
                 id: id
             }
         }).then(rr => {
-            Log.update(rr, req.session.user.id, process.env.DB_PREFIX + "_tramitacoes");
+            Log.update(dado, req.session.user.id, process.env.DB_PREFIX + "_tramitacoes");
             res.redirect("/admin/tramitacoes/" + id);
         }).catch(err => {
             res.redirect("/admin/tramitacoes");
@@ -59,7 +59,6 @@ module.exports = {
 
         Tramitacao.update({
             status: 0,
-
         }, {
             where: {
                 id: id
@@ -94,7 +93,7 @@ module.exports = {
             ctrt: req.body.ctrt,
             tecnico: req.body.tecnico,
             anotacao: req.body.anotacao,
-            processoId: req.body.processoId,
+            processo_id: req.body.processoId,
             sicopsequencia: req.body.sicopsequencia,
             status: 1,
             user_id: req.session.user.id,

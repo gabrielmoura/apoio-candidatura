@@ -2,7 +2,7 @@
 
 <div id="wrapper">
     <!-- Sidebar -->
-    <%- include ('../../partials/sidebar.ejs') %>
+    <%- include('../../partials/sidebar.ejs') %>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -10,17 +10,11 @@
         <div id="content">
             <!-- Topbar -->
             <%- include('../../partials/topbar.ejs') %>
-
-
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
-
                 <!-- Local para Centralizar o conteúdo
                 <div class="container">
                 -->
-
-
                 <div class="row">
 
                     <!-- Earnings (Monthly) Card Example -->
@@ -32,25 +26,29 @@
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
 
                                         </div>
-                                        <div class="h6 mb-0 font-weight-bold text-gray-800"><%= processo.ID %> <%= processo.requerente %>
-                                            CPF: <%= processo.cpf %> | ATC: <%= processo.atc %> |
-                                            Vagas: <%= processo.vagas %></div>
+                                        <div class="h6 mb-0 font-weight-bold text-gray-800"><%= processo.ID %> <%= processo.nomebeneficiario %>
+                                            | CPF: <%= processo.cpf %> | Adv: <%= processo.advogadoqueassinou %> |
+                                            Situação: <%= processo.situacao %> </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             <small><%= processo.logradouro %>, <%= processo.numero %>
-                                                - <%= processo.bairro %> | Atividade: <%= processo.atividade %></small>
+                                                - <%= processo.bairro %> | Data de
+                                                Pesquisa: <%= processo.datapesquisa %></small>
                                         </div>
 
 
                                     </div>
 
                                     <div class="col-auto">
-                                        <small><textarea type="text" class="p-3 mb-2 bg-light text-dark form-control"
-                                                         name="cardfile" id="cardfile" value="<%= processo.cardfile %>"
-                                                         rows="3" cols="53" readonly><%= processo.cardfile %></textarea></small>
+                                        <small>
+                                            <textarea type="text" class="p-3 mb-2 bg-light text-dark form-control"
+                                                      name="cardfile" id="cardfile" value="<%= processo.cardfile %>"
+                                                      rows="3" cols="53" readonly><%= processo.cardfile %></textarea>
+                                        </small>
                                     </div>
                                     <div class="col-auto">
                                         <a href="/admin/processos/edit/<%= processo.id %>"><i
-                                                    class="fas fa-edit fa-2x text-gray-300" title="Editar Processo"></i></a>
+                                                    class="fas fa-edit fa-2x text-gray-300" title="Editar Processo"></i>
+                                        </a>
                                     </div>
 
                                 </div>
@@ -70,21 +68,15 @@
                         <% var totTramitacoes = 0 %>
 
                         <% processo.tramitacao.forEach(resposta=> { %>
-                            <% console.log(processo.tramitacao) %>
                             <% if (resposta.status === 1){ %>
-
                                 <% totTramitacoes = totTramitacoes + 1 %>
-
                         <% }}) %>
 
                         <% var totTramitacoessicop = 0 %>
 
                         <% processo.tramitacao.forEach(resposta=> { %>
                             <% if (resposta.status === 3){ %>
-
-
                                 <% totTramitacoessicop = totTramitacoessicop + 1 %>
-
                         <% }}) %>
 
                     </div>
@@ -124,15 +116,11 @@
                                             <th><small>Id</small></th>
                                             <th><small>Seq</small></th>
                                             <th><small>Tramitação</small></th>
-
-
                                         </tr>
                                         </thead>
-
                                         <tbody>
                                         <% processo.tramitacao.forEach(resposta=> { %>
                                             <% if (resposta.status === 1){ %>
-
                                                 <tr>
                                                     <td><small>
                                                             <% resposta.id %>
@@ -140,10 +128,11 @@
                                                     <td><small><%= resposta.sicopsequencia %></small></td>
 
 
-                                                    <td><small><%= resposta.data %>
+                                                    <td>
+                                                        <small><%= resposta.data %>
                                                             : <%= resposta.carga %> <%= resposta.ctrt %>
-                                                            - <%= resposta.tecnico %></small><small
-                                                                style="text-transform: lowercase;"><%= resposta.anotacao %></small>
+                                                            - <%= resposta.tecnico %></small>
+                                                        <small style="text-transform: lowercase;"><%= resposta.anotacao %></small>
 
 
                                                         <div class="btn-group" role="group" style="float: right">

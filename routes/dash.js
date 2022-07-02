@@ -20,18 +20,18 @@ router.post("/processos/update", adminAuth, ProcessoController.update);
 router.post("/processos/delete", adminAuth, ProcessoController.delete);
 // router.get("/processos/:id", adminAuth, ProcessoController.show); FORA DE USO
 router.get("/processos/edit/:id", adminAuth, ProcessoController.edit);
-router.get('/processos/tramitar/:id', TramitarController.show);
+router.get('/processos/tramitar/:id',adminAuth, TramitarController.show);
 
-router.post('/tramitar/delete', TramitarController.delete);
+router.post('/tramitar/delete',adminAuth, TramitarController.delete);
 
 /* Rotas Tramitacoes */
-router.get("/tramitacoes/:id", TramitacoesController.show);
+router.get("/tramitacoes/:id",adminAuth, TramitacoesController.show);
 // router.get("/tramitacoes/new", adminAuth, TramitacoesController.create); FORA DE USO
 router.post("/tramitacoes/new", adminAuth, TramitacoesController.store);
 router.get("/tramitacao/edit/:id", adminAuth, TramitacoesController.edit);
 router.post("/tramitacoes/update", adminAuth, TramitacoesController.update)
 router.post("/tramitacao/delete", adminAuth, TramitacoesController.delete);
-router.get("/tramitacoes/new/:id", TramitacoesController.create2);
+router.get("/tramitacoes/new/:id",adminAuth, TramitacoesController.create2);
 
 router.get("/dashboard", adminAuth, DashboardController.index);
 
