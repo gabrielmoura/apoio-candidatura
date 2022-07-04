@@ -7,52 +7,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="pt-br">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-
-    <meta name="description" content="">
     <meta name="author" content="Computei Consultoria TI">
+    <% if(typeof title !== 'undefined'){ %>
+        <title><%= title %></title>
+    <% }else{ %>
+        <title>Computei</title>
+    <% } %>
 
-    <title>Computei</title>
+    <link href="/css/app.css" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
 
-<!-- Custom fonts for this template-->
-
-<link
-    href="/css/app.css"
-    rel="stylesheet">
-
-<!-- Custom styles for this template-->
-
-
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css" />
-
-
-<style>
-    #map{
-        height: 512px;
-        width: 100%;
-    }
-</style>
-
-<!-- ICONES  -->
-
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <meta name="theme-color" content="rgb(78,115,223)">
+    <meta name="twitter:description" content="Gerente Virtual para seu escritório.">
+    <meta name="twitter:image" content="images/logo.png">
+    <meta name="description" content="Gerente Virtual para seu escritório.">
+    <meta property="og:image" content="img/logo.png">
+    <meta name="twitter:title" content="GeriADV">
+    <link rel="icon" type="image/png" sizes="500x500" href="/img/logo.png">
 </head>
 
 <body id="page-top">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
-
-
-    <script type="text/javascript">
-        window.addEventListener('keydown', function(e) {
-            if (e.keyIdentifier == 'U+000A' || e.keyIdentifier == 'Enter' || e.keyCode == 13) {
-                if (e.target.nodeName == 'INPUT' && e.target.type == 'text' || e.target.nodeName == 'INPUT' && e.target.type == 'number') {
-                    e.preventDefault();
-                    return false;
-                }
+<script type="text/javascript">
+    window.addEventListener('keydown', function (e) {
+        if (e.keyIdentifier == 'U+000A' || e.keyIdentifier == 'Enter' || e.keyCode == 13) {
+            if (e.target.nodeName == 'INPUT' && e.target.type == 'text' || e.target.nodeName == 'INPUT' && e.target.type == 'number') {
+                e.preventDefault();
+                return false;
             }
-        }, true);
-    </script>
+        }
+    }, true);
+</script>
