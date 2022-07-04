@@ -155,56 +155,12 @@ module.exports = {
             });
         }
 
-        if (searchpor === "nomebeneficiario") {
-
-            Processo.findAll({
-
-                raw: true,
-                order: [['id', 'ASC']],
-                where: {
-                    nomebeneficiario: {
-                        [Op.substring]: searchprocesso
-                    },
-                    status: 1
-                }
-            }).then(processos => {
-                res.render("admin/processos/index", nP.parse({processos: processos}, req))
-            });
-        }
-        if (searchpor === "telefone") {
+        if (searchpor != "") {
             Processo.findAll({
                 raw: true,
                 order: [['id', 'ASC']],
                 where: {
-                    telefone: {
-                        [Op.substring]: searchprocesso
-                    },
-                    status: 1
-                }
-            }).then(processos => {
-                res.render("admin/processos/index", nP.parse({processos: processos}, req))
-            });
-        }
-        if (searchpor === "logradouro") {
-            Processo.findAll({
-                raw: true,
-                order: [['id', 'ASC']],
-                where: {
-                    logradouro: {
-                        [Op.substring]: searchprocesso
-                    },
-                    status: 1
-                }
-            }).then(processos => {
-                res.render("admin/processos/index", nP.parse({processos: processos}, req))
-            });
-        }
-        if (searchpor === "bairro") {
-            Processo.findAll({
-                raw: true,
-                order: [['id', 'ASC']],
-                where: {
-                    bairro: {
+                    [searchpor]: {
                         [Op.substring]: searchprocesso
                     },
                     status: 1
