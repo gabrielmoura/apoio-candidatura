@@ -4,10 +4,16 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const helmet = require("helmet");
 const db = require("./model/database");
+const Redis = require("ioredis");
+const RedisStore = require("connect-redis")(session);
+app.redis= new Redis({
+    port: process.env.REDIS_PORT || 6379, // Redis port
+    host: process.env.REDIS_HOST || "127.0.0.1", // Redis host
+    username: process.env.REDIS_USERNAME||"default", // needs Redis >= 6
+    password: process.env.REDIS_PASSWORD || "NULL",
+    db: process.env.REDIS_DB || 0, // Defaults to 0
+});
 
-const webRoutes = require("./routes/web");
-const dashRoutes = require("./routes/dash");
-const adminRoutes = require("./routes/admin");
 
 /*      View Engine        */
 app.set('view engine', 'ejs');
@@ -19,9 +25,17 @@ app.use(useragent.express());
 /*      Sessão        */
 app.use(session({
     secret: process.env.SECRET_KEY,
-    cookie: {maxAge: 30000000},
-    resave: true,
-    saveUninitialized: true,
+    credentials: true,
+    store: new RedisStore({client: app.redis}),
+    cookie: {
+        secure: process.env.ENVIRONMENT === "production" ? "true" : "auto",
+        maxAge: 30000000,
+        httpOnly: true,
+        expires: 1000 * 60 * 60 * 24 * 7,
+        sameSite: process.env.ENVIRONMENT === "production" ? "none" : "lax",
+    },
+    resave: false,
+    saveUninitialized: false,
     name: "GeriADV",
 }))
 
@@ -34,7 +48,7 @@ app.use((req, res, next) => {
 });
 
 /*      Arquivos Estáticos      */
-app.use(express.static('public',{maxAge:3600000*24}));
+app.use(express.static('public', {maxAge: 3600000 * 24}));
 
 /*      Body Parser      */
 app.use(bodyParser.urlencoded({extended: false}));
@@ -42,7 +56,7 @@ app.use(bodyParser.json());
 
 /*      Controle Header e Cross      */
 app.use(helmet({
-   contentSecurityPolicy: false,
+    contentSecurityPolicy: false,
     // // crossOriginResourcePolicy: false,
     // crossOriginEmbedderPolicy: false
 }));
@@ -57,6 +71,9 @@ db.connection
 })
 
 /*      Definição de Rotas        */
+const webRoutes = require("./routes/web");
+const dashRoutes = require("./routes/dash");
+const adminRoutes = require("./routes/admin");
 app.use("/admin", dashRoutes); //Rotas Dash
 app.use("/", webRoutes);
 app.use("/admin", adminRoutes);
