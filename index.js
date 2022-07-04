@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 });
 
 /*      Arquivos Estáticos      */
-app.use(express.static('public'));
+app.use(express.static('public',{maxAge:3600000*24}));
 
 /*      Body Parser      */
 app.use(bodyParser.urlencoded({extended: false}));
@@ -42,9 +42,9 @@ app.use(bodyParser.json());
 
 /*      Controle Header e Cross      */
 app.use(helmet({
-    contentSecurityPolicy: false,
-    // crossOriginResourcePolicy: false,
-    crossOriginEmbedderPolicy: false
+   contentSecurityPolicy: false,
+    // // crossOriginResourcePolicy: false,
+    // crossOriginEmbedderPolicy: false
 }));
 
 /*      Database        */
