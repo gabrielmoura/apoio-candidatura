@@ -45,6 +45,6 @@ const User = db.connection.define(db.env.DB_PREFIX + '_users', {
 })
 
 
-User.sync({fore:true})
+User.sync()
 
 module.exports = User
