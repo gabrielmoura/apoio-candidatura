@@ -15,25 +15,8 @@ const Tramitacao = db.connection.define(db.env.DB_PREFIX + "_tramitacoes", {
         allowNull: false,
         primaryKey: true
     },
-    carga: {type: Sequelize.STRING, allowNull: true},
-
-    sicopsequencia: {type: Sequelize.STRING, allowNull: true},
-    sicopdatadespacho: {type: Sequelize.STRING, allowNull: true},
-    sicopdatarecebimento: {type: Sequelize.STRING, allowNull: true},
-    sicopdatasaida: {type: Sequelize.STRING, allowNull: true},
-    sicopcoddespacho: {type: Sequelize.STRING, allowNull: true},
-    sicopdescrdespacho: {type: Sequelize.STRING, allowNull: true},
-    sicoorgorigem: {type: Sequelize.STRING, allowNull: true},
-    sicopdescrorgorgiem: {type: Sequelize.STRING, allowNull: true},
-    sicoporgdestino: {type: Sequelize.STRING, allowNull: true},
-    sicopdescrorgdestino: {type: Sequelize.STRING, allowNull: true},
-    sicoporgdigitador: {type: Sequelize.STRING, allowNull: true},
-    sicopdescrorgdigit: {type: Sequelize.STRING, allowNull: true},
-    sicopmatrdigitador: {type: Sequelize.STRING, allowNull: true},
-    sicopmatrrecebedor: {type: Sequelize.STRING, allowNull: true},
-    ctrt: {type: Sequelize.STRING, allowNull: true},
+    carga: {type: Sequelize.STRING, allowNull: true}, //APOIO
     data: {type: Sequelize.STRING, allowNull: true},
-    tecnico: {type: Sequelize.TEXT, allowNull: true},
     anotacao: {type: Sequelize.TEXT, allowNull: true},
     status: {type: Sequelize.INTEGER, allowNull: false},
     processo_id: {
@@ -68,7 +51,7 @@ const Tramitacao = db.connection.define(db.env.DB_PREFIX + "_tramitacoes", {
     }
 });
 Processo.belongsTo(User, {foreignKey: 'user_id'});
-Processo.hasMany(Tramitacao, {as: 'tramitacao',foreignKey: 'processo_id'});
+Processo.hasMany(Tramitacao, {as: 'tramitacao', foreignKey: 'processo_id'});
 Tramitacao.belongsTo(Processo, {foreignKey: 'processo_id'});
 Tramitacao.belongsTo(User, {foreignKey: 'user_id'});
 

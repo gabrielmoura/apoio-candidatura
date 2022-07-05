@@ -43,9 +43,10 @@ module.exports = {
                     role: role
                 }).then(() => {
                     LogAccess.access({email}, req.session.user.id, process.env.DB_PREFIX + '_users');
-                    res.redirect("/");
+                    res.redirect("/admin/users");
                 }).catch((err) => {
-                    res.redirect("/");
+                    console.log("User catch: " + err);
+                    res.redirect("/admin/users");
                 });
 
 
@@ -54,4 +55,37 @@ module.exports = {
             }
         });
     },
+    edit(req, res) {
+        redirectIfNotAdmin(req, res);
+        User.findByPk(req.params.id).then(user => {
+            res.render("admin/users/edit", nP.parse({user, csrfToken: req.csrfToken()}, req));
+        }).catch(e => {
+            console.log("User catch: " + e);
+            res.redirect("/admin/users");
+        })
+    },
+    update(req, res) {
+        if (typeof req.params.id) return res.redirect("/admin/users");
+        let {username, password, email, role} = req.body;
+        var salt = bcrypt.genSaltSync(10);
+
+        payload = {
+            username,
+            password:bcrypt.hashSync(password, salt),
+            email,
+            role
+        }
+        User.update(payload, {
+            where: {
+                id: req.params.id
+            }
+        }).then(r => {
+            res.redirect("/admin/users");
+        }).catch(e => {
+            console.log("User catch: " + e);
+            res.redirect("/admin/users");
+        });
+
+    }
+    ,
 };

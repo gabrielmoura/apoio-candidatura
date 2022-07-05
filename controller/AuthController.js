@@ -17,6 +17,8 @@ module.exports = {
 
         User.findOne({where: {email: email}}).then(user => {
             if (user != undefined) { // Se existe um usuário com esse e-mail
+                //  Redireciona caso desabilitado.
+                if (user.status === 'disabled') return res.redirect("/");
                 // Validar senha
                 var correct = bcrypt.compareSync(password, user.password);
 
@@ -25,6 +27,7 @@ module.exports = {
                         id: user.id,
                         email: user.email,
                         role: user.role,
+                        status: user.status
                     };
                     req.session.user = payload;
                     var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;

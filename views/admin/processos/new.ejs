@@ -2,15 +2,6 @@
 
 <%- include('../../partials/cep.ejs') %>
 
-<script type="text/javascript">
-    $("#Celular").mask("(00) 00000-0000");
-    $("#SegundoTelefone").mask("(00) 00000-0000");
-    $("#dataabertura").mask("00/00/0000");
-    $("#datasituacao").mask("00/00/0000");
-
-
-</script>
-
 <!-- Page Wrapper -->
 <div id="wrapper">
     <!-- Sidebar -->
@@ -43,13 +34,13 @@
                                         <div class="form-row">
                                             <div class="col-xl-1 col-md-6 mb-4">
                                                 <small id="passwordHelpBlock" class="form-text text-muted">Data</small>
-                                                <input type="text" class="form-control form-control-sm"
+                                                <input type="text" class="form-control form-control-sm date"
                                                        name="datacomparecimento" value=""></input>
                                             </div>
 
                                             <div class="col-xl-1 col-md-6 mb-4">
                                                 <small id="passwordHelpBlock" class="form-text text-muted">CPF</small>
-                                                <input class="form-control form-control-sm" name="cpf" value=""></input>
+                                                <input class="form-control form-control-sm cpf" name="cpf" value=""></input>
                                             </div>
 
                                             <div class="col-xl-4 col-md-6 mb-4">
@@ -62,28 +53,28 @@
                                             <div class="col-xl-2 col-md-6 mb-4">
                                                 <small id="passwordHelpBlock" class="form-text text-muted">Telefone
                                                     Fixo</small>
-                                                <input type="text" class="form-control form-control-sm" name="telefone"
+                                                <input type="text" class="form-control form-control-sm tel" name="telefone"
                                                        value=""></input>
                                             </div>
 
                                             <div class="col-xl-2 col-md-6 mb-4">
                                                 <small id="passwordHelpBlock"
                                                        class="form-text text-muted">Celular</small>
-                                                <input type="text" class="form-control form-control-sm" name="celular"
+                                                <input type="text" class="form-control form-control-sm tel" name="celular"
                                                        value=""></input>
                                             </div>
 
                                             <div class="col-xl-2 col-md-6 mb-4">
                                                 <small id="passwordHelpBlock" class="form-text text-muted">Telefone
                                                     2</small>
-                                                <input type="text" class="form-control form-control-sm" name="telefone2"
+                                                <input type="text" class="form-control form-control-sm tel" name="telefone2"
                                                        value=""></input>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="col-xl-1 col-md-6 mb-4">
                                                 <small id="passwordHelpBlock" class="form-text text-muted">Cep</small>
-                                                <input type="text" maxlength="9" class="form-control form-control-sm"
+                                                <input type="text" maxlength="9" class="form-control form-control-sm cep"
                                                        name="cep" id="cep" value="" size="10"
                                                        onblur="pesquisacep(this.value);"></input>
                                             </div>
@@ -190,7 +181,7 @@
                                             <div class="col-xl-4 col-md-6 mb-4">
                                                 <small id="passwordHelpBlock"
                                                        class="form-text text-muted">Entrada</small>
-                                                <input class="form-control form-control-sm" name="entrada"
+                                                <input class="form-control form-control-sm date" name="entrada"
                                                        value=""></input>
                                             </div>
 
@@ -223,7 +214,7 @@
                                             <div class="col-xl-2 col-md-6 mb-4">
                                                 <small id="passwordHelpBlock" class="form-text text-muted">Nova
                                                     Entrada</small>
-                                                <input class="form-control form-control-sm" name="novaentrada"
+                                                <input class="form-control form-control-sm date" name="novaentrada"
                                                        value=""></input>
                                             </div>
 
@@ -287,18 +278,7 @@
                     </form>
 
                 </div>
-                <div class="col-xl-3 col-md-6 mb-4">
-
-                    <div class="card shadow mb-4">
-                        <div class="card-body">
-
-
-                            <div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+              
             </div>
         </div>
         <!-- /.container-fluid -->

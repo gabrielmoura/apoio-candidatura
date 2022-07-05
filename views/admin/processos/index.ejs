@@ -68,10 +68,9 @@
                                 <thead>
                                 <tr>
                                     <th><small>Id</small></th>
-
                                     <th><small>Processos</small></th>
-
-
+                                    <th><small>Situação</small></th>
+                                    <th><small>Ação</small></th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -94,14 +93,18 @@
                                                 <small> | <%= processo.telefone %>, <%= processo.celular %>
                                                     - <%= processo.telefone2 %></small>
                                             </a>
+                                        </td>
+                                        <td>
                                             <a style="text-decoration:none; color:currentColor;"
                                                title="Registrar Tramitações"
                                                href="/admin/tramitacoes/<%= processo.id %>"><small><%= processo.atividade %></small></a>
                                             <a style="text-decoration:none; color:currentColor;"
                                                title="Registrar Tramitações"
                                                href="/admin/tramitacoes/<%= processo.id %>"><small
-                                                        style=<%= cordefundo %>><%= (!processo.situacao)?"Sem Situação":processo.situacao  %>
-                                                    (<%= processo.datasituacao %>)</small></a>
+                                                        style=<%= cordefundo %>><%= (!processo.situacao) ? "Sem Situação" : processo.situacao %></small>
+                                            </a>
+                                        </td>
+                                        <td>
                                             <div class="btn-group" role="group" style="float: right">
 
                                                 <a href="/admin/processos/edit/<%= processo.id %>">

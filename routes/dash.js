@@ -10,7 +10,6 @@ const TramitacoesController = require('../controller/TramitacoesController');
 const DashboardController = require('../controller/DashboardController');
 const LogController = require("../controller/LogController");
 const adminAuth = require("../middlewares/adminAuth");
-const ApiProcessoController = require("../controller/api/ApiProcessoController");
 
 /* Rotas Processos */
 router.get("/processos", adminAuth, ProcessoController.index);
@@ -38,11 +37,6 @@ router.get("/dashboard", adminAuth, DashboardController.index);
 
 /*      Rota Log     */
 router.get("/log", adminAuth, LogController.index);
-
-/*      Rota Api    */
-router.get('/api/processo/:id', adminAuth, ApiProcessoController.show);
-router.post('/api/processo/search', adminAuth, ApiProcessoController.search);
-router.get('/api/processo', adminAuth, ApiProcessoController.index);
 
 module.exports = router;
 

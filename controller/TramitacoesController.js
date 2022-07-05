@@ -27,18 +27,13 @@ module.exports = {
         var id = req.body.id;
         var data = req.body.data;
         var carga = req.body.carga;
-        var ctrt = req.body.ctrt;
-        var tecnico = req.body.tecnico;
         var anotacao = req.body.anotacao;
-        var sicopsequencia = req.body.sicopsequencia;
+
 
         let dado = {
             data: data,
             carga: carga,
-            ctrt: ctrt,
-            tecnico: tecnico,
             anotacao: anotacao,
-            sicopsequencia: sicopsequencia,
             user_id: req.session.user.id,
         };
 
@@ -90,11 +85,8 @@ module.exports = {
         Tramitacao.create({
             data: req.body.data,
             carga: req.body.carga,
-            ctrt: req.body.ctrt,
-            tecnico: req.body.tecnico,
             anotacao: req.body.anotacao,
             processo_id: req.body.processoId,
-            sicopsequencia: req.body.sicopsequencia,
             status: 1,
             user_id: req.session.user.id,
         }).then(() => {

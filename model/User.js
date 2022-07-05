@@ -12,13 +12,23 @@ const User = db.connection.define(db.env.DB_PREFIX + '_users', {
     email: {
         type: Sequelize.STRING,
         allowNull: false
-    }, password: {
+    },
+    username: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    password: {
         type: Sequelize.STRING,
         allowNull: false
     },
     role: {
         type: Sequelize.STRING,
         allowNull: true
+    },
+    status: {
+        type: Sequelize.ENUM({values: ['disabled', 'active']}),
+        allowNull: false,
+        defaultValue: 'active'
     }
 }, {
     timestamps: false,
@@ -35,6 +45,6 @@ const User = db.connection.define(db.env.DB_PREFIX + '_users', {
 })
 
 
-User.sync()
+User.sync({fore:true})
 
 module.exports = User

@@ -18,17 +18,17 @@
                     <hr>
                     <div class="card mt-5">
                         <div class="card-header">
-                            <h2>Criação de usuário</h2>
+                            <h2>Edição de usuário</h2>
                         </div>
                         <div class="card-body">
                             <form action="/admin/users/create" method="POST">
                                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                <input class="form-control" name="email" type="email"
+                                <input class="form-control" name="email" type="email" value="<%= user.email %>"
                                        placeholder="email@exemplo.com"><br>
 
                                 <div class="col-xl-2 col-md-6 mb-4">
                                     <small id="passwordHelpBlock" class="form-text text-muted">Regras de Acesso</small>
-                                    <select class="form-control form-control-sm" name="role">
+                                    <select class="form-control form-control-sm" name="role" >
                                         <option value="admin">Admin</option>
                                         <option value="manager">Gerente</option>
                                         <option value="user">Usuário</option>
@@ -36,7 +36,7 @@
                                 </div>
 
                                 <input class="form-control" name="password" type="password" placeholder="******"><br>
-                                <button type="submit" class="btn btn-success btn-block">Criar</button>
+                                <button type="submit" class="btn btn-success btn-block">Editar</button>
                             </form>
                         </div>
                     </div>
@@ -50,6 +50,6 @@
     </div>
 </div>
 
-<% include('../../partials/logoutmodal.ejs') %>
+<%- include('../../partials/logoutmodal.ejs') %>
 
 <%- include('../../partials/footer.ejs') %>

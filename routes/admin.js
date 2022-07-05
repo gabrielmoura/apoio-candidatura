@@ -13,7 +13,9 @@ const adminAuth = require("../middlewares/adminAuth");
 // Rotas de Usuários
 router.get('/users', adminAuth, csrfProtection, UsersController.index);
 router.get('/users/create', adminAuth, csrfProtection, UsersController.create);
+router.get('/users/edit/:id', adminAuth, csrfProtection, UsersController.edit);
 router.post('/users/create', adminAuth, csrfProtection, UsersController.store);
+router.post('/users/update/:id?', adminAuth, csrfProtection, UsersController.update);
 
 
 module.exports = router;

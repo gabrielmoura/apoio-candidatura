@@ -6,10 +6,10 @@ const helmet = require("helmet");
 const db = require("./model/database");
 const Redis = require("ioredis");
 const RedisStore = require("connect-redis")(session);
-app.redis= new Redis({
+app.redis = new Redis({
     port: process.env.REDIS_PORT || 6379, // Redis port
     host: process.env.REDIS_HOST || "127.0.0.1", // Redis host
-    username: process.env.REDIS_USERNAME||"default", // needs Redis >= 6
+    username: process.env.REDIS_USERNAME || "default", // needs Redis >= 6
     password: process.env.REDIS_PASSWORD || "NULL",
     db: process.env.REDIS_DB || 0, // Defaults to 0
 });
@@ -74,9 +74,11 @@ db.connection
 const webRoutes = require("./routes/web");
 const dashRoutes = require("./routes/dash");
 const adminRoutes = require("./routes/admin");
+const apiRoutes = require("./routes/api");
 app.use("/admin", dashRoutes); //Rotas Dash
 app.use("/", webRoutes);
 app.use("/admin", adminRoutes);
+app.use("/api", apiRoutes);
 
 
 var port = db.env.PORT || 3000;

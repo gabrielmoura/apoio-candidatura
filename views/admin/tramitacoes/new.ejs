@@ -72,6 +72,8 @@
                                 <form id="processoForm" class="row g-3 needs-validation" novalidate method="POST"
                                       action="/admin/tramitacoes/new" style="display: inline;"
                                       onsubmit="confirmarAcao(event, this)">
+                                    <input type="hidden" class="form-control" name="processoId"
+                                           id="processoId" value="<%= processo.id %>"/>
 
                                     <div class="form-row">
                                         <div class="col-xl-12 col-md-6 mb-4">
@@ -79,132 +81,28 @@
                                             <div class="row">
 
 
-                                                <div class="col-md-1 mb-3">
-                                                    <!--  id da resposta -->
-                                                    <input type="hidden" class="form-control" name="processoId"
-                                                           id="processoId" value="<%= processo.id %>"></input>
-
-
-                                                    <small id="passwordHelpBlock"
-                                                           class="form-text text-muted">Sequencia</small>
-                                                    <select class="form-control" name="sicopsequencia"
-                                                            id="sicopsequencia" autofocus>
-                                                        <option></option>
-                                                        <option value="001">001</option>
-                                                        <option value="002">002</option>
-                                                        <option value="003">003</option>
-
-
-                                                    </select>
-
-                                                </div>
-
                                                 <div class="col-md-4 mb-3">
 
 
-                                                    <small id="passwordHelpBlock" class="form-text text-muted">Selecione
-                                                        uma carga</small>
+                                                    <small id="passwordHelpBlock"
+                                                           class="form-text text-muted">Atividade</small>
                                                     <select class="form-control" name="carga" id="carga" autofocus>
                                                         <option value=""></option>
-                                                        <option value="CARGA GAE">CARGA GAE</option>
-                                                        <option value="CARGA CPP">CARGA CPP</option>
-                                                        <option value="CARGA GPL">CARGA GPL</option>
-
-
-                                                        <option value="ENTRADA DOCS">ENTRADA DOCS</option>
-                                                        <option value="ENTRADA SICOP">ENTRADA SICOP</option>
-                                                        <option value="ENTRADA SICOP PROTOCOLO">ENTRADA SICOP
-                                                            PROTOCOLO
-                                                        </option>
-                                                        <option value="ENTRADA SICOP CTRT">ENTRADA SICOP CTRT</option>
-                                                        <option value="ENTRADA SICOP DTE">ENTRADA SICOP DTE</option>
-                                                        <option value="ENTRADA SICOP CGO">ENTRADA SICOP CGO</option>
-                                                        <option value="ENTRADA SICOP CPP">ENTRADA SICOP CPP</option>
-                                                        <option value="ENTRADA SICOP C.A/ARQUIVO">ENTRADA SICOP
-                                                            C.A/ARQUIVO
-                                                        </option>
-                                                        <option value="ENTRADA SICOP ARQUIVO">ENTRADA SICOP ARQUIVO
-                                                        </option>
-
-                                                        <option value="SAIDA SICOP">SAIDA SICOP</option>
-                                                        <option value="SAIDA SICOP PROTOCOLO">SAIDA SICOP PROTOCOLO
-                                                        </option>
-                                                        <option value="SAIDA SICOP CTRT">SAIDA SICOP CTRT</option>
-                                                        <option value="SAIDA SICOP DTE">SAIDA SICOP DTE</option>
-                                                        <option value="SAIDA SICOP CGO">SAIDA SICOP CGO</option>
-                                                        <option value="SAIDA SICOP CPP">SAIDA SICOP CPP</option>
-                                                        <option value="SAIDA SICOP C.A/ARQUIVO">SAIDA SICOP
-                                                            C.A/ARQUIVO
-                                                        </option>
-                                                        <option value="SAIDA SICOP ARQUIVO">SAIDA SICOP ARQUIVO</option>
-                                                        <option value="NADA TEMOS A OPOR A À LIBERAÇÃO DA LICENÇA DE OBRAS">
-                                                            NADA TEMOS A OPOR A À LIBERAÇÃO DA LICENÇA DE OBRAS
-                                                        </option>
-
-
+                                                        <option value="apoiosim">APOIO SIM</option>
+                                                        <option value="apoiotalvez">APOIO TALVEZ</option>
+                                                        <option value="apoionao">APOIO NÃO</option>
                                                     </select>
 
                                                 </div>
 
                                                 <div class="col-md-2 mb-3">
-                                                    <small id="passwordHelpBlock" class="form-text text-muted">Selecione
-                                                        ctrt</small>
-                                                    <select class="form-control" name="ctrt" id="ctrt" value="">
-                                                        <option value=""></option>
-                                                        <option value="1">CTRT 1</option>
-                                                        <option value="2.1">CTRT 2.1</option>
-                                                        <option value="2.2/3.1">CTRT 2.2/3.1</option>
-                                                        <option value="3N2">CTRT 3N2</option>
-                                                        <option value="4">CTRT 4</option>
-                                                        <option value="5">CTRT 5</option>
-                                                        <option value="SOBRESTADO">SOBRESTADO</option>
-                                                        <option value="PREESTADO">PRÉ-ESTADO</option>
-                                                    </select>
-
-                                                </div>
-
-                                                <div class="col-md-2 mb-3">
-
-
                                                     <small id="passwordHelpBlock"
                                                            class="form-text text-muted">Data</small>
-                                                    <input type="text" class="form-control" name="data" id="data"
+                                                    <input type="text" class="form-control date" name="data" id="data"
                                                            value=""></input>
 
                                                 </div>
-                                                <div class="col-md-2 mb-3">
 
-                                                    <small id="passwordHelpBlock"
-                                                           class="form-text text-muted">Técnico</small>
-                                                    <select class="form-control" name="tecnico" id="tecnico" value="">
-                                                        <option value=""></option>
-                                                        <option value="ADALBERTO">ADALBERTO</option>
-                                                        <option value="ADRIANA">ADRIANA</option>
-                                                        <option value="ANA PAULA">ANA PAULA</option>
-                                                        <option value="ARNALDO">ARNALDO</option>
-                                                        <option value="CARLOS HENRIQUE">CARLOS HENRIQUE</option>
-                                                        <option value="CARLOS LESSA">CARLOS LESSA</option>
-                                                        <option value="CECIL">CECIL</option>
-                                                        <option value="CECIL GALVAO">CECIL GALVAO</option>
-                                                        <option value="CLAUDIO RIOS">CLAUDIO RIOS</option>
-
-                                                        <option value="GALVÃO">GALVÃO</option>
-                                                        <option value="FREDERICO">FREDERICO</option>
-                                                        <option value="GUTO">GUTO</option>
-                                                        <option value="ITALO">ITALO</option>
-                                                        <option value="JUAN">JUAN</option>
-                                                        <option value="LESSA">LESSA</option>
-
-                                                        <option value="LETICIA">LETICIA</option>
-                                                        <option value="MODESTO">MODESTO</option>
-                                                        <option value="RODOLPHO">RODOLPHO</option>
-                                                        <option value="RUFINO">RUFINO</option>
-                                                        <option value="VALMIR">VALMIR</option>
-                                                        <option value="VERA">VERA</option>
-                                                        <option value="VIRGINIA">VIRGINIA</option>
-                                                    </select>
-
-                                                </div>
                                             </div>
 
                                             <div class="row">
@@ -230,9 +128,9 @@
                                                         function temcerteza() {
                                                             var acaoatual = document.getElementById("acao").value
                                                             var dataatual = document.getElementById("data").value
-                                                            var cargaatual = document.getElementById("carga").value
+                                                            // var cargaatual = document.getElementById("carga").value
                                                             var ctrtatual = document.getElementById("ctrt").value
-                                                            var tecnicoatual = document.getElementById("tecnico").value
+                                                            // var tecnicoatual = document.getElementById("tecnico").value
                                                             var anotacoesatual = document.getElementById("anotacao").value
 
                                                             document.getElementById("temcerteza").innerHTML = `
@@ -242,7 +140,7 @@
                                                                             <p class="mb-0">Carga: ${cargaatual}</p>
                                                                             <p class="mb-0">Ctrt: ${ctrtatual}</p>
                                                                             <p class="mb-0">Data: ${dataatual}</p>
-                                                                            <p class="mb-0">Técnico: ${tecnicoatual}</p>
+                                                                            // <p class="mb-0">Técnico: ${tecnicoatual}</p>
                                                                             <p class="mb-0">Anotações: ${anotacoesatual}</p>
                                                                             </div>
                                                                         `;
