@@ -5,11 +5,12 @@
 
 const User = require("../../model/User");
 module.exports = {
-    disableUser() {
-        if (typeof req.params.id) return res.status(404).send();
+    disableUser(req, res) {
+        if (req.body.id == '') return res.status(412).send();
+        if (req.session.role == 'admin') return res.status(401).send();
         User.update({status: 'disabled'}, {
             where: {
-                id: req.params.id
+                id: req.body.id
             }
         }).then(r => {
             res.status(200).send()
@@ -18,11 +19,12 @@ module.exports = {
             res.status(500).send()
         });
     },
-    enableUser() {
-        if (typeof req.params.id) return res.status(404).send();
+    enableUser(req, res) {
+        if (req.body.id == '') return res.status(412).send();
+        if (req.session.role == 'admin') return res.status(401).send();
         User.update({status: 'enabled'}, {
             where: {
-                id: req.params.id
+                id: req.body.id
             }
         }).then(r => {
             res.status(200).send()

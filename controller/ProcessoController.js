@@ -87,6 +87,8 @@ module.exports = {
             avaliacaopericia: req.body.avaliacaopericia,
             status: 1,
             user_id: req.session.user.id,
+            apoio: req.body.apoio,
+            unidade:req.body.unidade,
 
         };
         Processo.update(payload, {
@@ -132,6 +134,8 @@ module.exports = {
             avaliacaopericia: req.body.avaliacaopericia,
             status: 1,
             user_id: req.session.user.id,
+            apoio: req.body.apoio,
+            unidade:req.body.unidade,
 
         }).then(() => {
             console.log("criou e tentou redirecionar");
@@ -174,6 +178,7 @@ module.exports = {
         res.render("admin/processos/new", nP.parse({}, req));
     },
     index(req, res) {
+        //776 ->1.533ms
         Processo.findAll({
             limit: 10,
             raw: true,
@@ -184,6 +189,7 @@ module.exports = {
         }).then(processos => {
             res.render("admin/processos/index", nP.parse({processos: processos}, req))
         });
+
     }
 
 }

@@ -31,7 +31,7 @@ module.exports = {
         var password = req.body.password;
         var role = req.body.role;
 
-        User.findOne({where: {email: email}}).then(user => {
+        User.findOne({where: {email}}).then(user => {
             if (user == undefined) {
 
                 var salt = bcrypt.genSaltSync(10);
@@ -42,10 +42,11 @@ module.exports = {
                     password: hash,
                     role: role
                 }).then(() => {
-                    LogAccess.access({email}, req.session.user.id, process.env.DB_PREFIX + '_users');
+                   // LogAccess.access({email}, req.session.user.id, process.env.DB_PREFIX + '_users');
                     res.redirect("/admin/users");
                 }).catch((err) => {
                     console.log("User catch: " + err);
+                    console.error(req.body);
                     res.redirect("/admin/users");
                 });
 
