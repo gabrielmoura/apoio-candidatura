@@ -47,7 +47,7 @@
             <span>Correios - CEP</span></a>
     </li>
 
-    <% if(role != 'user'){ %>
+    <% if(role == 'admin'){ %>
         <li class="nav-item">
             <a class="nav-link" href="/admin/log" target="_parent">
                 <i class="fas fa-newspaper"></i>
@@ -55,7 +55,7 @@
         </li>
     <% } %>
 
-    <% if(role != 'user'){ %>
+    <% if(role == 'admin'){ %>
         <li class="nav-item">
             <a class="nav-link" href="/admin/users" target="_parent">
                 <i class="fas fa-user"></i>

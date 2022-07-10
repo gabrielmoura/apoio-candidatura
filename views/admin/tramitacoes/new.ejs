@@ -1,14 +1,4 @@
 <%- include('../../partials/header.ejs') %>
-
-<script type="text/javascript">
-    $("#Celular").mask("(00) 00000-0000");
-    $("#SegundoTelefone").mask("(00) 00000-0000");
-    $("#dataabertura").mask("00/00/0000");
-    $("#data").mask("00/00/0000");
-
-
-</script>
-
 <div id="wrapper">
     <!-- Sidebar -->
     <%- include('../../partials/sidebar.ejs') %>
@@ -25,13 +15,8 @@
                 <!-- Content Row -->
                 <div class="row">
                     <!-- Earnings (Monthly) Card Example -->
-
-
                     <div class="col-md-12 mb-3">
-
-
                         <div class="row">
-
                             <!-- Earnings (Monthly) Card Example -->
                             <div class="col-xl-12 col-md-6 mb-4">
                                 <div class="card border-left-primary shadow h-100 py-2">
@@ -80,21 +65,6 @@
 
                                             <div class="row">
 
-
-                                                <div class="col-md-4 mb-3">
-
-
-                                                    <small id="passwordHelpBlock"
-                                                           class="form-text text-muted">Atividade</small>
-                                                    <select class="form-control" name="carga" id="carga" autofocus>
-                                                        <option value=""></option>
-                                                        <option value="apoiosim">APOIO SIM</option>
-                                                        <option value="apoiotalvez">APOIO TALVEZ</option>
-                                                        <option value="apoionao">APOIO NÃO</option>
-                                                    </select>
-
-                                                </div>
-
                                                 <div class="col-md-2 mb-3">
                                                     <small id="passwordHelpBlock"
                                                            class="form-text text-muted">Data</small>
@@ -102,85 +72,32 @@
                                                            value=""></input>
 
                                                 </div>
-
                                             </div>
-
                                             <div class="row">
-
                                                 <div class="col-md-12 mb-3">
                                                     <small id="passwordHelpBlock"
                                                            class="form-text text-muted">Anotações</small>
                                                     <input style="text-transform: uppercase;" class="form-control"
                                                            name="anotacao" id="anotacao" value=""></input>
-
                                                 </div>
                                             </div>
-
                                             <div class="row">
-
-
                                                 <div class="col-md-8 mb-3">
-
                                                     <small id="passwordHelpBlock"
                                                            class="form-text text-muted">&nbsp</small>
-
-                                                    <script>
-                                                        function temcerteza() {
-                                                            var acaoatual = document.getElementById("acao").value
-                                                            var dataatual = document.getElementById("data").value
-                                                            // var cargaatual = document.getElementById("carga").value
-                                                            var ctrtatual = document.getElementById("ctrt").value
-                                                            // var tecnicoatual = document.getElementById("tecnico").value
-                                                            var anotacoesatual = document.getElementById("anotacao").value
-
-                                                            document.getElementById("temcerteza").innerHTML = `
-                                                                            <div class="alert alert-success" role="alert">
-                                                                            <center><h4 class="alert-heading" style="text-transform:uppercase">${acaoatual} ? <div class="spinner-grow text-success" role="status"></div></h4></center>
-                                                                            <hr>
-                                                                            <p class="mb-0">Carga: ${cargaatual}</p>
-                                                                            <p class="mb-0">Ctrt: ${ctrtatual}</p>
-                                                                            <p class="mb-0">Data: ${dataatual}</p>
-                                                                            // <p class="mb-0">Técnico: ${tecnicoatual}</p>
-                                                                            <p class="mb-0">Anotações: ${anotacoesatual}</p>
-                                                                            </div>
-                                                                        `;
-                                                        }
-
-                                                        function temcertezasair() {
-                                                            document.getElementById("temcerteza").innerText = "";
-                                                        }
-                                                    </script>
                                                     <button type="submit" onmouseover="temcerteza()"
                                                             onmouseout="temcertezasair()"
                                                             class="btn btn-success btn-block">Cadastrar Tramitação
                                                     </button>
 
-
-                                                    <script>
-                                                        function confirmarAcao(event, form) {
-                                                            event.preventDefault();
-                                                            var decision = confirm("Deseja continuar o Cadastro da Tramitação?");
-                                                            if (decision) {
-                                                                form.submit();
-                                                            }
-                                                        }
-                                                    </script>
                                                 </div>
                                                 <div class="col-md-4 mb-3">
 
-                                                    <script>
-                                                        function fun() {
-                                                            document.getElementById("processoForm").reset();
-                                                        }
-                                                    </script>
                                                     <small id="passwordHelpBlock"
                                                            class="form-text text-muted">&nbsp</small>
                                                     <input type="button" value="Limpar" onClick="fun()"
                                                            class="btn btn-secondary btn-block"/>
-
                                                 </div>
-
-
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 mb-3">
@@ -195,22 +112,13 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
-
         </div>
-
         <!-- Footer -->
         <footer>
             <div class="container my-auto">
-
-
                 <div class="copyright text-center my-auto">
-
-
                     <div class="row">
-
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-6 col-md-6 mb-4">
                             <input type="button" value="Voltar" onClick="history.go(-1)"
@@ -220,8 +128,6 @@
                             <input type="button" value="Avançar" onClick="history.go(+1)"
                                    class="btn btn-Light btn-block"/>
                         </div>
-
-
                     </div>
                 </div>
         </footer>
@@ -230,7 +136,43 @@
 
     <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
 </div>
+<script>
+    function confirmarAcao(event, form) {
+        event.preventDefault();
+        var decision = confirm("Deseja continuar o Cadastro da Tramitação?");
+        if (decision) {
+            form.submit();
+        }
+    }
+    function fun() {
+        document.getElementById("processoForm").reset();
+    }
 
+    function temcerteza() {
+        var acaoatual = document.getElementById("acao").value
+        var dataatual = document.getElementById("data").value
+        // var cargaatual = document.getElementById("carga").value
+        var ctrtatual = document.getElementById("ctrt").value
+        // var tecnicoatual = document.getElementById("tecnico").value
+        var anotacoesatual = document.getElementById("anotacao").value
+
+        document.getElementById("temcerteza").innerHTML = `
+                                                                            <div class="alert alert-success" role="alert">
+                                                                            <center><h4 class="alert-heading" style="text-transform:uppercase">${acaoatual} ? <div class="spinner-grow text-success" role="status"></div></h4></center>
+                                                                            <hr>
+                                                                            <p class="mb-0">Carga: ${cargaatual}</p>
+                                                                            <p class="mb-0">Ctrt: ${ctrtatual}</p>
+                                                                            <p class="mb-0">Data: ${dataatual}</p>
+                                                                            // <p class="mb-0">Técnico: ${tecnicoatual}</p>
+                                                                            <p class="mb-0">Anotações: ${anotacoesatual}</p>
+                                                                            </div>
+                                                                        `;
+    }
+
+    function temcertezasair() {
+        document.getElementById("temcerteza").innerText = "";
+    }
+</script>
 <% include('../../partials/logoutmodal.ejs') %>
 
 <%- include('../../partials/footer.ejs') %>

@@ -1,6 +1,6 @@
 <%- include('../../partials/header.ejs') %>
 
-<%- include('../../partials/cep.ejs') %>
+
 
 <!-- Page Wrapper -->
 <div id="wrapper">
@@ -40,7 +40,8 @@
 
                                             <div class="col-xl-1 col-md-6 mb-4">
                                                 <small id="passwordHelpBlock" class="form-text text-muted">CPF</small>
-                                                <input class="form-control form-control-sm cpf" name="cpf" value=""></input>
+                                                <input class="form-control form-control-sm cpf" name="cpf"
+                                                       value=""></input>
                                             </div>
 
                                             <div class="col-xl-4 col-md-6 mb-4">
@@ -53,36 +54,40 @@
                                             <div class="col-xl-2 col-md-6 mb-4">
                                                 <small id="passwordHelpBlock" class="form-text text-muted">Telefone
                                                     Fixo</small>
-                                                <input type="text" class="form-control form-control-sm tel" name="telefone"
+                                                <input type="text" class="form-control form-control-sm tel"
+                                                       name="telefone"
                                                        value=""></input>
                                             </div>
 
                                             <div class="col-xl-2 col-md-6 mb-4">
                                                 <small id="passwordHelpBlock"
                                                        class="form-text text-muted">Celular</small>
-                                                <input type="text" class="form-control form-control-sm tel" name="celular"
+                                                <input type="text" class="form-control form-control-sm tel"
+                                                       name="celular"
                                                        value=""></input>
                                             </div>
 
                                             <div class="col-xl-2 col-md-6 mb-4">
                                                 <small id="passwordHelpBlock" class="form-text text-muted">Telefone
                                                     2</small>
-                                                <input type="text" class="form-control form-control-sm tel" name="telefone2"
+                                                <input type="text" class="form-control form-control-sm tel"
+                                                       name="telefone2"
                                                        value=""></input>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="col-xl-1 col-md-6 mb-4">
                                                 <small id="passwordHelpBlock" class="form-text text-muted">Cep</small>
-                                                <input type="text" maxlength="9" class="form-control form-control-sm cep"
+                                                <input type="text" maxlength="9"
+                                                       class="form-control form-control-sm cep"
                                                        name="cep" id="cep" value="" size="10"
-                                                       onblur="pesquisacep(this.value);"></input>
+                                                       onblur="getCep(this.value);"></input>
                                             </div>
 
                                             <div class="col-xl-3 col-md-6 mb-4">
                                                 <small id="passwordHelpBlock"
                                                        class="form-text text-muted">Logradouro</small>
-                                                <input style="text-transform: uppercase;" id="logradouro"
+                                                <input style="text-transform: uppercase;" id="Street"
                                                        class="form-control form-control-sm" name="logradouro"
                                                        value=""></input>
 
@@ -108,7 +113,7 @@
                                             <div class="col-xl-2 col-md-6 mb-4">
                                                 <small id="passwordHelpBlock"
                                                        class="form-text text-muted">Bairro</small>
-                                                <input style="text-transform: uppercase;" id="bairro"
+                                                <input style="text-transform: uppercase;" id="District"
                                                        class="form-control form-control-sm" name="bairro"
                                                        value=""></input>
                                             </div>
@@ -116,7 +121,7 @@
                                             <div class="col-xl-3 col-md-6 mb-4">
                                                 <small id="passwordHelpBlock"
                                                        class="form-text text-muted">Cidade</small>
-                                                <input style="text-transform: uppercase;" id="cidade"
+                                                <input style="text-transform: uppercase;" id="City"
                                                        class="form-control form-control-sm" name="cidade"
                                                        value=""></input>
                                             </div>
@@ -243,6 +248,28 @@
                                                 <input class="form-control form-control-sm" name="pagamento"
                                                        value=""></input>
                                             </div>
+                                            <div class="col-xl-2 col-md-6 mb-4">
+                                                <small id="unidade" class="form-text text-muted">Unidade</small>
+                                                <select class="form-control form-control-sm" name="unidade">
+                                                    <option value=""></option>
+                                                    <option value="CENTRO">Centro</option>
+                                                    <option value="ALCANTARA">Alcântara</option>
+                                                    <option value="TAQUARA">Taquara</option>
+                                                    <option value="ANGRA">Angra</option>
+                                                    <option value="NILOPOLIS">Nilópolis</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-4 mb-3">
+                                                <small id="apoio"
+                                                       class="form-text text-muted">Apoio</small>
+                                                <select class="form-control" name="apoio" id="apoio" autofocus>
+                                                    <option value=""></option>
+                                                    <option value="apoiosim">APOIO SIM</option>
+                                                    <option value="apoiotalvez">APOIO TALVEZ</option>
+                                                    <option value="apoionao">APOIO NÃO</option>
+                                                </select>
+                                            </div>
 
                                             <div class="col-xl-4 col-md-6 mb-4">
                                                 <small id="passwordHelpBlock"
@@ -258,7 +285,6 @@
                                                 <input class="form-control form-control-sm" name="avaliacaopericia"
                                                        value=""></input>
                                             </div>
-
                                         </div>
 
 
@@ -269,16 +295,12 @@
                                                 </button>
                                             </div>
                                         </div>
-
-
                                     </div>
-
-
                                 </div>
                     </form>
 
                 </div>
-              
+
             </div>
         </div>
         <!-- /.container-fluid -->
@@ -287,11 +309,7 @@
     <!-- Footer -->
     <footer>
         <div class="container my-auto">
-
-
             <div class="copyright text-center my-auto">
-
-
                 <div class="row">
 
                     <!-- Earnings (Monthly) Card Example -->
@@ -301,8 +319,6 @@
                     <div class="col-xl-6 col-md-6 mb-4">
                         <input type="button" value="Avançar" onClick="history.go(+1)" class="btn btn-Light btn-block"/>
                     </div>
-
-
                 </div>
             </div>
     </footer>
@@ -312,51 +328,7 @@
 <!-- End of Content Wrapper -->
 </div>
 
-<script type="text/javascript">
-    const map = L.map('map').setView([-22.9518079, -43.1931475], 15);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-
-    L.marker([-22.951242450000002, -43.18967957753023]).addTo(map)
-        .bindPopup('Rua Dona Mariana, 48 - Botafogo/RJ - Brasil')
-        .openPopup();
-
-
-    // se estÃ¡ clicado
-    let isFetching = false
-
-
-    map.on("click", async e => {
-
-// para evitar muitos cliques
-        if (isFetching) return
-
-        isFetching = true
-
-        const {lat, lng} = e.latlng
-
-        const link = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&addressdetails=1&format=jsonv2&`
-
-        const data = await fetch(link)
-            .then(response => response.json())
-            .catch(error => false)
-        console.log(data)
-
-        document.querySelector("[name='logradouro']").value = `${data.address.road}`;
-        document.querySelector("[name='numero']").value = `${data.address.house_number}`;
-        document.querySelector("[name='bairro']").value = `${data.address.suburb}`;
-        document.querySelector("[name='cidade']").value = `${data.address.city === undefined ? data.address.municipality : data.address.city}`;
-        document.querySelector("[name='cep']").value = `${data.address.postcode}`;
-        document.querySelector("[name='latitude']").value = `${data.lat}`;
-        document.querySelector("[name='longitude']").value = `${data.lon}`;
-
-        setTimeout(() => isFetching = false, 1500)
-    })
-</script>
-<!-- End of Page Wrapper -->
 
 <% include('../../partials/logoutmodal.ejs'); %>
 
