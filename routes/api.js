@@ -6,14 +6,16 @@ var router = require('express').Router();
 const adminAuth = require("../middlewares/adminAuth");
 const ApiProcessoController = require("../controller/api/ApiProcessoController");
 const ApiUserController = require("../controller/api/ApiUserController");
+const GenericC = require("../controller/api/ApiGenericController");
 
 /*      Rota Api    */
-router.get('processo/:id', adminAuth, ApiProcessoController.show);
-router.post('processo/search', adminAuth, ApiProcessoController.search);
-router.get('processo', adminAuth, ApiProcessoController.index);
+router.get('/processo/:id', adminAuth, ApiProcessoController.show);
+router.post('/processo/search', adminAuth, ApiProcessoController.search);
+router.get('/processo', adminAuth, ApiProcessoController.index);
 
-router.post('user/enable', adminAuth, ApiUserController.enableUser);
-router.post('user/disable', adminAuth, ApiUserController.disableUser);
+router.post('/user/enable', adminAuth, ApiUserController.enableUser);
+router.post('/user/disable', adminAuth, ApiUserController.disableUser);
 
+router.post('/cep',adminAuth,GenericC.getCep);
 module.exports = router;
 
