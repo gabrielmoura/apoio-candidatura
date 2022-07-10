@@ -15,6 +15,9 @@ mix.webpackConfig(webpack => {
             alias: {
                 'jquery': path.join(__dirname, 'node_modules/jquery/dist/jquery'),
             }
+        },
+        stats: {
+            children: true,
         }
     };
 });

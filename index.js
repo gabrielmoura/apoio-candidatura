@@ -26,17 +26,17 @@ app.use(useragent.express());
 app.use(session({
     secret: process.env.SECRET_KEY,
     credentials: true,
-    store: new RedisStore({client: app.redis}),
+    store: new RedisStore({client: app.redis, prefix: process.env.APP_NAME + ":sess:" || "sess:"}),
     cookie: {
         secure: process.env.ENVIRONMENT === "production" ? "true" : "auto",
         maxAge: 30000000,
         httpOnly: true,
         expires: 1000 * 60 * 60 * 24 * 7,
-        sameSite: process.env.ENVIRONMENT === "production" ? "none" : "lax",
+    //    sameSite: "lax",
     },
     resave: false,
     saveUninitialized: false,
-    name: "GeriADV",
+    name: process.env.APP_NAME || "GeriADV",
 }))
 
 app.use((req, res, next) => {
