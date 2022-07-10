@@ -15,7 +15,6 @@ const Tramitacao = db.connection.define(db.env.DB_PREFIX + "_tramitacoes", {
         allowNull: false,
         primaryKey: true
     },
-    carga: {type: Sequelize.STRING, allowNull: true}, //APOIO
     data: {type: Sequelize.STRING, allowNull: true},
     anotacao: {type: Sequelize.TEXT, allowNull: true},
     status: {type: Sequelize.INTEGER, allowNull: false},

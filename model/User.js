@@ -26,9 +26,9 @@ const User = db.connection.define(db.env.DB_PREFIX + '_users', {
         allowNull: true
     },
     status: {
-        type: Sequelize.ENUM({values: ['disabled', 'active']}),
+        type: Sequelize.ENUM({values: ['disabled', 'enabled']}),
         allowNull: false,
-        defaultValue: 'active'
+        defaultValue: 'enabled'
     }
 }, {
     timestamps: false,

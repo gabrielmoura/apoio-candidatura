@@ -45,7 +45,12 @@ const Processo = db.connection.define(db.env.DB_PREFIX + '_processos', {
         },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
-    }
+    },
+    unidade: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    apoio: {type: Sequelize.STRING, allowNull: true},
 }, {
     timestamps: false,
     createdAt: false,
