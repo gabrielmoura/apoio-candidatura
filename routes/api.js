@@ -12,6 +12,7 @@ const GenericC = require("../controller/api/ApiGenericController");
 router.get('/processo/:id', adminAuth, ApiProcessoController.show);
 router.post('/processo/search', adminAuth, ApiProcessoController.search);
 router.get('/processo', adminAuth, ApiProcessoController.index);
+router.post('/processoDT', adminAuth, ApiProcessoController.datatable);
 
 router.post('/user/enable', adminAuth, ApiUserController.enableUser);
 router.post('/user/disable', adminAuth, ApiUserController.disableUser);

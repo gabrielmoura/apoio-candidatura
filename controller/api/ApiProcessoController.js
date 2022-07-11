@@ -33,6 +33,28 @@ module.exports = {
             res.json({processos: processos});
         });
     },
+    async datatable(req, res) {
+        const pp = Processo;
+        var recordsTotal = await pp.count()
+        var recordsFiltered = (!!req.body.length) ? req.body.length : 1000;
+
+        processos = await pp.findAll({
+            limit: recordsFiltered,
+            raw: true,
+            order: [['id', 'DESC']],
+            where: {
+                status: 1,
+            }
+        });
+        var data = {
+            "draw": req.body.draw,
+            "recordsFiltered": recordsFiltered,
+            "recordsTotal": recordsTotal,
+            "data": processos
+        };
+        res.status(200).send(data);
+
+    },
     search(req, res) {
         var searchpor = req.body.searchpor;
         var searchprocesso = req.body.searchprocesso;
