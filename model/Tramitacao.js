@@ -51,8 +51,8 @@ const Tramitacao = db.connection.define(db.env.DB_PREFIX + "_tramitacoes", {
 });
 Processo.belongsTo(User, {foreignKey: 'user_id'});
 Processo.hasMany(Tramitacao, {as: 'tramitacao', foreignKey: 'processo_id'});
-Tramitacao.belongsTo(Processo, {foreignKey: 'processo_id'});
-Tramitacao.belongsTo(User, {foreignKey: 'user_id'});
+Tramitacao.belongsTo(Processo, {foreignKey: 'processo_id',as:'processo'});
+Tramitacao.belongsTo(User, {foreignKey: 'user_id', as: 'user'});
 
 Tramitacao.sync();
 

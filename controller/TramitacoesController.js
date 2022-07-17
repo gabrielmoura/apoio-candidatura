@@ -4,6 +4,7 @@
  */
 const Tramitacao = require("../model/Tramitacao");
 const Processo = require("../model/Processo");
+const User = require("../model/User");
 const nP = require("../lib/normalizeParse");
 const Log = require("../lib/logDatabase");
 
@@ -24,15 +25,13 @@ module.exports = {
         });
     },
     update(req, res) {
-        var id = req.body.id;
+        var id = req.body.tramitacaoId;
         var data = req.body.data;
-        var carga = req.body.carga;
         var anotacao = req.body.anotacao;
 
 
         let dado = {
             data: data,
-            carga: carga,
             anotacao: anotacao,
             user_id: req.session.user.id,
         };
@@ -43,9 +42,10 @@ module.exports = {
             }
         }).then(rr => {
             Log.update(dado, req.session.user.id, process.env.DB_PREFIX + "_tramitacoes");
-            res.redirect("/admin/tramitacoes/" + id);
+            res.redirect("/admin/tramitacoes/" + req.body.processoId);
         }).catch(err => {
-            res.redirect("/admin/tramitacoes");
+            console.error(err);
+            res.redirect("/admin/processos");
         });
     },
     delete(req, res) {
@@ -65,19 +65,26 @@ module.exports = {
     },
     edit(req, res) {
         var id = req.params.id;
+        //
+        // if (isNaN(id)) {
+        //     res.redirect("/admin/tramitacoes/" + id);
+        // }
 
-        if (isNaN(id)) {
-            res.redirect("/admin/tramitacoes/" + id);
-        }
-
-        Tramitacao.findByPk(id).then(tramitacao => {
+        Tramitacao.findByPk(id, {
+            include: [{model: Processo, as: 'processo'}]
+        }).then(tramitacao => {
 
             if (tramitacao != undefined) {
-                res.render("admin/tramitacoes/edit", nP.parse({tramitacao: tramitacao}, req));
+
+                res.render("admin/tramitacoes/edit", nP.parse({
+                    tramitacao: tramitacao,
+                    processo: tramitacao.processo
+                }, req));
             } else {
                 res.redirect("/admin/tramitacoes/" + id);
             }
         }).catch(erro => {
+            console.error(erro);
             res.redirect("/admin/tramitacoes/" + id);
         })
     },
@@ -91,17 +98,23 @@ module.exports = {
             user_id: req.session.user.id,
         }).then(() => {
             res.redirect("/admin/tramitacoes/" + req.body.processoId);
+        }).catch(err => {
+            console.error(err);
+            res.redirect("/admin/processos");
         });
     },
     show(req, res) {
         Processo.findByPk(req.params.id, {
-            include: [{model: Tramitacao, as: 'tramitacao'}]
+            include: [{model: Tramitacao, as: 'tramitacao', include: {model: User, as: 'user', required: false}}]
         }).then(processo => {
             if (processo != undefined) { // Pergunta encontrada
                 res.render("admin/tramitacoes/index", nP.parse({processo: processo}, req));
             } else { // Não encontrada
                 res.redirect("/");
             }
+        }).catch(err => {
+            console.error(err);
+            res.redirect("/admin/processos");
         });
     },
 };

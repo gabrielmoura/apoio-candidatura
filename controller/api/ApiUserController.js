@@ -4,6 +4,7 @@
  */
 
 const User = require("../../model/User");
+const bcrypt = require("bcryptjs");
 module.exports = {
     disableUser(req, res) {
         if (req.body.id == '') return res.status(412).send();
@@ -31,6 +32,23 @@ module.exports = {
         }).catch(e => {
             console.log("User catch: " + e);
             res.status(500).send()
+        });
+    },
+    changePassword(req, res) {
+        if (req.body.id == '') return res.status(412).send();
+
+        var salt = bcrypt.genSaltSync(10);
+        let password = req.body.password;
+
+        User.update({password: bcrypt.hashSync(password, salt)}, {
+            where: {
+                id: req.body.id
+            }
+        }).then(r => {
+            res.redirect("/admin/users");
+        }).catch(e => {
+            console.log("User catch: " + e);
+            res.redirect("/admin/users");
         });
     }
 }

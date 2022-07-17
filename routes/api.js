@@ -16,7 +16,8 @@ router.post('/processoDT', adminAuth, ApiProcessoController.datatable);
 
 router.post('/user/enable', adminAuth, ApiUserController.enableUser);
 router.post('/user/disable', adminAuth, ApiUserController.disableUser);
+router.post('/user/changePassword', adminAuth, ApiUserController.changePassword);
 
-router.post('/cep',adminAuth,GenericC.getCep);
+router.post('/cep', adminAuth, GenericC.getCep);
 module.exports = router;
 

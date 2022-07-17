@@ -45,12 +45,6 @@
 
                         <div class="card shadow mb-4">
 
-                            <% var totTramitacoes = 0 %>
-                            <% processo.tramitacao.forEach(tramitacao=> { %>
-
-                                <% totTramitacoes = totTramitacoes + 1 %>
-
-                            <% }) %>
 
                             <div class="card-body">
 
@@ -59,6 +53,8 @@
                                       onsubmit="confirmarAcao(event, this)">
                                     <input type="hidden" class="form-control" name="processoId"
                                            id="processoId" value="<%= processo.id %>"/>
+                                    <input type="hidden" class="form-control" name="tramitacaoId"
+                                           id="tramitacaoId" value="<%= tramitacao.id %>"/>
 
                                     <div class="form-row">
                                         <div class="col-xl-12 col-md-6 mb-4">
@@ -69,7 +65,7 @@
                                                     <small id="passwordHelpBlock"
                                                            class="form-text text-muted">Data</small>
                                                     <input type="text" class="form-control date" name="data" id="data"
-                                                           value=""></input>
+                                                           value="<%=tramitacao.data%>"></input>
 
                                                 </div>
                                             </div>
@@ -78,7 +74,7 @@
                                                     <small id="passwordHelpBlock"
                                                            class="form-text text-muted">Anotações</small>
                                                     <input style="text-transform: uppercase;" class="form-control"
-                                                           name="anotacao" id="anotacao" value=""></input>
+                                                           name="anotacao" id="anotacao" value="<%=tramitacao.anotacao%>"></input>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -87,7 +83,7 @@
                                                            class="form-text text-muted">&nbsp</small>
                                                     <button type="submit" onmouseover="temcerteza()"
                                                             onmouseout="temcertezasair()"
-                                                            class="btn btn-success btn-block">Cadastrar Tramitação
+                                                            class="btn btn-success btn-block">Salvar Tramitação
                                                     </button>
 
                                                 </div>

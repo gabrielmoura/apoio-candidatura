@@ -40,9 +40,9 @@
 
                                     <div class="col-auto">
                                         <small>
-<!--                                            <textarea type="text" class="p-3 mb-2 bg-light text-dark form-control"-->
-<!--                                                      name="cardfile" id="cardfile" value="<%= processo.cardfile %>"-->
-<!--                                                      rows="3" cols="53" readonly><%= processo.cardfile %></textarea>-->
+                                            <!--                                            <textarea type="text" class="p-3 mb-2 bg-light text-dark form-control"-->
+                                            <!--                                                      name="cardfile" id="cardfile" value="<%= processo.cardfile %>"-->
+                                            <!--                                                      rows="3" cols="53" readonly><%= processo.cardfile %></textarea>-->
                                         </small>
                                     </div>
                                     <div class="col-auto">
@@ -90,7 +90,8 @@
                                 <div class="row">
 
                                     <div class="col-xl-6 col-md-6 mb-4">
-                                        <h6 class="m-0 font-weight-bold text-primary" style="float: left">Tramitações:&nbsp<%= totTramitacoes %></h6>
+                                        <h6 class="m-0 font-weight-bold text-primary" style="float: left">
+                                            Tramitações:&nbsp<%= totTramitacoes %></h6>
                                     </div>
                                     <!-- Earnings (Monthly) Card Example -->
 
@@ -114,7 +115,7 @@
                                         <tr>
                                             <th><small>Id</small></th>
                                             <th><small>Data</small></th>
-                                            <th><small>Carga</small></th>
+                                            <th><small>Nome</small></th>
                                             <th><small>Tramitação</small></th>
                                             <th style="text-align: right!important;"><small>Ação</small></th>
                                         </tr>
@@ -132,7 +133,7 @@
                                                         <small><%= resposta.data %></small>
                                                     </td>
                                                     <td>
-                                                        <%= resposta.carga %>
+                                                        <%= resposta.user.username %>
                                                     </td>
                                                     <td>
                                                         <small style="text-transform: lowercase;"><%= resposta.anotacao %></small>

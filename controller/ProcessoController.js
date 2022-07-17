@@ -60,7 +60,7 @@ module.exports = {
         let payload = {
             id: req.body.id,
             datacomparecimento: req.body.datacomparecimento,
-            nomebeneficiario: req.body.nomebeneficiario,
+            nomebeneficiario: req.body.nomebeneficiario.toUpperCase(),
             telefone: req.body.telefone,
             celular: req.body.celular,
             telefone2: req.body.telefone2,
@@ -88,7 +88,7 @@ module.exports = {
             status: 1,
             user_id: req.session.user.id,
             apoio: req.body.apoio,
-            unidade:req.body.unidade,
+            unidade: req.body.unidade,
 
         };
         Processo.update(payload, {
@@ -101,13 +101,15 @@ module.exports = {
 
             //res.redirect("/admin/processos");
             res.redirect("/admin/tramitacoes/" + req.body.id);
+        }).catch(err => {
+            console.error(err);
         });
     },
     store(req, res) {
         Processo.create({
 
             datacomparecimento: req.body.datacomparecimento,
-            nomebeneficiario: req.body.nomebeneficiario,
+            nomebeneficiario: req.body.nomebeneficiario.toUpperCase(),
             telefone: req.body.telefone,
             celular: req.body.celular,
             telefone2: req.body.telefone2,
@@ -135,11 +137,14 @@ module.exports = {
             status: 1,
             user_id: req.session.user.id,
             apoio: req.body.apoio,
-            unidade:req.body.unidade,
+            unidade: req.body.unidade,
 
         }).then(() => {
             console.log("criou e tentou redirecionar");
             //console.log(Processo.getId())
+            res.redirect("/admin/processos");
+        }).catch(err => {
+            console.error(err);
             res.redirect("/admin/processos");
         });
     },
@@ -171,6 +176,9 @@ module.exports = {
                 }
             }).then(processos => {
                 res.render("admin/processos/index", nP.parse({processos: processos}, req))
+            }).catch(err => {
+                console.error(err);
+                res.redirect('/admin/processos')
             });
         }
     },
