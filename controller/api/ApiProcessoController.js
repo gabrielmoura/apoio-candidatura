@@ -11,7 +11,7 @@ const Tramitacao = require("../../model/Tramitacao");
 
 // Objetivo: https://datatables.net/examples/non_jquery/ajax.html
 module.exports = {
-    show(req, res) {
+    async show(req, res) {
         var id = req.params.id;
         Processo.findByPk(id, {
             include: [{model: Tramitacao, as: 'tramitacao'}]
@@ -21,7 +21,7 @@ module.exports = {
             }
         });
     },
-    index(req, res) {
+    async index(req, res) {
         Processo.findAll({
             limit: 10,
             raw: true,
@@ -55,7 +55,7 @@ module.exports = {
         res.status(200).send(data);
 
     },
-    search(req, res) {
+    async search(req, res) {
         var searchpor = req.body.searchpor;
         var searchprocesso = req.body.searchprocesso;
         if (searchprocesso === "") {

@@ -14,18 +14,18 @@ function redirectIfNotAdmin(req, res) {
 }
 
 module.exports = {
-    index(req, res) {
+    async index(req, res) {
         redirectIfNotAdmin(req, res);
         User.findAll().then(users => {
             res.render("admin/users/index", nP.parse({users}, req));
         });
     },
-    create(req, res) {
+    async create(req, res) {
         redirectIfNotAdmin(req, res);
         res.render("admin/users/create", nP.parse({csrfToken: req.csrfToken()}, req));
         // res.render("admin/users/create");
     },
-    store(req, res) {
+    async store(req, res) {
         redirectIfNotAdmin(req, res);
         var email = req.body.email;
         var password = req.body.password;
@@ -42,7 +42,7 @@ module.exports = {
                     password: hash,
                     role: role
                 }).then(() => {
-                   // LogAccess.access({email}, req.session.user.id, process.env.DB_PREFIX + '_users');
+                    // LogAccess.access({email}, req.session.user.id, process.env.DB_PREFIX + '_users');
                     res.redirect("/admin/users");
                 }).catch((err) => {
                     console.log("User catch: " + err);
@@ -56,7 +56,7 @@ module.exports = {
             }
         });
     },
-    edit(req, res) {
+    async edit(req, res) {
         redirectIfNotAdmin(req, res);
         User.findByPk(req.params.id).then(user => {
             res.render("admin/users/edit", nP.parse({user, csrfToken: req.csrfToken()}, req));
@@ -65,14 +65,14 @@ module.exports = {
             res.redirect("/admin/users");
         })
     },
-    update(req, res) {
+    async update(req, res) {
         if (typeof req.params.id) return res.redirect("/admin/users");
         let {username, password, email, role} = req.body;
         var salt = bcrypt.genSaltSync(10);
 
         payload = {
             username,
-            password:bcrypt.hashSync(password, salt),
+            password: bcrypt.hashSync(password, salt),
             email,
             role
         }

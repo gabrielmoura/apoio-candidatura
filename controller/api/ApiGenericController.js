@@ -7,7 +7,7 @@ const axios = require('axios');
 // Objetivo: https://datatables.net/examples/non_jquery/ajax.html
 module.exports = {
     //  Caso esta API pare de funcionar será mais simples a substituição.
-    getCep(req, res) {
+    async getCep(req, res) {
         let {cep} = req.body;
         axios.get(`https://viacep.com.br/ws/${cep}/json/`)
             .then(r => {

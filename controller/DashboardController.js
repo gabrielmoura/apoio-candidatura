@@ -4,7 +4,7 @@
  */
 
 module.exports = {
-    index(req, res) {
+    async index(req, res) {
         res.render("admin/dashboard/index")
     }
 };

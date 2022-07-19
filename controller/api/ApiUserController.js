@@ -6,7 +6,7 @@
 const User = require("../../model/User");
 const bcrypt = require("bcryptjs");
 module.exports = {
-    disableUser(req, res) {
+    async disableUser(req, res) {
         if (req.body.id == '') return res.status(412).send();
         if (req.session.role == 'admin') return res.status(401).send();
         User.update({status: 'disabled'}, {
@@ -20,7 +20,7 @@ module.exports = {
             res.status(500).send()
         });
     },
-    enableUser(req, res) {
+    async enableUser(req, res) {
         if (req.body.id == '') return res.status(412).send();
         if (req.session.role == 'admin') return res.status(401).send();
         User.update({status: 'enabled'}, {
@@ -34,7 +34,7 @@ module.exports = {
             res.status(500).send()
         });
     },
-    changePassword(req, res) {
+    async changePassword(req, res) {
         if (req.body.id == '') return res.status(412).send();
 
         var salt = bcrypt.genSaltSync(10);

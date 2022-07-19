@@ -7,7 +7,7 @@ const bcrypt = require("bcryptjs");
 const LogAccess = require("../lib/logAccess");
 
 module.exports = {
-    login(req, res) {
+    async login(req, res) {
         res.render("admin/users/login", {csrfToken: req.csrfToken()});
     },
     authenticate(req, res) {

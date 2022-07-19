@@ -11,7 +11,7 @@ function redirectIfNotAdmin(req, res) {
 const Log = require("../model/Log");
 const nP = require("../lib/normalizeParse");
 module.exports = {
-    index(req, res) {
+    async index(req, res) {
         redirectIfNotAdmin(req, res, 'admin');
         Log.findAll().then(log => {
             res.render('admin/log/index', nP.parse({log}, req));

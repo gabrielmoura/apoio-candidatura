@@ -7,7 +7,7 @@ const Log = require('../lib/logDatabase');
 const nP = require("../lib/normalizeParse");
 
 module.exports = {
-    delete(req, res) {
+    async delete(req, res) {
         var id = req.body.id;
         var perguntaId = req.body.pergunta;
         if (id != undefined) {
@@ -27,7 +27,7 @@ module.exports = {
             res.redirect("/pergunta/" + perguntaId);
         }
     },
-    show(req, res) {
+    async show(req, res) {
         var id = req.params.id;
 
         if (isNaN(id)) {

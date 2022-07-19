@@ -9,10 +9,10 @@ const nP = require("../lib/normalizeParse");
 const Log = require("../lib/logDatabase");
 
 module.exports = {
-    create(req, res) {
+    async create(req, res) {
         res.render("admin/tramitacoes/new");
     },
-    create2(req, res) {
+    async create2(req, res) {
         var id = req.params.id;
         Processo.findByPk(id, {
             include: [{model: Tramitacao, as: 'tramitacao'}]
@@ -24,7 +24,7 @@ module.exports = {
             }
         });
     },
-    update(req, res) {
+    async update(req, res) {
         var id = req.body.tramitacaoId;
         var data = req.body.data;
         var anotacao = req.body.anotacao;
@@ -48,7 +48,7 @@ module.exports = {
             res.redirect("/admin/processos");
         });
     },
-    delete(req, res) {
+    async delete(req, res) {
         // DESABILITAR A TRAMITAÇÃO COM O STATUS 0 OU 1
         var id = req.body.id;
 
@@ -63,7 +63,7 @@ module.exports = {
             res.redirect("/admin/tramitacoes/" + id);
         });
     },
-    edit(req, res) {
+    async edit(req, res) {
         var id = req.params.id;
         //
         // if (isNaN(id)) {
@@ -88,7 +88,7 @@ module.exports = {
             res.redirect("/admin/tramitacoes/" + id);
         })
     },
-    store(req, res) {
+    async store(req, res) {
         Tramitacao.create({
             data: req.body.data,
             carga: req.body.carga,
@@ -103,7 +103,7 @@ module.exports = {
             res.redirect("/admin/processos");
         });
     },
-    show(req, res) {
+    async show(req, res) {
         Processo.findByPk(req.params.id, {
             include: [{model: Tramitacao, as: 'tramitacao', include: {model: User, as: 'user', required: false}}]
         }).then(processo => {

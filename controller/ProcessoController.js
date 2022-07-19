@@ -11,7 +11,7 @@ const nP = require("../lib/normalizeParse");
 const Log = require("../lib/logDatabase");
 
 module.exports = {
-    delete(req, res) {
+    async delete(req, res) {
         var id = req.body.id;
         var status = req.body.status;
 
@@ -26,7 +26,7 @@ module.exports = {
             res.redirect("/admin/processos");
         });
     },
-    edit(req, res) {
+    async edit(req, res) {
         var id = req.params.id;
 
         if (isNaN(id)) {
@@ -44,7 +44,7 @@ module.exports = {
             res.redirect("/admin/processos");
         })
     },
-    show(req, res) {
+    async show(req, res) {
         var id = req.params.id;
         Processo.findByPk(id, {
             include: [{model: Tramitacao, as: 'tramitacao'}]
@@ -56,7 +56,7 @@ module.exports = {
             }
         });
     },
-    update(req, res) {
+    async update(req, res) {
         let payload = {
             id: req.body.id,
             datacomparecimento: req.body.datacomparecimento,
@@ -105,7 +105,7 @@ module.exports = {
             console.error(err);
         });
     },
-    store(req, res) {
+    async store(req, res) {
         Processo.create({
 
             datacomparecimento: req.body.datacomparecimento,
@@ -148,7 +148,7 @@ module.exports = {
             res.redirect("/admin/processos");
         });
     },
-    search(req, res) {
+    async search(req, res) {
         var searchpor = req.body.searchpor;
         var searchprocesso = req.body.searchprocesso;
         if (searchprocesso === "") {
@@ -182,11 +182,12 @@ module.exports = {
             });
         }
     },
-    create(req, res) {
-        res.render("admin/processos/new", nP.parse({}, req));
+    async create(req, res) {
+        return await res.render("admin/processos/new", nP.parse({}, req));
     },
-    index(req, res) {
+    async index(req, res) {
         //776 ->1.533ms
+        //async -> 0.358ms
         Processo.findAll({
             limit: 10,
             raw: true,
@@ -197,7 +198,6 @@ module.exports = {
         }).then(processos => {
             res.render("admin/processos/index", nP.parse({processos: processos}, req))
         });
-
     }
 
 }
