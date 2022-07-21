@@ -64,7 +64,51 @@ const Processo = db.connection.define(db.env.DB_PREFIX + '_processos', {
         // },
     }
 });
-
+// Define nome da Coluna que será indexada
+Processo.getSearchVector = () => {
+    return 'ProcessoText';
+};
+// Adiciona Coluna, Define os campos, Cria index, Cria TRIGGER
+Processo.addFullTextIndex = () => {
+    if (db.connection.options.dialect !== 'postgres') {
+        console.log('Not creating search index, must be using POSTGRES to do this');
+        return;
+    }
+    var searchFields = ['nomebeneficiario', 'informacaocomplementar', 'indicacao', 'beneficiorequerido', 'logradouro'];
+    var vectorName = Processo.getSearchVector();
+    console.time('CREATE INDEX ' + vectorName);
+    db.connection
+        .query('ALTER TABLE "' + Processo.tableName + '" ADD COLUMN "' + vectorName + '" TSVECTOR')
+        .then(() => {
+            return db.connection
+                .query('UPDATE "' + Processo.tableName + '" SET "' + vectorName + '" = to_tsvector(\'english\', ' +
+                    searchFields.join(' || \' \' || ') + ')')
+                .then(() => {
+                    return db.connection
+                        .query('CREATE INDEX post_search_idx ON "' + Processo.tableName + '" USING gin("' + vectorName + '");')
+                        .then(() => {
+                            return db.connection
+                                .query('CREATE TRIGGER post_vector_update BEFORE INSERT OR UPDATE ON "' +
+                                    Processo.tableName + '" FOR EACH ROW EXECUTE PROCEDURE tsvector_update_trigger("' +
+                                    vectorName + '", \'pg_catalog.english\', ' + searchFields.join(', ') + ')')
+                                .then(() => {
+                                    console.debug('Criado com Sucesso.')
+                                }).catch(console.error);
+                        }).catch(console.error);
+                }).catch(console.error);
+        }).catch(console.error);
+    console.timeEnd('CREATE INDEX ' + vectorName);
+};
+Processo.search = query => {
+    if (db.connection.options.dialect !== 'postgres') {
+        console.log('Search is only implemented on POSTGRES database');
+        return;
+    }
+    return db.connection
+        .query('SELECT * FROM "' + Processo.tableName + '" WHERE "' +
+            Processo.getSearchVector() + '" @@ plainto_tsquery(\'english\', \'' + query + '\')', Processo)
+        .catch(console.error);
+};
 Processo.sync();
 // Processo.sync({force: true});
 
