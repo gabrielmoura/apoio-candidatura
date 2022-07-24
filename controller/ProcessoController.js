@@ -198,6 +198,14 @@ module.exports = {
         }).then(processos => {
             res.render("admin/processos/index", nP.parse({processos: processos}, req))
         });
+    },
+    async search2(req, res) {
+        //776 ->0.729ms
+        //async -> 21.211ms
+        Processo.search(req.body.search)
+            .then(valor => {
+                res.render("admin/processos/index", nP.parse({processos: processos}, req))
+            });
     }
 
 }

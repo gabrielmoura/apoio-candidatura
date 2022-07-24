@@ -6,6 +6,7 @@
 const Sequelize = require("sequelize");
 const db = require("./database");
 const Log = require("../lib/logDatabase");
+const Queue = require('bull');
 
 const Processo = db.connection.define(db.env.DB_PREFIX + '_processos', {
     id: {type: Sequelize.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true},
@@ -74,29 +75,53 @@ Processo.addFullTextIndex = () => {
         console.log('Not creating search index, must be using POSTGRES to do this');
         return;
     }
+    job = new Queue(
+        `addFullTextIndex-${new Date().getTime()}`,
+        `redis://${process.env.REDIS_USERNAME}:${process.env.REDIS_PASSWORD}@${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`
+    );
     var searchFields = ['nomebeneficiario', 'informacaocomplementar', 'indicacao', 'beneficiorequerido', 'logradouro'];
     var vectorName = Processo.getSearchVector();
     console.time('CREATE INDEX ' + vectorName);
-    db.connection
-        .query('ALTER TABLE "' + Processo.tableName + '" ADD COLUMN "' + vectorName + '" TSVECTOR')
-        .then(() => {
-            return db.connection
-                .query('UPDATE "' + Processo.tableName + '" SET "' + vectorName + '" = to_tsvector(\'english\', ' +
-                    searchFields.join(' || \' \' || ') + ')')
-                .then(() => {
-                    return db.connection
-                        .query('CREATE INDEX post_search_idx ON "' + Processo.tableName + '" USING gin("' + vectorName + '");')
-                        .then(() => {
-                            return db.connection
-                                .query('CREATE TRIGGER post_vector_update BEFORE INSERT OR UPDATE ON "' +
-                                    Processo.tableName + '" FOR EACH ROW EXECUTE PROCEDURE tsvector_update_trigger("' +
-                                    vectorName + '", \'pg_catalog.english\', ' + searchFields.join(', ') + ')')
-                                .then(() => {
-                                    console.debug('Criado com Sucesso.')
-                                }).catch(console.error);
-                        }).catch(console.error);
-                }).catch(console.error);
-        }).catch(console.error);
+    job.process(async (job, done) => {
+        db.connection
+            .query('ALTER TABLE "' + Processo.tableName + '" ADD COLUMN "' + vectorName + '" TSVECTOR')
+            .then(() => {
+                job.progress(25);
+                return db.connection
+                    .query('UPDATE "' + Processo.tableName + '" SET "' + vectorName + '" = to_tsvector(\'english\', ' +
+                        searchFields.join(' || \' \' || ') + ')')
+                    .then(() => {
+                        job.progress(50);
+                        return db.connection
+                            .query('CREATE INDEX post_search_idx ON "' + Processo.tableName + '" USING gin("' + vectorName + '");')
+                            .then(() => {
+                                job.progress(75);
+                                return db.connection
+                                    .query('CREATE TRIGGER post_vector_update BEFORE INSERT OR UPDATE ON "' +
+                                        Processo.tableName + '" FOR EACH ROW EXECUTE PROCEDURE tsvector_update_trigger("' +
+                                        vectorName + '", \'pg_catalog.english\', ' + searchFields.join(', ') + ')')
+                                    .then(() => {
+                                        job.progress(100);
+                                        console.debug('Criado com Sucesso.')
+                                        done();
+                                    }).catch((err) => {
+                                        console.error(err);
+                                        done(new Error('error transcoding'));
+                                    });
+                            }).catch((err) => {
+                                console.error(err);
+                                done(new Error('error transcoding'));
+                            });
+                    }).catch((err) => {
+                        console.error(err);
+                        done(new Error('error transcoding'));
+                    });
+            }).catch((err) => {
+            console.error(err);
+            done(new Error('error transcoding'));
+        });
+    });
+    job.add(null, {removeOnFail: true, removeOnComplete: true});
     console.timeEnd('CREATE INDEX ' + vectorName);
 };
 Processo.search = query => {
