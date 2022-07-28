@@ -7,10 +7,19 @@ const Sequelize = require("sequelize");
 const db = require("./database");
 const Log = require("../lib/logDatabase");
 const Queue = require('bull');
+const moment = require('moment');
 
 const Processo = db.connection.define(db.env.DB_PREFIX + '_processos', {
     id: {type: Sequelize.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true},
-    datacomparecimento: {type: Sequelize.STRING, allowNull: true},
+    datacomparecimento: {
+        type: Sequelize.DATEONLY, allowNull: true, get() {
+            return moment(this.getDataValue('datacomparecimento')).format('DD/MM/YYYY');
+        },
+        set(value) {
+            console.log(new Date(value).toLocaleString());
+            this.setDataValue('datacomparecimento', new Date(value).toLocaleString());
+        }
+    },
     nomebeneficiario: {type: Sequelize.STRING, allowNull: true},
     telefone: {type: Sequelize.STRING, allowNull: true},
     celular: {type: Sequelize.STRING, allowNull: true},

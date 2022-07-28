@@ -3,7 +3,8 @@ const app = express();
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const helmet = require("helmet");
-const db = require("./model/database");
+app.db = require("./model/database").connection;
+app.queue = require('bull');
 const Redis = require("ioredis");
 const RedisStore = require("connect-redis")(session);
 app.redis = new Redis({
@@ -32,7 +33,7 @@ app.use(session({
         maxAge: 30000000,
         httpOnly: true,
         expires: 1000 * 60 * 60 * 24 * 7,
-    //    sameSite: "lax",
+        //    sameSite: "lax",
     },
     resave: false,
     saveUninitialized: false,
@@ -62,7 +63,7 @@ app.use(helmet({
 }));
 
 /*      Database        */
-db.connection
+app.db
     .authenticate()
     .then(() => {
         console.log("Conexão feita com sucesso!");
@@ -81,7 +82,7 @@ app.use("/admin", adminRoutes);
 app.use("/api", apiRoutes);
 
 
-var port = db.env.PORT || 3000;
+var port = process.env.PORT || 3030;
 app.listen(port, function () {
     console.log('Cadastro Computei listening on port %s', port);
 });
