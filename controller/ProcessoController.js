@@ -3,6 +3,7 @@
  * email: gabriel.blx32@gmail.com
  */
 const {Op} = require('@sequelize/core');
+const {conn} = require("../model/datatabse");
 
 const Processo = require("../model/Processo");
 const Tramitacao = require("../model/Tramitacao");
@@ -215,7 +216,8 @@ module.exports = {
                 order: [['id', 'ASC']],
                 where: {
                     [searchpor]: {
-                        [Op.substring]:searchprocesso},
+                        [conn.Op.substring]:searchprocesso
+                    },
                 }
             }).then(processos => {
                 res.render("admin/processos/index", nP.parse({processos: processos}, req))
