@@ -62,6 +62,10 @@ module.exports = {
             name, //
             address, //
             cep, //
+            number,
+            complement,
+            district,
+            city,
             tell, //
             cpf, //
             date_of_birth, //
@@ -78,13 +82,19 @@ module.exports = {
             status_of_3232,
             candidacy_support ,//
             unit, //
-            source //
+            source, //
+            want_material,
+            call_status,
         } = req.body;
         let payload = {
             id,
             name,
             address,
             cep,
+            number,
+            complement,
+            district,
+            city,
             tell,
             cpf,
             date_of_birth,
@@ -98,7 +108,12 @@ module.exports = {
             contract,
             status,
             status_of_observation,
-            status_of_3232
+            status_of_3232,
+            candidacy_support ,//
+            unit, //
+            source, //
+            want_material,
+            call_status,
         };
         Processo.update(payload, {
             where: {
@@ -119,26 +134,10 @@ module.exports = {
             name,
             address,
             cep,
-            tell,
-            cpf,
-            date_of_birth,
-            indication,
-            benefit,
-            date_of_call,
-            date_of_schedule,
-            time,
-            reschedule,
-            observation,
-            contract,
-            status,
-            status_of_observation,
-            status_of_3232
-        } = req.body;
-        const user_id = req.session.user.id;
-        Processo.create({
-            name,
-            address,
-            cep,
+            number,
+            complement,
+            district,
+            city,
             tell,
             cpf,
             date_of_birth,
@@ -153,6 +152,40 @@ module.exports = {
             status,
             status_of_observation,
             status_of_3232,
+            candidacy_support ,//
+            unit, //
+            source, //
+            want_material,
+            call_status,
+        } = req.body;
+        const user_id = req.session.user.id;
+        Processo.create({
+            name,
+            address,
+            cep,
+            number,
+            complement,
+            district,
+            city,
+            tell,
+            cpf,
+            date_of_birth,
+            indication,
+            benefit,
+            date_of_call,
+            date_of_schedule,
+            time,
+            reschedule,
+            observation,
+            contract,
+            status,
+            status_of_observation,
+            status_of_3232,
+            candidacy_support ,//
+            unit, //
+            source, //
+            want_material,
+            call_status,
             user_id
         }).then(() => {
             console.log("criou e tentou redirecionar");
@@ -181,7 +214,7 @@ module.exports = {
                 raw: true,
                 order: [['id', 'ASC']],
                 where: {
-                    [searchpor]: Op.substring(searchprocesso, searchprocesso),
+                    [searchpor]: searchprocesso,
                 }
             }).then(processos => {
                 res.render("admin/processos/index", nP.parse({processos: processos}, req))

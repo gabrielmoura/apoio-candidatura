@@ -3,7 +3,7 @@
  * email: gabriel.blx32@gmail.com
  */
 
-const { DataTypes } = require('@sequelize/core');
+const {DataTypes} = require('@sequelize/core');
 const db = require("./database");
 const Log = require("../lib/logDatabase");
 const Queue = require('bull');
@@ -14,6 +14,10 @@ const Processo = db.connection.define(db.env.DB_PREFIX + '_processos', {
     name: {type: DataTypes.STRING, allowNull: false},// 212 caracteres
     address: {type: DataTypes.STRING},// 121
     cep: {type: DataTypes.STRING},// 51 caracteres
+    number: {type: DataTypes.STRING, allowNull: true},
+    complement: {type: DataTypes.STRING, allowNull: true},
+    district: {type: DataTypes.STRING, allowNull: true},
+    city: {type: DataTypes.STRING, allowNull: true},
     tell: {type: DataTypes.STRING},// 663 caracteres
     cpf: {type: DataTypes.STRING},// 55 carateres
     date_of_birth: {type: DataTypes.STRING},// 30 caracteres
@@ -30,9 +34,12 @@ const Processo = db.connection.define(db.env.DB_PREFIX + '_processos', {
     status_of_observation: {type: DataTypes.STRING},// 127
     status_of_3232: {type: DataTypes.STRING},// //192 (USO EXCLUSIVO DA 3232)
 
-    status_of_call:{type: DataTypes.STRING}, // Status Caso consiga falar com o cliente.
-    unit:{type: DataTypes.STRING}, // Unidade
-    source:{type: DataTypes.STRING,allowNull:true}, // Fonte: Origem do dado
+    want_material: {type: DataTypes.STRING, allowNull: true},
+    call_status: {type: DataTypes.STRING, allowNull: true},
+
+    status_of_call: {type: DataTypes.STRING}, // Status Caso consiga falar com o cliente.
+    unit: {type: DataTypes.STRING}, // Unidade
+    source: {type: DataTypes.STRING, allowNull: true}, // Fonte: Origem do dado
     user_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
