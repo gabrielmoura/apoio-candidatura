@@ -214,7 +214,8 @@ module.exports = {
                 raw: true,
                 order: [['id', 'ASC']],
                 where: {
-                    [searchpor]: searchprocesso,
+                    [searchpor]: {
+                        [Op.like]:searchprocesso},
                 }
             }).then(processos => {
                 res.render("admin/processos/index", nP.parse({processos: processos}, req))
