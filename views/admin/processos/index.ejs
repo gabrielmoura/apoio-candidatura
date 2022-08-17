@@ -2,7 +2,7 @@
 
 <div id="wrapper">
     <!-- Sidebar -->
-    <%- include ('../../partials/sidebar.ejs') %>
+    <%- include('../../partials/sidebar.ejs') %>
 
 
     <!-- Content Wrapper -->
@@ -35,19 +35,18 @@
 
                             <div class="col-xl-2 col-md-6 mb-4">
                                 <select class="form-control" name="searchpor" id="searchpor">
-                                    <option value="nomebeneficiario">por Nome do Beneficiário</option>
-                                    <option value="telefone">por Telefone</option>
-                                    <option value="logradouro">por Logradouro</option>
-                                    <option value="bairro">por Bairro</option>
+                                    <option value="name">por Nome do Beneficiário</option>
+                                    <!--                                    <option value="telefone">por Telefone</option>-->
+                                    <!--                                    <option value="logradouro">por Logradouro</option>-->
+                                    <!--                                    <option value="bairro">por Bairro</option>-->
                                     <option value="cpf">por CPF</option>
                                 </select>
                             </div>
 
                             <div class="col-xl-2 col-md-6 mb-4">
                                 <button type="submit" class="btn btn-primary btn-block">Pesquisar Processo</button>
-                                </form>
-
                             </div>
+                            </form>
                             <div class="col-xl-2 col-md-6 mb-4">
 
                                 <input type="submit" value="Cadastrar Novo Processo"
@@ -89,8 +88,8 @@
                                             <a style="text-decoration:none; color:currentColor;"
                                                title="Registrar Tramitações"
                                                href="/admin/tramitacoes/<%= processo.id %>">
-                                                <small><%= processo.nomebeneficiario %></small>
-                                                <small> | <%= processo.telefone %>, <%= processo.celular %>
+                                                <small><%= processo.name %></small>
+                                                <small> | <%= processo.tell %>, <%= processo.celular %>
                                                     - <%= processo.telefone2 %></small>
                                             </a>
                                         </td>

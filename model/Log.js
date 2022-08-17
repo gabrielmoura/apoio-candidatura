@@ -3,16 +3,16 @@
  * email: gabriel.blx32@gmail.com
  */
 
-const Sequelize = require("sequelize");
+const { DataTypes } = require('@sequelize/core');
 const db = require("./database");
 
 const Log = db.connection.define(db.env.DB_PREFIX + '_logs', {
     payload: {
-        type: Sequelize.JSON,
+        type: DataTypes.JSON,
         allowNull: false
     },
     user_id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: true,
         references: {
             model: db.env.DB_PREFIX + '_users',
@@ -22,11 +22,11 @@ const Log = db.connection.define(db.env.DB_PREFIX + '_logs', {
         onDelete: 'SET NULL',
     },
     subject: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     action: {
-        type: Sequelize.ENUM({
+        type: DataTypes.ENUM({
             values: ['create', 'update', 'delete']
         }),
         allowNull: false

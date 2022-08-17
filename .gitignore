@@ -107,3 +107,5 @@ dist
 mix-manifest.json
 fonts
 log
+logs
+.run

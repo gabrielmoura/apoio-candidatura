@@ -3,30 +3,30 @@
  * email: gabriel.blx32@gmail.com
  */
 
-const Sequelize = require("sequelize");
+const {DataTypes} = require('@sequelize/core');
 const db = require("./database");
 const Log = require("../lib/logDatabase");
 
 const User = db.connection.define(db.env.DB_PREFIX + '_users', {
-    id: {type: Sequelize.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true},
+    id: {type: DataTypes.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true},
     email: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     username: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: true
     },
     password: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     role: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: true
     },
     status: {
-        type: Sequelize.ENUM({values: ['disabled', 'enabled']}),
+        type: DataTypes.ENUM({values: ['disabled', 'enabled']}),
         allowNull: false,
         defaultValue: 'enabled'
     }

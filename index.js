@@ -29,11 +29,11 @@ app.use(session({
     credentials: true,
     store: new RedisStore({client: app.redis, prefix: process.env.APP_NAME + ":sess:" || "sess:"}),
     cookie: {
-        secure: process.env.ENVIRONMENT === "production" ? "true" : "auto",
+        secure: process.env.NODE_ENV === "production" ? "true" : "auto",
         maxAge: 30000000,
         httpOnly: true,
         expires: 1000 * 60 * 60 * 24 * 7,
-        //    sameSite: "lax",
+        sameSite: "lax",
     },
     resave: false,
     saveUninitialized: false,
@@ -82,8 +82,8 @@ app.use("/admin", adminRoutes);
 app.use("/api", apiRoutes);
 
 
-var port = process.env.PORT || 3030;
-app.listen(port, function () {
-    console.log('Cadastro Computei listening on port %s', port);
+var port = process.env.APP_PORT || 0;
+const server=app.listen(port, function () {
+    console.log('Cadastro Computei listening on port %s', server.address().port);
 });
 

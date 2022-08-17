@@ -3,8 +3,8 @@
  * email: gabriel.blx32@gmail.com
  */
 
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
+const {Op} = require('@sequelize/core');
+
 
 const Processo = require("../../model/Processo");
 const Tramitacao = require("../../model/Tramitacao");

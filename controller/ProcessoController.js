@@ -2,13 +2,13 @@
  * Copyright (c) Gabriel Moura 2022.
  * email: gabriel.blx32@gmail.com
  */
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
+const {Op} = require('@sequelize/core');
 
 const Processo = require("../model/Processo");
 const Tramitacao = require("../model/Tramitacao");
 const nP = require("../lib/normalizeParse");
 const Log = require("../lib/logDatabase");
+
 
 module.exports = {
     async delete(req, res) {
@@ -57,39 +57,48 @@ module.exports = {
         });
     },
     async update(req, res) {
+        const {
+            id,
+            name, //
+            address, //
+            cep, //
+            tell, //
+            cpf, //
+            date_of_birth, //
+            indication, //
+            benefit, //
+            date_of_call,//
+            date_of_schedule, //
+            time, //
+            reschedule, //
+            observation, //
+            contract, //
+            status, //
+            status_of_observation, //
+            status_of_3232,
+            candidacy_support ,//
+            unit, //
+            source //
+        } = req.body;
         let payload = {
-            id: req.body.id,
-            datacomparecimento: req.body.datacomparecimento,
-            nomebeneficiario: req.body.nomebeneficiario.toUpperCase(),
-            telefone: req.body.telefone,
-            celular: req.body.celular,
-            telefone2: req.body.telefone2,
-            logradouro: req.body.logradouro.toUpperCase(),
-            numero: req.body.numero,
-            complemento: req.body.complemento.toUpperCase(),
-            bairro: req.body.bairro.toUpperCase(),
-            cidade: req.body.cidade.toUpperCase(),
-            cep: req.body.cep,
-            beneficiorequerido: req.body.beneficiorequerido,
-            indicacao: req.body.indicacao,
-            pendenciadedocumentos: req.body.pendenciadedocumentos,
-            informacaocomplementar: req.body.informacaocomplementar,
-            enviados: req.body.enviados,
-            entrada: req.body.entrada,
-            cpf: req.body.cpf,
-            senhadocliente: req.body.senhadocliente,
-            situacao: req.body.situacao,
-            novaentrada: req.body.novaentrada,
-            datapesquisa: req.body.datapesquisa,
-            advogadoqueassinou: req.body.advogadoqueassinou,
-            pagamento: req.body.pagamento,
-            email: req.body.email,
-            avaliacaopericia: req.body.avaliacaopericia,
-            status: 1,
-            user_id: req.session.user.id,
-            apoio: req.body.apoio,
-            unidade: req.body.unidade,
-
+            id,
+            name,
+            address,
+            cep,
+            tell,
+            cpf,
+            date_of_birth,
+            indication,
+            benefit,
+            date_of_call,
+            date_of_schedule,
+            time,
+            reschedule,
+            observation,
+            contract,
+            status,
+            status_of_observation,
+            status_of_3232
         };
         Processo.update(payload, {
             where: {
@@ -106,39 +115,45 @@ module.exports = {
         });
     },
     async store(req, res) {
+        const {
+            name,
+            address,
+            cep,
+            tell,
+            cpf,
+            date_of_birth,
+            indication,
+            benefit,
+            date_of_call,
+            date_of_schedule,
+            time,
+            reschedule,
+            observation,
+            contract,
+            status,
+            status_of_observation,
+            status_of_3232
+        } = req.body;
+        const user_id = req.session.user.id;
         Processo.create({
-
-            datacomparecimento: req.body.datacomparecimento,
-            nomebeneficiario: req.body.nomebeneficiario.toUpperCase(),
-            telefone: req.body.telefone,
-            celular: req.body.celular,
-            telefone2: req.body.telefone2,
-            logradouro: req.body.logradouro.toUpperCase(),
-            numero: req.body.numero,
-            complemento: req.body.complemento.toUpperCase(),
-            bairro: req.body.bairro.toUpperCase(),
-            cidade: req.body.cidade.toUpperCase(),
-            cep: req.body.cep,
-            beneficiorequerido: req.body.beneficiorequerido,
-            indicacao: req.body.indicacao,
-            pendenciadedocumentos: req.body.pendenciadedocumentos,
-            informacaocomplementar: req.body.informacaocomplementar,
-            enviados: req.body.enviados,
-            entrada: req.body.entrada,
-            cpf: req.body.cpf,
-            senhadocliente: req.body.senhadocliente,
-            situacao: req.body.situacao,
-            novaentrada: req.body.novaentrada,
-            datapesquisa: req.body.datapesquisa,
-            advogadoqueassinou: req.body.advogadoqueassinou,
-            pagamento: req.body.pagamento,
-            email: req.body.email,
-            avaliacaopericia: req.body.avaliacaopericia,
-            status: 1,
-            user_id: req.session.user.id,
-            apoio: req.body.apoio,
-            unidade: req.body.unidade,
-
+            name,
+            address,
+            cep,
+            tell,
+            cpf,
+            date_of_birth,
+            indication,
+            benefit,
+            date_of_call,
+            date_of_schedule,
+            time,
+            reschedule,
+            observation,
+            contract,
+            status,
+            status_of_observation,
+            status_of_3232,
+            user_id
         }).then(() => {
             console.log("criou e tentou redirecionar");
             //console.log(Processo.getId())
@@ -156,9 +171,6 @@ module.exports = {
                 limit: 0,
                 raw: true,
                 order: [['id', 'DESC']],
-                where: {
-                    status: 1
-                }
             }).then(processos => {
                 res.render("admin/processos/index", nP.parse({processos: processos}, req));
             });
@@ -169,10 +181,7 @@ module.exports = {
                 raw: true,
                 order: [['id', 'ASC']],
                 where: {
-                    [searchpor]: {
-                        [Op.substring]: searchprocesso
-                    },
-                    status: 1
+                    [searchpor]: Op.substring(searchprocesso, searchprocesso),
                 }
             }).then(processos => {
                 res.render("admin/processos/index", nP.parse({processos: processos}, req))
@@ -192,9 +201,6 @@ module.exports = {
             limit: 10,
             raw: true,
             order: [['id', 'DESC']],
-            where: {
-                status: 1
-            }
         }).then(processos => {
             res.render("admin/processos/index", nP.parse({processos: processos}, req))
         });

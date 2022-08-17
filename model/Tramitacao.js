@@ -3,23 +3,23 @@
  * email: gabriel.blx32@gmail.com
  */
 
-const Sequelize = require("sequelize");
+const {DataTypes} = require('@sequelize/core');
 const Processo = require("./Processo");
 const db = require("./database");
 const Log = require("../lib/logDatabase");
 const User = require("./User");
 const Tramitacao = db.connection.define(db.env.DB_PREFIX + "_tramitacoes", {
     id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    data: {type: Sequelize.STRING, allowNull: true},
-    anotacao: {type: Sequelize.TEXT, allowNull: true},
-    status: {type: Sequelize.INTEGER, allowNull: false},
+    data: {type: DataTypes.STRING, allowNull: true},
+    anotacao: {type: DataTypes.TEXT, allowNull: true},
+    status: {type: DataTypes.INTEGER, allowNull: false},
     processo_id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: true,
         references: {
             model: db.env.DB_PREFIX + '_processos',
@@ -29,7 +29,7 @@ const Tramitacao = db.connection.define(db.env.DB_PREFIX + "_tramitacoes", {
         onDelete: 'SET NULL',
     },
     user_id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: true,
         references: {
             model: db.env.DB_PREFIX + '_users',
@@ -51,7 +51,7 @@ const Tramitacao = db.connection.define(db.env.DB_PREFIX + "_tramitacoes", {
 });
 Processo.belongsTo(User, {foreignKey: 'user_id'});
 Processo.hasMany(Tramitacao, {as: 'tramitacao', foreignKey: 'processo_id'});
-Tramitacao.belongsTo(Processo, {foreignKey: 'processo_id',as:'processo'});
+Tramitacao.belongsTo(Processo, {foreignKey: 'processo_id', as: 'processo'});
 Tramitacao.belongsTo(User, {foreignKey: 'user_id', as: 'user'});
 
 Tramitacao.sync();

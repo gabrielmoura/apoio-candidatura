@@ -1,4 +1,4 @@
-const Sequelize = require("sequelize");
+const {Sequelize} = require('@sequelize/core');
 require('dotenv').config();
 
 
@@ -8,10 +8,10 @@ const connection = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proce
     port: process.env.DB_PORT||5432,
     timezone: "-03:00",
     dialectOptions: {
-        ssl: {
-            require: true, // This will help you. But you will see nwe error
-            rejectUnauthorized: false // This line will fix new error
-        }
+        // ssl: {
+        //     require: true, // This will help you. But you will see nwe error
+        //     rejectUnauthorized: false // This line will fix new error
+        // }
     }
 });
 if (!process.env.DB_PREFIX) {

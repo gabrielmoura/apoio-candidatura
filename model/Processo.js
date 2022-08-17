@@ -3,51 +3,38 @@
  * email: gabriel.blx32@gmail.com
  */
 
-const Sequelize = require("sequelize");
+const { DataTypes } = require('@sequelize/core');
 const db = require("./database");
 const Log = require("../lib/logDatabase");
 const Queue = require('bull');
 const moment = require('moment');
 
 const Processo = db.connection.define(db.env.DB_PREFIX + '_processos', {
-    id: {type: Sequelize.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true},
-    datacomparecimento: {
-        type: Sequelize.DATEONLY, allowNull: true, get() {
-            return moment(this.getDataValue('datacomparecimento')).format('DD/MM/YYYY');
-        },
-        set(value) {
-            console.log(new Date(value).toLocaleString());
-            this.setDataValue('datacomparecimento', new Date(value).toLocaleString());
-        }
-    },
-    nomebeneficiario: {type: Sequelize.STRING, allowNull: true},
-    telefone: {type: Sequelize.STRING, allowNull: true},
-    celular: {type: Sequelize.STRING, allowNull: true},
-    telefone2: {type: Sequelize.STRING, allowNull: true},
-    logradouro: {type: Sequelize.STRING, allowNull: true},
-    numero: {type: Sequelize.STRING, allowNull: true},
-    complemento: {type: Sequelize.STRING, allowNull: true},
-    bairro: {type: Sequelize.STRING, allowNull: true},
-    cidade: {type: Sequelize.STRING, allowNull: true},
-    cep: {type: Sequelize.STRING, allowNull: true},
-    beneficiorequerido: {type: Sequelize.STRING, allowNull: true},
-    indicacao: {type: Sequelize.STRING, allowNull: true},
-    pendenciadedocumentos: {type: Sequelize.STRING, allowNull: true},
-    informacaocomplementar: {type: Sequelize.STRING, allowNull: true},
-    enviados: {type: Sequelize.STRING, allowNull: true},
-    entrada: {type: Sequelize.STRING, allowNull: true},
-    cpf: {type: Sequelize.STRING, allowNull: true},
-    senhadocliente: {type: Sequelize.STRING, allowNull: true},
-    situacao: {type: Sequelize.STRING, allowNull: true},
-    novaentrada: {type: Sequelize.STRING, allowNull: true},
-    datapesquisa: {type: Sequelize.STRING, allowNull: true},
-    advogadoqueassinou: {type: Sequelize.STRING, allowNull: true},
-    pagamento: {type: Sequelize.STRING, allowNull: true},
-    email: {type: Sequelize.STRING, allowNull: true},
-    avaliacaopericia: {type: Sequelize.STRING, allowNull: true},
-    status: {type: Sequelize.INTEGER, allowNull: false},
+    id: {type: DataTypes.BIGINT, autoIncrement: true, allowNull: false, primaryKey: true},
+    name: {type: DataTypes.STRING, allowNull: false},// 212 caracteres
+    address: {type: DataTypes.STRING},// 121
+    cep: {type: DataTypes.STRING},// 51 caracteres
+    tell: {type: DataTypes.STRING},// 663 caracteres
+    cpf: {type: DataTypes.STRING},// 55 carateres
+    date_of_birth: {type: DataTypes.STRING},// 30 caracteres
+    indication: {type: DataTypes.STRING},// 440 caracteres
+    benefit: {type: DataTypes.STRING},// 42
+    date_of_call: {type: DataTypes.STRING},// //68
+    date_of_schedule: {type: DataTypes.STRING},// 51 Data do Agendamento
+    time: {type: DataTypes.STRING},// 17 Horario
+    reschedule: {type: DataTypes.STRING},// 27 //Reagendamento
+    observation: {type: DataTypes.STRING},// 152 //OBS
+    candidacy_support: {type: DataTypes.STRING},// Apoio
+    contract: {type: DataTypes.STRING},// 83 // COntrato
+    status: {type: DataTypes.STRING},// 128
+    status_of_observation: {type: DataTypes.STRING},// 127
+    status_of_3232: {type: DataTypes.STRING},// //192 (USO EXCLUSIVO DA 3232)
+
+    status_of_call:{type: DataTypes.STRING}, // Status Caso consiga falar com o cliente.
+    unit:{type: DataTypes.STRING}, // Unidade
+    source:{type: DataTypes.STRING,allowNull:true}, // Fonte: Origem do dado
     user_id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: true,
         references: {
             model: db.env.DB_PREFIX + '_users',
@@ -56,15 +43,10 @@ const Processo = db.connection.define(db.env.DB_PREFIX + '_processos', {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
     },
-    unidade: {
-        type: Sequelize.STRING,
-        allowNull: true
-    },
-    apoio: {type: Sequelize.STRING, allowNull: true},
 }, {
     timestamps: false,
-    createdAt: false,
-    updatedAt: false,
+    createdAt: true,
+    updatedAt: true,
     hooks: {
         afterCreate(instance, options) {
             Log.create(instance.toJSON(), instance.user_id, db.env.DB_PREFIX + "_processos");
