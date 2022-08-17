@@ -41,7 +41,7 @@
                                         <div class="col-xl-2 col-md-6 mb-4">
                                             <small id="passwordHelpBlock"
                                                    class="form-text text-muted">Telefones</small>
-                                            <input type="text" class="form-control form-control-sm tel"
+                                            <input type="text" class="form-control form-control-sm "
                                                    name="tell"
                                                    value="<%= processo.tell %>"></input>
                                         </div>
@@ -149,22 +149,22 @@
 
                                             <select class="form-control" name="call_status" id="call_status" autofocus>
                                                 <option value=""></option>
-                                                <option value="CONSEGUIMOSFALAR" <%= (processo.call_status == 'CONSEGUIMOSFALAR')?'selected':'' %>>
+                                                <option value="CONSEGUIMOSFALAR" <%= (processo.call_status == 'CONSEGUIMOSFALAR') ? 'selected' : '' %>>
                                                     CONSEGUIMOS FALAR
                                                 </option>
-                                                <option value="TELNAOEXISTE" <%= (processo.call_status == 'TELNAOEXISTE')?'selected':'' %>>
+                                                <option value="TELNAOEXISTE" <%= (processo.call_status == 'TELNAOEXISTE') ? 'selected' : '' %>>
                                                     TELEFONE NÃO EXISTE
                                                 </option>
-                                                <option value="TELMUDOU" <%= (processo.call_status == 'TELMUDOU')?'selected':'' %>>
+                                                <option value="TELMUDOU" <%= (processo.call_status == 'TELMUDOU') ? 'selected' : '' %>>
                                                     TELEFONE MUDOU DE DONO
                                                 </option>
-                                                <option value="CAIXAPOSTAL" <%= (processo.call_status == 'CAIXAPOSTAL')?'selected':'' %>>
+                                                <option value="CAIXAPOSTAL" <%= (processo.call_status == 'CAIXAPOSTAL') ? 'selected' : '' %>>
                                                     CAIXA POSTAL
                                                 </option>
-                                                <option value="NAOATENDE" <%= (processo.call_status == 'NAOATENDE')?'selected':'' %>>
+                                                <option value="NAOATENDE" <%= (processo.call_status == 'NAOATENDE') ? 'selected' : '' %>>
                                                     SÓ CHAMA
                                                 </option>
-                                                <option value="OUTROS" <%= (processo.call_status == 'OUTROS')?'selected':'' %>>
+                                                <option value="OUTROS" <%= (processo.call_status == 'OUTROS') ? 'selected' : '' %>>
                                                     OUTROS
                                                 </option>
                                             </select>
@@ -174,16 +174,16 @@
                                                                           class="form-text text-muted">Apoio</small>
                                             <select class="form-control" name="candidacy_support" id="apoio" autofocus>
                                                 <option value=""></option>
-                                                <option value="seminformacao"<%= (processo.candidacy_support == 'seminformacao')?'selected':'' %>>
+                                                <option value="seminformacao"<%= (processo.candidacy_support == 'seminformacao') ? 'selected' : '' %>>
                                                     SEM INFORMAÇÃO
                                                 </option>
-                                                <option value="apoiosim"<%= (processo.candidacy_support == 'apoiosim')?'selected':'' %>>
+                                                <option value="apoiosim"<%= (processo.candidacy_support == 'apoiosim') ? 'selected' : '' %>>
                                                     APOIO SIM
                                                 </option>
-                                                <option value="apoiotalvez"<%= (processo.candidacy_support == 'apoiotalvez')?'selected':'' %>>
+                                                <option value="apoiotalvez"<%= (processo.candidacy_support == 'apoiotalvez') ? 'selected' : '' %>>
                                                     APOIO TALVEZ
                                                 </option>
-                                                <option value="apoionao"<%= (processo.candidacy_support == 'apoionao')?'selected':'' %>>
+                                                <option value="apoionao"<%= (processo.candidacy_support == 'apoionao') ? 'selected' : '' %>>
                                                     APOIO NÃO
                                                 </option>
                                             </select>
@@ -195,10 +195,10 @@
                                             <select class="form-control" name="want_material" id="want_material"
                                                     autofocus>
                                                 <option value=""></option>
-                                                <option value="QUERMATERIAL" <%= (processo.want_material == 'QUERMATERIAL')?'selected':'' %>>
+                                                <option value="QUERMATERIAL" <%= (processo.want_material == 'QUERMATERIAL') ? 'selected' : '' %>>
                                                     QUER MATERIAL
                                                 </option>
-                                                <option value="NAOQUERMATERIAL" <%= (processo.want_material == 'NAOQUERMATERIAL')?'selected':'' %>>
+                                                <option value="NAOQUERMATERIAL" <%= (processo.want_material == 'NAOQUERMATERIAL') ? 'selected' : '' %>>
                                                     NÃO QUER MATERIAL
                                                 </option>
                                             </select>
@@ -224,22 +224,22 @@
                                             <small id="unidade" class="form-text text-muted">Unidade</small>
                                             <select class="form-control" name="unit">
                                                 <option value=""></option>
-                                                <option value="BARRADATIJUCA" <%= (processo.unit == 'BARRADATIJUCA')?'selected':'' %>>
+                                                <option value="BARRADATIJUCA" <%= (processo.unit == 'BARRADATIJUCA') ? 'selected' : '' %>>
                                                     BARRA DA TIJUCA
                                                 </option>
-                                                <option value="CENTRO" <%= (processo.unit == 'CENTRO')?'selected':'' %>>
+                                                <option value="CENTRO" <%= (processo.unit == 'CENTRO') ? 'selected' : '' %>>
                                                     CENTRO
                                                 </option>
-                                                <option value="ALCANTARA" <%= (processo.unit == 'ALCANTARA')?'selected':'' %>>
+                                                <option value="ALCANTARA" <%= (processo.unit == 'ALCANTARA') ? 'selected' : '' %>>
                                                     ALCÂNTARA
                                                 </option>
-                                                <option value="TAQUARA" <%= (processo.unit == 'TAQUARA')?'selected':'' %>>
+                                                <option value="TAQUARA" <%= (processo.unit == 'TAQUARA') ? 'selected' : '' %>>
                                                     TAQUARA
                                                 </option>
-                                                <option value="ANGRA" <%= (processo.unit == 'ANGRA')?'selected':'' %>>
+                                                <option value="ANGRA" <%= (processo.unit == 'ANGRA') ? 'selected' : '' %>>
                                                     ANGRA DOS REIS
                                                 </option>
-                                                <option value="NILOPOLIS" <%= (processo.unit == 'NILOPOLIS')?'selected':'' %>>
+                                                <option value="NILOPOLIS" <%= (processo.unit == 'NILOPOLIS') ? 'selected' : '' %>>
                                                     NILÓPOLIS
                                                 </option>
                                             </select>
@@ -250,16 +250,16 @@
                                                 Requerido</small>
                                             <select class="form-control" name="benefit">
                                                 <option value=""></option>
-                                                <option value="LOAS IDOSO" <%= (processo.benefit == 'LOAS IDOSO')?'selected':'' %>>
+                                                <option value="LOAS IDOSO" <%= (processo.benefit == 'LOAS IDOSO') ? 'selected' : '' %>>
                                                     LOAS IDOSO
                                                 </option>
-                                                <option value="LOAS DEFICIENTE" <%= (processo.benefit == 'LOAS DEFICIENTE')?'selected':'' %>>
+                                                <option value="LOAS DEFICIENTE" <%= (processo.benefit == 'LOAS DEFICIENTE') ? 'selected' : '' %>>
                                                     LOAS DEFICIENTE
                                                 </option>
-                                                <option value="LOAS NIVER" <%= (processo.benefit == 'LOAS NIVER')?'selected':'' %>>
+                                                <option value="LOAS NIVER" <%= (processo.benefit == 'LOAS NIVER') ? 'selected' : '' %>>
                                                     LOAS NIVER
                                                 </option>
-                                                <option value="OUTROS" <%= (processo.benefit == 'OUTROS')?'selected':'' %>>
+                                                <option value="OUTROS" <%= (processo.benefit == 'OUTROS') ? 'selected' : '' %>>
                                                     OUTROS
                                                 </option>
                                             </select>
@@ -269,37 +269,37 @@
                                             <small id="passwordHelpBlock"
                                                    class="form-text text-muted">INDICAÇÃO</small>
                                             <select class="form-control" name="indication">
-                                                <option value="SBTIB" <%= (processo.indication == 'SBTIB')?'selected':'' %>>
+                                                <option value="SBTIB" <%= (processo.indication == 'SBTIB') ? 'selected' : '' %>>
                                                     SBT-IB
                                                 </option>
-                                                <option value="AC" <%= (processo.indication == 'AC')?'selected':'' %>>
+                                                <option value="AC" <%= (processo.indication == 'AC') ? 'selected' : '' %>>
                                                     ANTÔNIO CARLOS
                                                 </option>
-                                                <option value="TUPI" <%= (processo.indication == 'TUPI')?'selected':'' %>>
+                                                <option value="TUPI" <%= (processo.indication == 'TUPI') ? 'selected' : '' %>>
                                                     TUPI
                                                 </option>
-                                                <option value="CIDINHA" <%= (processo.indication == 'CIDINHA')?'selected':'' %>>
+                                                <option value="CIDINHA" <%= (processo.indication == 'CIDINHA') ? 'selected' : '' %>>
                                                     CIDINHA
                                                 </option>
-                                                <option value="PA" <%= (processo.indication == 'PA')?'selected':'' %>>
+                                                <option value="PA" <%= (processo.indication == 'PA') ? 'selected' : '' %>>
                                                     PEDRO AUGUSTO
                                                 </option>
-                                                <option value="CM" <%= (processo.indication == 'CM')?'selected':'' %>>
+                                                <option value="CM" <%= (processo.indication == 'CM') ? 'selected' : '' %>>
                                                     CM
                                                 </option>
-                                                <option value="PANFLETO" <%= (processo.indication == 'PANFLETO')?'selected':'' %>>
+                                                <option value="PANFLETO" <%= (processo.indication == 'PANFLETO') ? 'selected' : '' %>>
                                                     PANFLETO
                                                 </option>
-                                                <option value="AMIGOVIZINHO" <%= (processo.indication == 'AMIGOVIZINHO')?'selected':'' %>>
+                                                <option value="AMIGOVIZINHO" <%= (processo.indication == 'AMIGOVIZINHO') ? 'selected' : '' %>>
                                                     AMIGO/VIZINHO
                                                 </option>
-                                                <option value="HR" <%= (processo.indication == 'HR')?'selected':'' %>>
+                                                <option value="HR" <%= (processo.indication == 'HR') ? 'selected' : '' %>>
                                                     HR
                                                 </option>
-                                                <option value="IBT" <%= (processo.indication == 'IBT')?'selected':'' %>>
+                                                <option value="IBT" <%= (processo.indication == 'IBT') ? 'selected' : '' %>>
                                                     IBT
                                                 </option>
-                                                <option value="GLOBO" <%= (processo.indication == 'GLOBO')?'selected':'' %>>
+                                                <option value="GLOBO" <%= (processo.indication == 'GLOBO') ? 'selected' : '' %>>
                                                     GLOBO
                                                 </option>
                                             </select>
@@ -329,8 +329,10 @@
                                                 Complementar</small>
                                             <textarea type="text"
                                                       class="p-3 mb-2 bg-light text-dark form-control form-control-sm"
-                                                      name="informacaocomplementar" id="observation"
-                                                      value="<%= processo.observation %>" rows="1" cols="66"></textarea>
+                                                      name="observation" id="observation"
+                                                      rows="1" cols="66">
+                                                <%- processo.observation %>
+                                            </textarea>
                                         </div>
 
                                         <div class="col-xl-2 col-md-6 mb-4">
@@ -373,7 +375,7 @@
                                     <div class="form-row">
                                         <div class="col-xl-12 col-md-6 mb-4">
                                             <small id="passwordHelpBlock" class="form-text text-muted">-</small>
-                                            <button type="submit" class="btn btn-success btn-block">Cadastrar
+                                            <button type="submit" class="btn btn-success btn-block">SALVAR
                                             </button>
                                         </div>
                                     </div>
