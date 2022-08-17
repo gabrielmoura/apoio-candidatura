@@ -215,7 +215,7 @@ module.exports = {
                 order: [['id', 'ASC']],
                 where: {
                     [searchpor]: {
-                        [Op.like]:searchprocesso},
+                        [Op.substring]:searchprocesso},
                 }
             }).then(processos => {
                 res.render("admin/processos/index", nP.parse({processos: processos}, req))
