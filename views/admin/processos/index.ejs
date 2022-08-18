@@ -25,12 +25,15 @@
                                     Processos</h6>
                             </div>
                             <!-- Earnings (Monthly) Card Example -->
+
                             <div class="col-xl-2 col-md-6 mb-4">
                                 <form class="form-inline" method="POST" action="/admin/processos/search">
 
                                     <label for="inputPassword2" class="sr-only">texto da pesquisa</label>
                                     <input type="text" class="form-control" id="searchprocesso" name="searchprocesso"
-                                           placeholder="Pesquisar" title="Pesquisar." autofocus>
+                                           placeholder="Pesquisar" title="Pesquisar."
+                                           value="<%= (typeof searchprocesso != 'undefined') ? searchprocesso : '' %>"
+                                           autofocus>
                             </div>
 
                             <div class="col-xl-2 col-md-6 mb-4">
@@ -178,10 +181,6 @@
 
     <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
 </div>
-<% include('../../partials/logoutmodal.ejs') %>
-
-<%- include('../../partials/footer.ejs') %>
-
 <script>
     function confirmarDelecao(event, form) {
         event.preventDefault();
@@ -191,3 +190,7 @@
         }
     }
 </script>
+<% include('../../partials/logoutmodal.ejs') %>
+
+<%- include('../../partials/footer.ejs') %>
+

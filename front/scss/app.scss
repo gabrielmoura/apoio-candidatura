@@ -11,10 +11,13 @@
 @import "~datatables.net-buttons-bs4";
 @import "~datatables.net-responsive-bs4";
 
+@import "~toastr";
+
 .table-responsive {
-    overflow-x:hidden !important;
+  overflow-x: hidden !important;
 }
+
 #map {
-    height: 512px;
-    width: 100%;
+  height: 512px;
+  width: 100%;
 }

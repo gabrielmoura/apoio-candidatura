@@ -22,7 +22,7 @@ module.exports = {
                 id: id
             }
         }).then(() => {
-            console.log("atualizou e tentou redirecionar");
+            req.toastr.success('Removido com sucesso!', "Sucesso");
             res.redirect("/admin/processos");
         });
     },
@@ -80,7 +80,7 @@ module.exports = {
             status, //
             status_of_observation, //
             status_of_3232,
-            candidacy_support ,//
+            candidacy_support,//
             unit, //
             source, //
             want_material,
@@ -109,7 +109,7 @@ module.exports = {
             status,
             status_of_observation,
             status_of_3232,
-            candidacy_support ,//
+            candidacy_support,//
             unit, //
             source, //
             want_material,
@@ -121,12 +121,12 @@ module.exports = {
             }
         }).then(rr => {
             Log.update(payload, req.session.user.id, process.env.DB_PREFIX + "_processos");
-            console.log("atualizou e tentou redirecionar");
-
-            //res.redirect("/admin/processos");
-            res.redirect("/admin/tramitacoes/" + req.body.id);
+            req.toastr.success('Salvo com sucesso!', "Sucesso");
+            res.redirect("/admin/processos");
+            //res.redirect("/admin/tramitacoes/" + req.body.id);
         }).catch(err => {
             console.error(err);
+            req.toastr.error('Erro ao salvar','Erro');
         });
     },
     async store(req, res) {
@@ -152,7 +152,7 @@ module.exports = {
             status,
             status_of_observation,
             status_of_3232,
-            candidacy_support ,//
+            candidacy_support,//
             unit, //
             source, //
             want_material,
@@ -181,18 +181,18 @@ module.exports = {
             status,
             status_of_observation,
             status_of_3232,
-            candidacy_support ,//
+            candidacy_support,//
             unit, //
             source, //
             want_material,
             call_status,
             user_id
         }).then(() => {
-            console.log("criou e tentou redirecionar");
-            //console.log(Processo.getId())
+            req.toastr.success('Criado com sucesso!', "Sucesso");
             res.redirect("/admin/processos");
         }).catch(err => {
             console.error(err);
+            req.toastr.error('Erro ao criar','Erro');
             res.redirect("/admin/processos");
         });
     },
@@ -205,7 +205,7 @@ module.exports = {
                 raw: true,
                 order: [['id', 'DESC']],
             }).then(processos => {
-                res.render("admin/processos/index", nP.parse({processos: processos}, req));
+                res.render("admin/processos/index", nP.parse({processos: processos, searchprocesso}, req));
             });
         }
 
@@ -215,11 +215,11 @@ module.exports = {
                 order: [['id', 'ASC']],
                 where: {
                     [searchpor]: {
-                        [Op.substring]:searchprocesso
+                        [Op.substring]: searchprocesso
                     },
                 }
             }).then(processos => {
-                res.render("admin/processos/index", nP.parse({processos: processos}, req))
+                res.render("admin/processos/index", nP.parse({processos: processos, searchprocesso}, req))
             }).catch(err => {
                 console.error(err);
                 res.redirect('/admin/processos')

@@ -3,10 +3,14 @@ const app = express();
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const helmet = require("helmet");
+const flash = require('connect-flash'),
+    cookieParser = require('cookie-parser'),
+    toastr = require('express-toastr');
+const Redis = require("ioredis");
+const RedisStore = require("connect-redis")(session)
+
 app.db = require("./model/database").connection;
 app.queue = require('bull');
-const Redis = require("ioredis");
-const RedisStore = require("connect-redis")(session);
 app.redis = new Redis({
     port: process.env.REDIS_PORT || 6379, // Redis port
     host: process.env.REDIS_HOST || "127.0.0.1", // Redis host
@@ -14,7 +18,7 @@ app.redis = new Redis({
     password: process.env.REDIS_PASSWORD || "NULL",
     db: process.env.REDIS_DB || 0, // Defaults to 0
 });
-
+app.use(cookieParser('secret'));
 
 /*      View Engine        */
 app.set('view engine', 'ejs');
@@ -38,7 +42,10 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     name: process.env.APP_NAME || "GeriADV",
-}))
+}));
+
+/*      Flash        */
+app.use(flash());
 
 app.use((req, res, next) => {
     //Cria um middleware onde todas as requests passam por ele
@@ -62,6 +69,9 @@ app.use(helmet({
     // crossOriginEmbedderPolicy: false
 }));
 
+/*      Toastr        */
+app.use(toastr());
+
 /*      Database        */
 app.db
     .authenticate()
@@ -83,7 +93,7 @@ app.use("/api", apiRoutes);
 
 
 var port = process.env.APP_PORT || 0;
-const server=app.listen(port, function () {
+const server = app.listen(port, function () {
     console.log('Cadastro Computei listening on port %s', server.address().port);
 });
 
