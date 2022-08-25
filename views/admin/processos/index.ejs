@@ -95,7 +95,9 @@
                                             <a style="text-decoration:none; color:currentColor;"
                                                title="Registrar Tramitações"
                                                href="/admin/tramitacoes/<%= processo.id %>"><small
-                                                        style=<%= cordefundo %>><%= processo.call_status %>  <%= processo.candidacy_support %>  <%= processo.want_material %></small>
+                                                        style=<%= cordefundo %>><%= (processo.call_status)?processo?.call_status.toUpperCase():'' %>
+                                                    <%= (processo?.candidacy_support)? processo?.candidacy_support.toUpperCase():'' %>
+                                                    <%= (processo?.want_material) ? processo?.want_material.toUpperCase() : '' %></small>
                                             </a>
                                         </td>
                                         <td>
