@@ -17,50 +17,41 @@
 
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-
                         <div class="row">
-
-                            <div class="col-xl-4 col-md-6 mb-4">
-                                <h6 class="m-0 font-weight-bold text-primary" style="float: left">Pesquisar
+                            <div class="col-md-3">
+                                <h6 class="font-weight-bold m-0 text-primary" style="float: left">Pesquisar
                                     Processos</h6>
                             </div>
                             <!-- Earnings (Monthly) Card Example -->
-
-                            <div class="col-xl-2 col-md-6 mb-4">
-                                <form class="form-inline" method="POST" action="/admin/processos/search">
-
+                            <form class="justify-content-md-center row" method="POST" action="/admin/processos/search">
+                                <div class="col-md-3 mb-2">
                                     <label for="inputPassword2" class="sr-only">texto da pesquisa</label>
                                     <input type="text" class="form-control" id="searchprocesso" name="searchprocesso"
                                            placeholder="Pesquisar" title="Pesquisar."
                                            value="<%= (typeof searchprocesso != 'undefined') ? searchprocesso : '' %>"
                                            autofocus>
-                            </div>
-
-                            <div class="col-xl-2 col-md-6 mb-4">
-                                <select class="form-control" name="searchpor" id="searchpor">
-                                    <option value="name">por Nome do Beneficiário</option>
-                                    <!--                                    <option value="telefone">por Telefone</option>-->
-                                    <!--                                    <option value="logradouro">por Logradouro</option>-->
-                                    <!--                                    <option value="bairro">por Bairro</option>-->
-                                    <option value="cpf">por CPF</option>
-                                </select>
-                            </div>
-
-                            <div class="col-xl-2 col-md-6 mb-4">
-                                <button type="submit" class="btn btn-primary btn-block">Pesquisar Processo</button>
-                            </div>
+                                </div>
+                                <div class="col-md-3 mb-2">
+                                    <select class="form-control" name="searchpor" id="searchpor">
+                                        <option value="name">por Nome do Beneficiário</option>
+                                        <!--                                    <option value="telefone">por Telefone</option>-->
+                                        <!--                                    <option value="logradouro">por Logradouro</option>-->
+                                        <!--                                    <option value="bairro">por Bairro</option>-->
+                                        <option value="cpf">por CPF</option>
+                                        <option value="id">por ID</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary mb-2">Pesquisar Processo</button>
+                                </div>
+                                <div class="col-3 col-md-3">
+                                    <button type="submit" onclick="window.location='/admin/processos/new'"
+                                            class="btn btn-success mb-2">Cadastrar Novo Processo
+                                    </button>
+                                </div>
                             </form>
-                            <div class="col-xl-2 col-md-6 mb-4">
-
-                                <input type="submit" value="Cadastrar Novo Processo"
-                                       onclick="window.location='/admin/processos/new'"
-                                       class="btn btn-success btn-block"/>
-
-                            </div>
                         </div>
-
                     </div>
-
 
                     <div class="card-body">
 
@@ -103,7 +94,7 @@
                                             <a style="text-decoration:none; color:currentColor;"
                                                title="Registrar Tramitações"
                                                href="/admin/tramitacoes/<%= processo.id %>"><small
-                                                        style=<%= cordefundo %>><%= (!processo.situacao) ? "Sem Situação" : processo.situacao %></small>
+                                                        style=<%= cordefundo %>><%= processo.call_status %>  <%= processo.candidacy_support %>  <%= processo.want_material %></small>
                                             </a>
                                         </td>
                                         <td>
