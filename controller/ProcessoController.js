@@ -85,6 +85,7 @@ module.exports = {
             source, //
             want_material,
             call_status,
+            employee_of_call,
         } = req.body;
         let payload = {
             id,
@@ -114,6 +115,7 @@ module.exports = {
             source, //
             want_material,
             call_status,
+            employee_of_call,
         };
         Processo.update(payload, {
             where: {
@@ -126,7 +128,7 @@ module.exports = {
             //res.redirect("/admin/tramitacoes/" + req.body.id);
         }).catch(err => {
             console.error(err);
-            req.toastr.error('Erro ao salvar','Erro');
+            req.toastr.error('Erro ao salvar', 'Erro');
         });
     },
     async store(req, res) {
@@ -157,6 +159,7 @@ module.exports = {
             source, //
             want_material,
             call_status,
+            employee_of_call,
         } = req.body;
         const user_id = req.session.user.id;
         Processo.create({
@@ -186,13 +189,14 @@ module.exports = {
             source, //
             want_material,
             call_status,
-            user_id
+            user_id,
+            employee_of_call,
         }).then(() => {
             req.toastr.success('Criado com sucesso!', "Sucesso");
             res.redirect("/admin/processos");
         }).catch(err => {
             console.error(err);
-            req.toastr.error('Erro ao criar','Erro');
+            req.toastr.error('Erro ao criar', 'Erro');
             res.redirect("/admin/processos");
         });
     },
@@ -208,8 +212,19 @@ module.exports = {
                 res.render("admin/processos/index", nP.parse({processos: processos, searchprocesso}, req));
             });
         }
-
-        if (searchpor != "") {
+        if (searchpor == 'id') {
+            Processo.findAll({
+                raw: true,
+                where: {
+                    id: searchprocesso
+                }
+            }).then(processos => {
+                res.render("admin/processos/index", nP.parse({processos: processos, searchprocesso}, req))
+            }).catch(err => {
+                console.error(err);
+                res.redirect('/admin/processos')
+            });
+        } else {
             Processo.findAll({
                 raw: true,
                 order: [['id', 'ASC']],

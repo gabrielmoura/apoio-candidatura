@@ -14,7 +14,7 @@
             <div class="container-fluid">
 
                 <form method="POST" action="/admin/processos/update">
-                    <input type="hidden" class="form-control" name="id" id="id" value="<%= processo.id %>"></input>
+                    <input type="hidden" class="form-control" name="id" id="id" value="<%= processo.id %>"/>
 
                     <!-- Content Row -->
                     <div class="row">
@@ -35,7 +35,7 @@
                                             <small id="passwordHelpBlock" class="form-text text-muted">Nome do
                                                 Beneficiário</small>
                                             <input type="text" class="form-control form-control-sm" name="name"
-                                                   value="<%= processo.name %>"></input>
+                                                   value="<%= processo.name %>"/>
                                         </div>
 
                                         <div class="col-xl-2 col-md-6 mb-4">
@@ -43,18 +43,18 @@
                                                    class="form-text text-muted">Telefones</small>
                                             <input type="text" class="form-control form-control-sm "
                                                    name="tell"
-                                                   value="<%= processo.tell %>"></input>
+                                                   value="<%= processo.tell %>"/>
                                         </div>
                                         <div class="col-xl-1 col-md-6 mb-4">
                                             <small id="passwordHelpBlock" class="form-text text-muted">Data de
                                                 Nascimento</small>
                                             <input type="text" class="form-control form-control-sm date"
-                                                   name="date_of_birth" value="<%= processo.date_of_birth %>"></input>
+                                                   name="date_of_birth" value="<%= processo.date_of_birth %>"/>
                                         </div>
                                         <div class="col-xl-1 col-md-6 mb-4">
                                             <small id="passwordHelpBlock" class="form-text text-muted">CPF</small>
                                             <input class="form-control form-control-sm cpf" name="cpf"
-                                                   value="<%= processo.cpf %>"></input>
+                                                   value="<%= processo.cpf %>"/>
                                         </div>
                                     </div>
 
@@ -65,7 +65,7 @@
                                                    class="form-control form-control-sm cep"
                                                    name="cep" id="cep" value="<%= processo.cep %>" size="10"
                                                    onblur="getCep(this.value);"
-                                            ></input>
+                                            />
                                         </div>
 
                                         <div class="col-xl-3 col-md-6 mb-4">
@@ -73,7 +73,7 @@
                                                    class="form-text text-muted">Logradouro</small>
                                             <input style="text-transform: uppercase;" id="Street"
                                                    class="form-control form-control-sm" name="address"
-                                                   value="<%= processo.address %>"></input>
+                                                   value="<%= processo.address %>"/>
 
                                         </div>
 
@@ -82,7 +82,7 @@
                                                    class="form-text text-muted">Número</small>
                                             <input style="text-transform: uppercase;" id="number"
                                                    class="form-control form-control-sm" name="number"
-                                                   value="<%= processo.number %>"></input>
+                                                   value="<%= processo.number %>"/>
 
                                         </div>
 
@@ -92,7 +92,7 @@
                                                    class="form-text text-muted">Complemento</small>
                                             <input style="text-transform: uppercase;" id="complement"
                                                    class="form-control form-control-sm" name="complement"
-                                                   value="<%= processo.complement %>"></input>
+                                                   value="<%= processo.complement %>"/>
 
                                         </div>
 
@@ -101,27 +101,18 @@
                                                    class="form-text text-muted">Bairro</small>
                                             <input style="text-transform: uppercase;" id="District"
                                                    class="form-control form-control-sm" name="district"
-                                                   value="<%= processo.district %>"></input>
-
+                                                   value="<%= processo.district %>"/>
                                         </div>
-
-
                                         <div class="col-xl-2 col-md-6 mb-4">
                                             <small id="passwordHelpBlock"
                                                    class="form-text text-muted">Cidade</small>
                                             <input style="text-transform: uppercase;" id="City"
                                                    class="form-control form-control-sm" name="city"
-                                                   value="<%= processo.city %>"></input>
-
+                                                   value="<%= processo.city %>"/>
                                         </div>
-
-
                                     </div>
-
                                 </div>
-
                             </div>
-
 
                             <!-- LIGAÇÕES -->
                             <div class="card shadow mb-4">
@@ -139,7 +130,7 @@
                                             <small id="passwordHelpBlock" class="form-text text-muted">Data da
                                                 Ligação</small>
                                             <input type="text" class="form-control date" name="date_of_call"
-                                                   value="<%= processo.date_of_call %>"></input>
+                                                   value="<%= processo.date_of_call %>"/>
                                         </div>
 
 
@@ -173,7 +164,6 @@
                                         <div class="col-md-2 mb-3"><small id="apoio"
                                                                           class="form-text text-muted">Apoio</small>
                                             <select class="form-control" name="candidacy_support" id="apoio" autofocus>
-                                                <option value=""></option>
                                                 <option value="seminformacao"<%= (processo.candidacy_support == 'seminformacao') ? 'selected' : '' %>>
                                                     SEM INFORMAÇÃO
                                                 </option>
@@ -204,6 +194,10 @@
                                             </select>
                                         </div>
 
+                                        <div class="col-md-2 mb-3">
+                                            <small id="employee_of_call" class="form-text text-muted">FUNCIONÁRIO QUE LIGOU</small>
+                                            <input name="employee_of_call" class="form-control" value="<%=processo?.employee_of_call%>" />
+                                        </div>
                                     </div>
 
                                 </div>
@@ -309,19 +303,19 @@
                                             <small id="passwordHelpBlock"
                                                    class="form-text text-muted">DtLig_benefício</small>
                                             <input type="text" class="form-control date" name="date_of_schedule"
-                                                   value="<%= processo.date_of_schedule %>"></input>
+                                                   value="<%= processo.date_of_schedule %>"/>
                                         </div>
                                         <div class="col-xl-1 col-md-6 mb-4">
                                             <small id="passwordHelpBlock" class="form-text text-muted">Hora</small>
                                             <input type="text" class="form-control time"
-                                                   name="time" value="<%= processo.time %>"></input>
+                                                   name="time" value="<%= processo.time %>"/>
                                         </div>
 
                                         <div class="col-xl-2 col-md-6 mb-4">
                                             <small id="passwordHelpBlock"
                                                    class="form-text text-muted">Reagendamento</small>
                                             <input class="form-control" name="reschedule"
-                                                   value="<%= processo.reschedule %>"></input>
+                                                   value="<%= processo.reschedule %>"/>
                                         </div>
 
                                         <div class="col-xl-12 col-md-6 mb-4">
@@ -330,16 +324,14 @@
                                             <textarea type="text"
                                                       class="p-3 mb-2 bg-light text-dark form-control form-control-sm"
                                                       name="observation" id="observation"
-                                                      rows="1" cols="66">
-                                                <%- processo.observation %>
-                                            </textarea>
+                                                      rows="1" cols="66"><%- processo.observation %></textarea>
                                         </div>
 
                                         <div class="col-xl-2 col-md-6 mb-4">
                                             <small id="passwordHelpBlock"
                                                    class="form-text text-muted">status</small>
                                             <input class="form-control form-control-sm " name="status"
-                                                   value="<%= processo.status %>"></input>
+                                                   value="<%= processo.status %>"/>
                                         </div>
 
                                         <div class="col-xl-2 col-md-6 mb-4">
@@ -347,14 +339,14 @@
                                                 Entrada</small>
                                             <input class="form-control form-control-sm "
                                                    name="status_of_observation"
-                                                   value="<%= processo.status_of_observation %>"></input>
+                                                   value="<%= processo.status_of_observation %>"/>
                                         </div>
 
                                         <div class="col-xl-2 col-md-6 mb-4">
                                             <small id="passwordHelpBlock" class="form-text text-muted">STATUS (USO
                                                 EXCLUSIVO DA 3232)</small>
                                             <input class="form-control form-control-sm " name="status_of_3232"
-                                                   value="<%= processo.status_of_3232 %>"></input>
+                                                   value="<%= processo.status_of_3232 %>"/>
                                         </div>
 
 
@@ -362,7 +354,7 @@
                                             <small id="passwordHelpBlock"
                                                    class="form-text text-muted">Fonte\Origem</small>
                                             <input class="form-control form-control-sm" name="source"
-                                                   value="<%= processo.source %>"></input>
+                                                   value="<%= processo.source %>"/>
                                         </div>
 
                                     </div>
