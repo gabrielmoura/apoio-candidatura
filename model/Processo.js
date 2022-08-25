@@ -40,6 +40,9 @@ const Processo = db.connection.define(db.env.DB_PREFIX + '_processos', {
     status_of_call: {type: DataTypes.STRING}, // Status Caso consiga falar com o cliente.
     unit: {type: DataTypes.STRING}, // Unidade
     source: {type: DataTypes.STRING, allowNull: true}, // Fonte: Origem do dado
+    deletedAt: {type: DataTypes.STRING, allowNull: true}, // Quando foi deletado
+    deletedStatus: {type: DataTypes.STRING, allowNull: true}, // Motivo que foi deletado.
+    employee_of_call:{type: DataTypes.STRING, allowNull: true}, // Funcionário que originou a ligação
     user_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
