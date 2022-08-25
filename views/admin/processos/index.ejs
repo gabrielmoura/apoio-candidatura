@@ -42,10 +42,13 @@
                                     </select>
                                 </div>
                                 <div class="col-md-2">
-                                    <button type="submit" class="btn btn-primary mb-2">Pesquisar Processo</button>
+                                    <button type="submit" id="btnSearch" class="btn btn-primary mb-2">Pesquisar
+                                        Processo
+                                    </button>
                                 </div>
                                 <div class="col-3 col-md-3">
-                                    <a class="btn btn-success mb-2" href="/admin/processos/new">Cadastrar Novo Processo</a>
+                                    <a class="btn btn-success mb-2" href="/admin/processos/new">Cadastrar Novo
+                                        Processo</a>
                                 </div>
                             </form>
                         </div>
@@ -171,6 +174,13 @@
     <a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
 </div>
 <script>
+    document.getElementById("searchprocesso").addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("btnSearch").click();
+        }
+    });
+
     function confirmarDelecao(event, form) {
         event.preventDefault();
         var decision = confirm("Você quer deletar este Processo?");
