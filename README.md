@@ -1,5 +1,5 @@
-# cadastrocomputei
-Sistema de Cadastro com tramitações
+# Apoio a Candidatura
+Sistema de Apoio a Candidatura
 
 ### Requisitos
 * PostgreSQL
