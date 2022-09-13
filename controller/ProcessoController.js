@@ -36,7 +36,10 @@ module.exports = {
         Processo.findByPk(id).then(processo => {
 
             if (processo != undefined) {
-                res.render("admin/processos/edit", nP.parse({processo}, req));
+                res.render("admin/processos/edit", nP.parse({
+                    processo,
+                    title: process.env.APP_NAME + ' ' + processo.name
+                }, req));
             } else {
                 res.redirect("/admin/processos");
             }
